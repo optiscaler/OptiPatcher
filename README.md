@@ -13,7 +13,7 @@ Currently supported games:
 * Banishers
 
 ### Installation
-Create a `plugins` folder and put `OptiPatcher.adi` in this folder. 
+Create a `plugins` folder and put `OptiPatcher.asi` in this folder. 
 Enable ASI loading from `OptiScaler.ini` and disable Dxgi spoofing.
 ```ini
 Dxgi=false
