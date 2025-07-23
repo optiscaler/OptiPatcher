@@ -6,13 +6,15 @@ Currently supported games:
 * Forgive Me Father 2
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * Oblivion Remastered
-* Clair Obscure
 * Talos Principle 2
 * Witchfire
 * Persistence
 * Black Myth: Wukong
 * Banishers
-
+* Clair Obscure
+* 171
+* Red Dead Redemtion 2 (thanks to **0x-FADED**)
+  
 ### Installation
 Create a `plugins` folder and put `OptiPatcher.asi` in this folder. 
 Enable ASI loading from `OptiScaler.ini` and disable Dxgi spoofing.
