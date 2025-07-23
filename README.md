@@ -6,6 +6,7 @@ Currently supported games:
 * Forgive Me Father 2
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * Oblivion Remastered
+* Clair Obscure
 * Talos Principle 2
 * Witchfire
 * Persistence
