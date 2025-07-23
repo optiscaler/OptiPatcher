@@ -13,3 +13,4 @@
 #endif // PCH_H
 
 extern "C" __declspec(dllexport) bool PatchResult();
+extern "C" __declspec(dllexport) void InitializeASI(void);

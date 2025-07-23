@@ -177,11 +177,8 @@ uintptr_t scanner::GetAddress(HMODULE module, const std::string_view pattern, pt
     }
 }
 
-uintptr_t scanner::GetOffsetFromInstruction(const std::wstring_view moduleName, const std::string_view pattern,
-                                            ptrdiff_t offset)
+uintptr_t scanner::GetOffsetFromInstruction(HMODULE module, const std::string_view pattern, ptrdiff_t offset)
 {
-    auto module = GetModuleHandle(moduleName.data());
-
     if (module == nullptr)
         return NULL;
 

@@ -8,6 +8,7 @@
 static bool _patchResult = false;
 
 extern "C" __declspec(dllexport) bool PatchResult() { return _patchResult; }
+extern "C" __declspec(dllexport) void InitializeASI() { return; }
 
 static void CheckForPatch()
 {
@@ -38,6 +39,20 @@ static void CheckForPatch()
                                  "00 4C 89 B4 24 38 02 00 00 E8 "
                                  "? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 34);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+    // 171, Clair Obscure
+    else if (exeName == "bgg-win64-shipping.exe" || exeName == "sandfall-win64-shipping.exe")
+    {
+        std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
+                                 "34 30 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
 
         if (patchAddress != nullptr)
         {
@@ -122,6 +137,31 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+    }
+    // RDR2
+    // Thanks to 0x-FADED
+    // https://github.com/0x-FADED/RDR2-NVNGX-Loader
+    else if (exeName == "rdr2.exe")
+    {
+        std::string_view patternGPUCheck("E8 ? ? ? ? 4C 8B CB 48 8D 54 24 60");
+        auto patchAddressGPU = (void*) scanner::GetAddress(exeModule, patternGPUCheck, -13);
+
+        if (patchAddressGPU != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressGPU, &patch);
+        }
+
+        std::string_view patternSigCheck("80 3D ? ? ? ? ? 75 ? 41 8B CF");
+        auto patchAddressSigCheck = (void*) scanner::GetAddress(exeModule, patternSigCheck, 6);
+
+        if (patchAddressSigCheck != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x01 };
+            patcher::PatchAddress(patchAddressSigCheck, &patch);
+        }
+
+        _patchResult = patchAddressGPU != nullptr && patchAddressSigCheck != nullptr;
     }
 }
 
