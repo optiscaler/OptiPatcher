@@ -47,8 +47,9 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // 171, Clair Obscure
-    else if (exeName == "bgg-win64-shipping.exe" || exeName == "sandfall-win64-shipping.exe")
+    // 171, Clair Obscure, Ranch Simulator
+    else if (exeName == "bgg-win64-shipping.exe" || exeName == "sandfall-win64-shipping.exe" ||
+             exeName == "ranch_simulator-win64-shipping.exe")
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
                                  "34 30 E8 ? ? ? ? 84 C0 75");
@@ -134,6 +135,56 @@ static void CheckForPatch()
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+    // Alone in the Dark
+    else if (exeName == "aloneinthedark-win64-shipping.exe")
+    {
+        std::string_view pattern("4C 8B 65 F0 33 C0 48 8B 4D 48 "
+                                 "4C 89 65 C0 48 89 45 F0 48 89 "
+                                 "45 F8 48 85 C9 74 05 E8 ? ? "
+                                 "? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+    // Atomic Heart
+    else if (exeName == "atomicheart-win64-shipping.exe")
+    {
+        std::string_view pattern("4C 8B 7D F0 33 C0 48 8B 4D 40 "
+                                 "4C 89 7D C0 48 89 45 F0 48 89 "
+                                 "45 F8 48 85 C9 74 05 E8 ? ? "
+                                 "? ? E8 ? ? ? ? 84 C0 75");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+    // Alters
+    else if (exeName == "thealters-win64-shipping.exe")
+    {
+        std::string_view pattern("E8 ? ? ? ? 84 C0 75 0C E8 "
+                                 "? ? ? ? 84 C0 49 8B C7 74 "
+                                 "03 49 8B C6 8B 34 30 E8 ? ? "
+                                 "? ? 84 C0 75");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 32);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
