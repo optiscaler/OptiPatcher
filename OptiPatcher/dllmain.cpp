@@ -189,6 +189,23 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+    // Wuchang
+    else if (exeName == "project_plague-win64-shipping.exe")
+    {
+        std::string_view pattern("75 0C E8 ? ? ? ? 84 C0 49 "
+                                 "8B C7 74 03 49 8B C6 8B 34 30 "
+                                 "89 75 80 E8 ? ? ? ? 84 C0 "
+                                 "75");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 28);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
     // RDR2
     // Thanks to 0x-FADED
     // https://github.com/0x-FADED/RDR2-NVNGX-Loader
