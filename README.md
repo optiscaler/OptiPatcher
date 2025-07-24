@@ -3,6 +3,8 @@ An ASI Plugin for OptiScaler to enable DLSS without spoofing in supported games.
 
 Currently supported games:
 * 171
+* Alone in the Dark 2024 (needs testing)
+* Atomic Heart (needs testing)
 * Banishers
 * Black Myth: Wukong
 * Clair Obscure
@@ -10,8 +12,10 @@ Currently supported games:
 * Forgive Me Father 2
 * Oblivion Remastered
 * Persistence
+* Ranch Simulator
 * Red Dead Redemtion 2 (thanks to **0x-FADED**)
 * Talos Principle 2
+* The Alters (needs testing)
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * Witchfire
   
