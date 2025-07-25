@@ -31,8 +31,9 @@ static void CheckForPatch()
         }
     }
     // Forgive Me Father 2, The Midnight Walk, Oblivion Remastered
-    else if (exeName == "fmf2-win64-shipping.exe" || exeName == "themidnightwalk-win64-shipping.exe" ||
-             exeName == "oblivionremastered-win64-shipping.exe")
+    else if (exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
+             exeName == "themidnightwalk-win64-shipping.exe" || exeName == "themidnightwalk-wingdk-shipping.exe" ||
+             exeName == "oblivionremastered-win64-shipping.exe" || exeName == "oblivionremastered-wingdk-shipping.exe")
     {
         std::string_view pattern("B8 04 00 00 00 74 03 49 8B C7 "
                                  "8B 34 30 4C 89 A4 24 78 02 00 "
@@ -48,8 +49,9 @@ static void CheckForPatch()
         }
     }
     // 171, Clair Obscure, Ranch Simulator
-    else if (exeName == "bgg-win64-shipping.exe" || exeName == "sandfall-win64-shipping.exe" ||
-             exeName == "ranch_simulator-win64-shipping.exe")
+    else if (exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" ||
+             exeName == "sandfall-win64-shipping.exe" || exeName == "sandFall-wingdk-shipping.exe" ||
+             exeName == "ranch_simulator-win64-shipping.exe" || exeName == "ranch_simulator-wingdk-shipping.exe")
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
                                  "34 30 E8 ? ? ? ? 84 C0 75");
@@ -63,7 +65,7 @@ static void CheckForPatch()
         }
     }
     // Talos Principle 2
-    else if (exeName == "talos2-win64-shipping.exe")
+    else if (exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe")
     {
         std::string_view pattern("49 8B F4 EB 02 33 F6 42 8B 34 "
                                  "36 E8 ? ? ? ? 84 C0 75");
@@ -77,7 +79,7 @@ static void CheckForPatch()
         }
     }
     // Witchfire
-    else if (exeName == "witchfire-win64-shipping.exe")
+    else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe")
     {
         std::string_view pattern("4C 8B 6D E0 33 C0 48 8B 4D 40 "
                                  "4C 89 6D C0 48 89 45 E0 48 89 "
@@ -93,7 +95,7 @@ static void CheckForPatch()
         }
     }
     // The Persistence
-    else if (exeName == "persistence-win64-shipping.exe")
+    else if (exeName == "persistence-win64-shipping.exe" || exeName == "persistence-wingdk-shipping.exe")
     {
         std::string_view pattern("33 C9 3B ? ? ? ? ? 0F 95 "
                                  "C1 EB 02 33 C9 8B 1C 8B E8 ? "
@@ -108,7 +110,7 @@ static void CheckForPatch()
         }
     }
     // Black Myth: Wukong
-    else if (exeName == "b1-win64-shipping.exe")
+    else if (exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
     {
         std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B "
                                  "3C 38 E8 ? ? ? ? 84 C0 75");
@@ -122,7 +124,7 @@ static void CheckForPatch()
         }
     }
     // Banishers
-    else if (exeName == "banishers-win64-shipping.exe")
+    else if (exeName == "banishers-win64-shipping.exe" || exeName == "banishers-wingdk-shipping.exe")
     {
         std::string_view pattern("45 33 C9 C7 44 24 20 03 00 00 "
                                  "00 48 8D ? ? ? ? ? 48 8D "
@@ -140,7 +142,7 @@ static void CheckForPatch()
         }
     }
     // Alone in the Dark
-    else if (exeName == "aloneinthedark-win64-shipping.exe")
+    else if (exeName == "aloneinthedark-win64-shipping.exe" || exeName == "aloneinthedark-wingdk-shipping.exe")
     {
         std::string_view pattern("4C 8B 65 F0 33 C0 48 8B 4D 48 "
                                  "4C 89 65 C0 48 89 45 F0 48 89 "
@@ -156,7 +158,7 @@ static void CheckForPatch()
         }
     }
     // Atomic Heart
-    else if (exeName == "atomicheart-win64-shipping.exe")
+    else if (exeName == "atomicheart-win64-shipping.exe" || exeName == "atomicheart-wingdk-shipping.exe")
     {
         std::string_view pattern("4C 8B 7D F0 33 C0 48 8B 4D 40 "
                                  "4C 89 7D C0 48 89 45 F0 48 89 "
@@ -173,7 +175,7 @@ static void CheckForPatch()
         }
     }
     // Alters
-    else if (exeName == "thealters-win64-shipping.exe")
+    else if (exeName == "thealters-win64-shipping.exe" || exeName == "thealters-wingdk-shipping.exe")
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 75 0C E8 "
                                  "? ? ? ? 84 C0 49 8B C7 74 "
@@ -190,7 +192,7 @@ static void CheckForPatch()
         }
     }
     // Wuchang
-    else if (exeName == "project_plague-win64-shipping.exe")
+    else if (exeName == "project_plague-win64-shipping.exe" || exeName == "project_plague-wingdk-shipping.exe")
     {
         std::string_view pattern("75 0C E8 ? ? ? ? 84 C0 49 "
                                  "8B C7 74 03 49 8B C6 8B 34 30 "
