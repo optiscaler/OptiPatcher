@@ -18,6 +18,7 @@ Currently supported games:
 * The Alters (needs testing)
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * Witchfire
+* Wuchang: Fallen Feathers
   
 ### Installation
 Create a `plugins` folder and put `OptiPatcher.asi` in this folder. 
