@@ -15,7 +15,7 @@ Currently supported games:
 * Ranch Simulator
 * Red Dead Redemtion 2 (thanks to **0x-FADED**)
 * Talos Principle 2
-* The Alters (needs testing)
+* The Alters 
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * Witchfire
 * Wuchang: Fallen Feathers
