@@ -7,10 +7,10 @@ Currently supported games:
 * Atomic Heart (needs testing)
 * Banishers: Ghosts of New Eden
 * Black Myth: Wukong
-* Bloom & Rage
 * Clair Obscur: Expedition 33
 * Deep Rock Galactic
 * Forgive Me Father 2
+* Lost Records: Bloom & Rage
 * Ranch Simulator
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
 * The Alters
