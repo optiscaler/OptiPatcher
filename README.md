@@ -7,6 +7,7 @@ Currently supported games:
 * Atomic Heart (needs testing)
 * Banishers: Ghosts of New Eden
 * Black Myth: Wukong
+* Bloom & Rage
 * Clair Obscur: Expedition 33
 * Deep Rock Galactic
 * Forgive Me Father 2
