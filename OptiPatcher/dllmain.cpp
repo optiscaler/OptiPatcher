@@ -127,6 +127,21 @@ static void CheckForPatch()
         }
     }
 
+    // Bloom & Rage
+    else if (exeName == "bloom&rage.exe")
+    {
+        std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B "
+                                 "3C 38 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Black Myth: Wukong
     else if (exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
     {
@@ -140,7 +155,7 @@ static void CheckForPatch()
         {
             std::string_view pattern2("49 8B C6 74 03 49 8B C5 46 8B "
                                       "3C 38 E8 ? ? ? ? 84 C0 75");
-            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern2, 17);
         }
 
         if (patchAddress != nullptr)
