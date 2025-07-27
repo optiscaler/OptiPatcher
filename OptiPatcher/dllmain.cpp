@@ -19,8 +19,10 @@ static void CheckForPatch()
     // Deep Rock Galactic
     if (exeName == "fsd-win64-shipping.exe")
     {
-        std::string_view pattern("4C 8B 75 00 33 C0 48 8B 4D 50 4C 89 75 D0 48 89 45 00 48 89 45 08 48 85 C9 74 05 E8 "
-                                 "? ? ? ? E8 ? ? ? ? 84 C0 75");
+        std::string_view pattern("4C 8B 75 00 33 C0 48 8B 4D 50 "
+                                 "4C 89 75 D0 48 89 45 00 48 89 "
+                                 "45 08 48 85 C9 74 05 E8 ? ? "
+                                 "? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
 
         if (patchAddress != nullptr)
@@ -112,9 +114,18 @@ static void CheckForPatch()
     // Black Myth: Wukong
     else if (exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
     {
-        std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B "
-                                 "3C 38 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
+        std::string_view pattern("E8 ? ? ? ? 84 C0 49 8B C4 "
+                                 "74 03 49 8B C6 8B 34 30 89 75 "
+                                 "80 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 26);
+
+        // Check for benchmark
+        if (patchAddress == nullptr)
+        {
+            std::string_view pattern2("49 8B C6 74 03 49 8B C5 46 8B "
+                                      "3C 38 E8 ? ? ? ? 84 C0 75");
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
+        }
 
         if (patchAddress != nullptr)
         {
