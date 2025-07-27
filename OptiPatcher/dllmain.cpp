@@ -19,11 +19,21 @@ static void CheckForPatch()
     // Deep Rock Galactic
     if (exeName == "fsd-win64-shipping.exe")
     {
-        std::string_view pattern("4C 8B 75 00 33 C0 48 8B 4D 50 "
-                                 "4C 89 75 D0 48 89 45 00 48 89 "
-                                 "45 08 48 85 C9 74 05 E8 ? ? "
+        std::string_view pattern("4C 8B 6D E0 33 C0 48 8B 4D 40 "
+                                 "4C 89 6D C0 48 89 45 E0 48 89 "
+                                 "45 E8 48 85 C9 74 05 E8 ? ? "
                                  "? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
+
+        // Old pattern
+        if (patchAddress == nullptr)
+        {
+            std::string_view oldPattern("4C 8B 75 00 33 C0 48 8B 4D 50 "
+                                        "4C 89 75 D0 48 89 45 00 48 89 "
+                                        "45 08 48 85 C9 74 05 E8 ? ? "
+                                        "? ? E8 ? ? ? ? 84 C0 75");
+            patchAddress = (void*) scanner::GetAddress(exeModule, oldPattern, 37);
+        }
 
         if (patchAddress != nullptr)
         {
@@ -32,6 +42,7 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+
     // Forgive Me Father 2, The Midnight Walk, Oblivion Remastered
     else if (exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
              exeName == "themidnightwalk-win64-shipping.exe" || exeName == "themidnightwalk-wingdk-shipping.exe" ||
@@ -82,6 +93,7 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+
     // Witchfire
     else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe")
     {
