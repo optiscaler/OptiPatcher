@@ -50,7 +50,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // 171, Clair Obscure, Ranch Simulator
+
+    // 171, Clair Obscur: Expedition 33, Ranch Simulator
     else if (exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" ||
              exeName == "sandfall-win64-shipping.exe" || exeName == "sandFall-wingdk-shipping.exe" ||
              exeName == "ranch_simulator-win64-shipping.exe" || exeName == "ranch_simulator-wingdk-shipping.exe")
@@ -66,7 +67,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // Talos Principle 2
+
+    // The Talos Principle 2
     else if (exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe")
     {
         std::string_view pattern("49 8B F4 EB 02 33 F6 42 8B 34 "
@@ -96,6 +98,7 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+
     // The Persistence
     else if (exeName == "persistence-win64-shipping.exe" || exeName == "persistence-wingdk-shipping.exe")
     {
@@ -111,6 +114,7 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+
     // Black Myth: Wukong
     else if (exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
     {
@@ -134,7 +138,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // Banishers
+
+    // Banishers: Ghosts of New Eden
     else if (exeName == "banishers-win64-shipping.exe" || exeName == "banishers-wingdk-shipping.exe")
     {
         std::string_view pattern("45 33 C9 C7 44 24 20 03 00 00 "
@@ -152,7 +157,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // Alone in the Dark
+
+    // Alone in the Dark 2024
     else if (exeName == "aloneinthedark-win64-shipping.exe" || exeName == "aloneinthedark-wingdk-shipping.exe")
     {
         std::string_view pattern("4C 8B 65 F0 33 C0 48 8B 4D 48 "
@@ -168,6 +174,7 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+
     // Atomic Heart
     else if (exeName == "atomicheart-win64-shipping.exe" || exeName == "atomicheart-wingdk-shipping.exe")
     {
@@ -185,7 +192,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // Alters
+
+    // The Alters
     else if (exeName == "thealters-win64-shipping.exe" || exeName == "thealters-wingdk-shipping.exe")
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 75 0C E8 "
@@ -202,7 +210,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // Wuchang
+
+    // WUCHANG: Fallen Feathers
     else if (exeName == "project_plague-win64-shipping.exe" || exeName == "project_plague-wingdk-shipping.exe")
     {
         std::string_view pattern("75 0C E8 ? ? ? ? 84 C0 49 "
@@ -219,7 +228,8 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-    // RDR2
+
+    // Red Dead Redemption 2
     // Thanks to 0x-FADED
     // https://github.com/0x-FADED/RDR2-NVNGX-Loader
     else if (exeName == "rdr2.exe")
