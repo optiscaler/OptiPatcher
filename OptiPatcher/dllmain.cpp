@@ -43,7 +43,7 @@ static void CheckForPatch()
         }
     }
 
-    // Forgive Me Father 2, The Midnight Walk, Oblivion Remastered
+    // Forgive Me Father 2, The Midnight Walk, The Elder Scrolls IV: Oblivion Remastered
     else if (exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
              exeName == "themidnightwalk-win64-shipping.exe" || exeName == "themidnightwalk-wingdk-shipping.exe" ||
              exeName == "oblivionremastered-win64-shipping.exe" || exeName == "oblivionremastered-wingdk-shipping.exe")
@@ -127,7 +127,7 @@ static void CheckForPatch()
         }
     }
 
-    // Bloom & Rage
+    // Lost Records: Bloom & Rage
     else if (exeName == "bloom&rage.exe")
     {
         std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B "
