@@ -66,7 +66,7 @@ We will patch the `84 C0` part so need to find offset of that.
 Looks like it's 21th byte in pattern.
 
 ### 8. Generating code for patch
-According to all the info we collected new if condution will be like below. 
+According to all the info we collected new if condution will be like below.   
 **Exe name should be written in all lower case!**
 
 ```c++
@@ -74,8 +74,8 @@ According to all the info we collected new if condution will be like below.
     else if (exeName == "project_plague-win64-shipping.exe")
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C6 "
-                                 "8B 34 30 89 75 80 E8 ?? ?? ?? "
-                                 "?? 84 C0 75");
+                                 "8B 34 30 89 75 80 E8 ? ? ? "
+                                 "? 84 C0 75");
 
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
