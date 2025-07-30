@@ -9,7 +9,9 @@ Currently supported games:
 * Black Myth: Wukong
 * Clair Obscur: Expedition 33
 * Deep Rock Galactic
+* DOOM Eternal
 * Forgive Me Father 2
+* Lies of P
 * Lost Records: Bloom & Rage
 * Ranch Simulator
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
