@@ -185,6 +185,25 @@ static void CheckForPatch()
         }
     }
 
+    // Lies of P
+    else if (exeName == "lop-win64-shipping.exe" || exeName == "lop-wingdk-shipping.exe")
+    {
+        std::string_view pattern("41 B9 1B 00 00 00 C7 44 24 20 "
+                                 "02 00 00 00 48 8D ? ? ? ? "
+                                 "? 48 8D 4D 68 45 8D 41 E9 E8 "
+                                 "? ? ? ? 48 8B 4D 10 48 85 "
+                                 "C9 74 05 E8 ? ? ? ? 81 3D "
+                                 "? ? ? ? ? ? ? ? 74 0D");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 48);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (exeName == "aloneinthedark-win64-shipping.exe" || exeName == "aloneinthedark-wingdk-shipping.exe")
     {
