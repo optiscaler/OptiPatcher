@@ -167,6 +167,7 @@ static void CheckForPatch()
     }
 
     // Banishers: Ghosts of New Eden
+    // inline patch
     else if (exeName == "banishers-win64-shipping.exe" || exeName == "banishers-wingdk-shipping.exe")
     {
         std::string_view pattern("45 33 C9 C7 44 24 20 03 00 00 "
@@ -186,6 +187,7 @@ static void CheckForPatch()
     }
 
     // Lies of P
+    // inline patch
     else if (exeName == "lop-win64-shipping.exe" || exeName == "lop-wingdk-shipping.exe")
     {
         std::string_view pattern("41 B9 1B 00 00 00 C7 44 24 20 "
@@ -270,6 +272,26 @@ static void CheckForPatch()
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // DOOM Eternal
+    // just nops a line for main game exe
+    else if (exeName == "doometernalx64vk.exe")
+    {
+        std::string_view pattern("80 3D ? ? ? ? ? 66 C7 05 "
+                                 "? ? ? ? ? ? 48 C7 05 ? "
+                                 "? ? ? ? ? ? ? 0F 84 ? "
+                                 "? ? ? 80 3D ? ? ? ? ? "
+                                 "0F 84 ? ? ? ? 48 8B ? ? "
+                                 "? ? ? 48 8D");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 40);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
