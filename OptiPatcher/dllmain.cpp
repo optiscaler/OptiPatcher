@@ -297,6 +297,24 @@ static void CheckForPatch()
         }
     }
 
+    // DOOM Eternal - Sandbox
+    // nops a line for sandbox exe
+    else if (exeName == "doomsandbox64vk.exe")
+    {
+        std::string_view pattern("48 C7 05 ? ? ? ? ? ? ? "
+                                 "? 0F 84 ? ? ? ? 80 3D ? "
+                                 "? ? ? ? 0F 84 ? ? ? ? "
+                                 "48 8B ? ? ? ? ? 48 8D");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 24);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Red Dead Redemption 2
     // Thanks to 0x-FADED
     // https://github.com/0x-FADED/RDR2-NVNGX-Loader
