@@ -277,6 +277,21 @@ static void CheckForPatch()
         }
     }
 
+    // Enotria: The Last Song  
+    else if (exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe")
+    {
+        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 "
+                                 "46 8B 34 30 E8 ? ? ? ? 84 "
+                                 "C0 75"); 
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19); 
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
