@@ -22,6 +22,8 @@ Currently supported games:
 * The Talos Principle 2
 * Witchfire
 * WUCHANG: Fallen Feathers
+* Enotria: The last song
+* The Ascent
   
 ### Installation
 * Create a `plugins` folder where Opti is installed and put `OptiPatcher.asi` in this folder.  
