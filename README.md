@@ -10,18 +10,21 @@ Currently supported games:
 * Clair Obscur: Expedition 33
 * Deep Rock Galactic
 * DOOM Eternal (+ Sandbox)
+* Enotria: The Last Song
 * Forgive Me Father 2
 * Lies of P
 * Lost Records: Bloom & Rage
 * Ranch Simulator
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
 * The Alters
+* The Ascent
 * The Elder Scrolls IV: Oblivion Remastered
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * The Persistence
 * The Talos Principle 2
 * Witchfire
 * WUCHANG: Fallen Feathers
+
   
 ### Installation
 * Create a `plugins` folder where Opti is installed and put `OptiPatcher.asi` in this folder.  
