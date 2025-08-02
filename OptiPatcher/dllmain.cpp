@@ -347,6 +347,73 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+     
+    // Amid Evil
+    else if (exeName == "amidevil-win64-shipping.exe" || exeName == "amidevil-wingdk-shipping.exe")
+    {
+        std::string_view pattern("48 85 DB 74 08 48 8B CB E8 ? " 
+                                 "? ? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Severed Steel
+    else if (exeName == "thankyouverycool-win64-shipping.exe" || exeName == "thankyouverycool-wingdk-shipping.exe")
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 ");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Achilles: Legends Untold
+    else if (exeName == "achilles-win64-shipping.exe" || exeName == "achilles-wingdk-shipping.exe")
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // LEGO® Builder's Journey
+    else if (exeName == "unityplayer.exe")
+    {
+        std::string_view pattern("48 8D 15 ? ? ? ? 48 89 D9 E8 ? ? ? ? 48 83 F8 FF");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15); 
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB8, 0x00, 0x00, 0x00, 0x00 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    
+    // ARK: Survival Ascended
+    else if (exeName == "ArkAscended.exe")
+    {
+        std::string_view pattern("84 C0 49 8B C5 74 03 49 8B C4 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30 74");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    } 
 
     // DOOM Eternal
     // just nops a line for main game exe

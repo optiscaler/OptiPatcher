@@ -3,7 +3,10 @@ An **ASI Plugin for OptiScaler** to enable DLSS without spoofing in supported ga
 
 Currently supported games:
 * 171
+* Achilles: Legends Untold
 * Alone in the Dark 2024 (needs testing)
+* Amid Evil
+* ARK: Survival Ascended(needs testing)
 * Atomic Heart (needs testing)
 * Banishers: Ghosts of New Eden
 * Black Myth: Wukong
@@ -15,10 +18,12 @@ Currently supported games:
 * Forgive Me Father 2
 * Ghostrunner
 * Ghostrunner 2
+* LEGO® Builder's Journey(unlock DLSS entry but no inputs to opti, needs testing)
 * Lies of P
 * Lost Records: Bloom & Rage
 * Ranch Simulator
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
+* Severed Steel
 * The Alters
 * The Ascent
 * The Elder Scrolls IV: Oblivion Remastered
