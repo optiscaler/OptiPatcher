@@ -347,11 +347,11 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
-     
+
     // Amid Evil
     else if (exeName == "amidevil-win64-shipping.exe" || exeName == "amidevil-wingdk-shipping.exe")
     {
-        std::string_view pattern("48 85 DB 74 08 48 8B CB E8 ? " 
+        std::string_view pattern("48 85 DB 74 08 48 8B CB E8 ? "
                                  "? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
         if (patchAddress != nullptr)
@@ -388,11 +388,11 @@ static void CheckForPatch()
         }
     }
 
-    // LEGO® Builder's Journey
+    // LEGOÂ® Builder's Journey
     else if (exeName == "unityplayer.exe")
     {
         std::string_view pattern("48 8D 15 ? ? ? ? 48 89 D9 E8 ? ? ? ? 48 83 F8 FF");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15); 
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0xB8, 0x00, 0x00, 0x00, 0x00 };
@@ -401,7 +401,6 @@ static void CheckForPatch()
         }
     }
 
-    
     // ARK: Survival Ascended
     else if (exeName == "ArkAscended.exe")
     {
@@ -413,7 +412,7 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
-    } 
+    }
 
     // Titan Quest II
     else if (exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe")
@@ -428,6 +427,32 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+    }
+
+    // RoboCop: Rogue City
+    else if (exeName == "robocop-win64-shipping.exe" || exeName == "robocop-wingdk-shipping.exe")
+    {
+        std::string_view patternDLSSCheck("74 03 49 8B C5 46 8B 3C 38 E8 "
+                                          "? ? ? ? 84 C0 75");
+        auto patchAddressDLSSCheck = (void*) scanner::GetAddress(exeModule, patternDLSSCheck, 14);
+
+        if (patchAddressDLSSCheck != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressDLSSCheck, &patch);
+        }
+
+        std::string_view patternXeFGCheck("83 F8 03 0F 85 ? ? ? ? E8 "
+                                          "? ? ? ? 84 C0 0F 84");
+        auto patchAddressXeFGCheck = (void*) scanner::GetAddress(exeModule, patternXeFGCheck, 14);
+
+        if (patchAddressXeFGCheck != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressXeFGCheck, &patch);
+        }
+
+        _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
     // DOOM Eternal
