@@ -12,6 +12,8 @@ Currently supported games:
 * DOOM Eternal (+ Sandbox)
 * Enotria: The Last Song
 * Forgive Me Father 2
+* Ghostrunner
+* Ghostrunner 2
 * Lies of P
 * Lost Records: Bloom & Rage
 * Ranch Simulator
