@@ -8,6 +8,7 @@ Currently supported games:
 * Banishers: Ghosts of New Eden
 * Black Myth: Wukong
 * Clair Obscur: Expedition 33
+* Deadlink(only dx12 no XeSS mode)
 * Deep Rock Galactic
 * DOOM Eternal (+ Sandbox)
 * Enotria: The Last Song
