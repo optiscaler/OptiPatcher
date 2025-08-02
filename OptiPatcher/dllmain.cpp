@@ -277,13 +277,13 @@ static void CheckForPatch()
         }
     }
 
-    // Enotria: The Last Song  
+    // Enotria: The Last Song
     else if (exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe")
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 "
                                  "46 8B 34 30 E8 ? ? ? ? 84 "
-                                 "C0 75"); 
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19); 
+                                 "C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
@@ -323,7 +323,7 @@ static void CheckForPatch()
     // Ghostrunner 2
     else if (exeName == "ghostrunner2-win64-shipping.exe" || exeName == "ghostrunner2-wingdk-shipping.exe")
     {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? " 
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
                                  "E8 ? ? ? ? 84 C0 75 ");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
         if (patchAddress != nullptr)
@@ -414,6 +414,21 @@ static void CheckForPatch()
             _patchResult = true;
         }
     } 
+
+    // Titan Quest II
+    else if (exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe")
+    {
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
+                                 "8B 34 30 E8 ? ? ? ? 84 C0 "
+                                 "75 25");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
 
     // DOOM Eternal
     // just nops a line for main game exe
