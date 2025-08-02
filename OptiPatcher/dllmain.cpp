@@ -307,6 +307,47 @@ static void CheckForPatch()
         }
     }
 
+    // Ghostrunner
+    else if (exeName == "ghostrunner-win64-shipping.exe" || exeName == "ghostrunner-wingdk-shipping.exe")
+    {
+        std::string_view pattern("75 14 44 88 6F 30");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Ghostrunner 2
+    else if (exeName == "ghostrunner2-win64-shipping.exe" || exeName == "ghostrunner2-wingdk-shipping.exe")
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? " 
+                                 "E8 ? ? ? ? 84 C0 75 ");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Deadlink
+    else if (exeName == "deadlink-win64-shipping.exe" || exeName == "deadlink-wingdk-shipping.exe")
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
+                                 "E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
