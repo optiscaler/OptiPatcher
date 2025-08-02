@@ -40,8 +40,9 @@ LoadAsiPlugins=true
 
 
 > [!NOTE]
-> * There's a bug in OptiScaler currently where you have to set the plugin path for it to properly locate them  
-> * Set `Path=plugins` in OptiScaler.ini (option right above `LoadAsiPlugins`)  
+> _**Shouldn't be required with latest Nightly 0731 anymore**_
+> * ~There's a bug in OptiScaler currently where you have to set the plugin path for it to properly locate them~  
+> * ~Set `Path=plugins` in OptiScaler.ini (option right above `LoadAsiPlugins`)~  
 
 It should help Intel Arc users most because with newer versions of Unreal Engine spoofing has issues, causing D3D12 not supported errors.
 
