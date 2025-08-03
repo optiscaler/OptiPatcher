@@ -22,7 +22,7 @@ static void CheckForPatch()
         std::string_view pattern("4C 8B 6D E0 33 C0 48 8B 4D 40 "
                                  "4C 89 6D C0 48 89 45 E0 48 89 "
                                  "45 E8 48 85 C9 74 05 E8 ? ? "
-                                 "? ? E8 ? ? ? ? 84 C0 75");
+                                 "? ? E8 ? ? ? ? 84 C0 75"); // aiming at 84 C0
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
 
         // Old pattern
@@ -174,7 +174,7 @@ static void CheckForPatch()
                                  "00 48 8D ? ? ? ? ? 48 8D "
                                  "8D B0 00 00 00 45 8D 41 05 E8 "
                                  "? ? ? ? 48 8B 4D 30 48 85 "
-                                 "C9 74 05 E8 ? ? ? ? 81 3D "
+                                 "C9 74 05 E8 ? ? ? ? 81 3D " // aiming at 81 3D
                                  "? ? ? ? DE 10 00 00 74");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 48);
 
@@ -197,6 +197,24 @@ static void CheckForPatch()
                                  "C9 74 05 E8 ? ? ? ? 81 3D "
                                  "? ? ? ? ? ? ? ? 74 0D");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 48);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // ARK: Survival Ascended
+    // inline patch
+    else if (exeName == "arkascended.exe")
+    {
+        std::string_view pattern("E8 ? ? ? ? 84 C0 74 02 B0 "
+                                 "01 84 C0 49 8B C5 74 03 49 8B "
+                                 "C4 81 3D ? ? ? ? ? ? ? "
+                                 "? 44 8B 04 30");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
         if (patchAddress != nullptr)
         {
@@ -401,19 +419,6 @@ static void CheckForPatch()
         }
     }
 
-    // ARK: Survival Ascended
-    else if (exeName == "ArkAscended.exe")
-    {
-        std::string_view pattern("84 C0 49 8B C5 74 03 49 8B C4 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30 74");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Titan Quest II
     else if (exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe")
     {
@@ -463,7 +468,7 @@ static void CheckForPatch()
                                  "? ? ? ? ? ? 48 C7 05 ? "
                                  "? ? ? ? ? ? ? 0F 84 ? "
                                  "? ? ? 80 3D ? ? ? ? ? "
-                                 "0F 84 ? ? ? ? 48 8B ? ? "
+                                 "0F 84 ? ? ? ? 48 8B ? ? " // aiming at 0F 84
                                  "? ? ? 48 8D");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 40);
 
