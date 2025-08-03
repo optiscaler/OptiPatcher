@@ -27,7 +27,7 @@ LoadAsiPlugins=true
 * Achilles: Legends Untold
 * Alone in the Dark 2024 (needs testing)
 * Amid Evil
-* ARK: Survival Ascended (needs testing)
+* ARK: Survival Ascended  
 * Atomic Heart (needs testing)
 * Banishers: Ghosts of New Eden
 * Black Myth: Wukong
@@ -39,7 +39,7 @@ LoadAsiPlugins=true
 * Forgive Me Father 2
 * Ghostrunner
 * Ghostrunner 2
-* LEGO® Builder's Journey (unlock DLSS entry but no inputs to opti, needs testing)
+* LEGO® Builder's Journey (unlock DLSS entry, but no inputs to Opti, needs testing)
 * Lies of P
 * Lost Records: Bloom & Rage
 * Ranch Simulator
