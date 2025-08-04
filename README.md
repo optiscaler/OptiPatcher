@@ -5,7 +5,7 @@ It should help Intel Arc users most because with newer versions of Unreal Engine
 
 ### Installation
 * Create a `plugins` folder where Opti is installed and put `OptiPatcher.asi` in this folder.  
-* Enable ASI loading from `OptiScaler.ini` and disable Dxgi spoofing.
+* Enable ASI loading from `OptiScaler.ini` and disable Dxgi spoofing (_Opti automatically does this part since 0.7.7-pre13_0731 so `Dxgi=false` isn't needed_).
 ```ini
 Dxgi=false
 LoadAsiPlugins=true
@@ -39,6 +39,7 @@ LoadAsiPlugins=true
 * Forgive Me Father 2
 * Ghostrunner
 * Ghostrunner 2
+* Hogwarts Legacy
 * LEGO® Builder's Journey (unlock DLSS entry, but no inputs to Opti, needs testing)
 * Lies of P
 * Lost Records: Bloom & Rage
@@ -46,6 +47,7 @@ LoadAsiPlugins=true
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
 * Robocop Rogue City (XeFG and DLSS check patched, but check [special notes](#special-notes))
 * Severed Steel
+* Still Wakes the Deep
 * The Alters
 * The Ascent
 * The Elder Scrolls IV: Oblivion Remastered
