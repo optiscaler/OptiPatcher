@@ -450,6 +450,22 @@ static void CheckForPatch()
         }
     }
 
+    // Hogwarts Legacy
+    else if (exeName == "hogwartslegacy.exe")
+    {
+        std::string_view pattern("48 8B 4D 48 4C 89 6D B0 48 89 "
+                                 "45 E8 48 89 45 F0 48 85 C9 74 "
+                                 "05 E8 ? ? ? ? E8 ? ? ? "
+                                 "? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 31);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // RoboCop: Rogue City
     else if (exeName == "robocop-win64-shipping.exe" || exeName == "robocop-wingdk-shipping.exe")
     {
