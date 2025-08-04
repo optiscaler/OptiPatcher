@@ -434,6 +434,22 @@ static void CheckForPatch()
         }
     }
 
+    // Still Wakes the Deep
+    else if (exeName == "stillwakesthedeep.exe")
+    {
+        std::string_view pattern("74 03 49 8B C7 8B 34 30 4C 89 "
+                                 "A4 24 78 02 00 00 4C 89 B4 24 "
+                                 "38 02 00 00 E8 ? ? ? ? 84 "
+                                 "C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 29);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // RoboCop: Rogue City
     else if (exeName == "robocop-win64-shipping.exe" || exeName == "robocop-wingdk-shipping.exe")
     {
