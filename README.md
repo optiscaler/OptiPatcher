@@ -46,6 +46,7 @@ LoadAsiPlugins=true
 * Ranch Simulator
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
 * Robocop Rogue City (XeFG and DLSS check patched, but check [special notes](#special-notes))
+* Robocop Unfinished Business (DLSS check patched, but check [special notes](#special-notes))
 * Severed Steel
 * Still Wakes the Deep
 * The Alters
@@ -61,5 +62,5 @@ LoadAsiPlugins=true
   
 > [!NOTE]
 > ### Special notes
-> * Robocop Rogue City DLSS plugin is patched, but due to extra checks when not spoofing, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already)  
+> * Robocop Rogue City and Unfinished Business DLSS plugin is patched, but due to extra checks when not spoofing, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already)  
 > * To get XeFG 2.1 for non-Intel GPUs, just replace the XeSS files in `Robocop Rogue City\Engine\Plugins\Runtime\Intel\XeSS\Binaries\ThirdParty\Win64`  
