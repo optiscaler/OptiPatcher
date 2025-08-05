@@ -1,5 +1,5 @@
 ## OptiPatcher
-An **ASI Plugin for OptiScaler** to enable DLSS without spoofing in supported games.  
+An **ASI Plugin for OptiScaler** to expose DLSS inputs without spoofing in supported games.  
 
 It should help Intel Arc users most because with newer versions of Unreal Engine spoofing has issues, causing D3D12 not supported errors.  
 
