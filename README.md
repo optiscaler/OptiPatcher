@@ -55,6 +55,7 @@ LoadAsiPlugins=true
 * The Midnight Walk (Opti can't catch DLSS input yet)
 * The Persistence
 * The Talos Principle 2
+* The Talos Principle: Reawakened
 * Titan Quest II
 * Witchfire
 * WUCHANG: Fallen Feathers
