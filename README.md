@@ -43,6 +43,7 @@ LoadAsiPlugins=true
 * LEGO® Builder's Journey (unlock DLSS entry, but no inputs to Opti, needs testing)
 * Lies of P
 * Lost Records: Bloom & Rage
+* Mafia: The Old Country
 * Ranch Simulator
 * Red Dead Redemption 2 (thanks to **0x-FADED**)
 * Robocop Rogue City (XeFG and DLSS check patched, but check [special notes](#special-notes))
