@@ -522,6 +522,22 @@ static void CheckForPatch()
         }
     }
 
+    // Mafia: The Old Country
+    else if (exeName == "mafiatheoldcountry.exe")
+    {
+        std::string_view pattern("E8 ? ? ? ? 34 01 0F B6 C0 "
+                                 "8B 3C 87 E8 ? ? ? ? 84 C0 "
+                                 "0F 84");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
