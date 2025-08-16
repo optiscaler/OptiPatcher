@@ -538,6 +538,30 @@ static void CheckForPatch()
         }
     }
 
+    // Palworld
+    else if (exeName == "palworld-win64-shipping.exe" || exeName == "palworld-wingdk-shipping.exe")
+    {
+        std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+
+        // Disable dilated MVs
+        std::string_view pattern2("83 FE ? 0F B6 C8");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 2);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x00 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
