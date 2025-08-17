@@ -638,7 +638,8 @@ static void CheckForPatch()
 
     // DLSSG UE, Clair Obscur: Expedition 33, Hogwarts Legacy
     if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandFall-wingdk-shipping.exe" ||
-        exeName == "hogwartslegacy.exe")
+        exeName == "hogwartslegacy.exe" || exeName == "talos2-win64-shipping.exe" ||
+        exeName == "talos2-wingdk-shipping.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
