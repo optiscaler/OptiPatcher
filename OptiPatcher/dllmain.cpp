@@ -41,6 +41,16 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // DLSSG
+        std::string_view pattern2("75 ? B9 ? ? ? ? C6 05 ? ? ? ? ? 89 0D");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
     }
 
     // Forgive Me Father 2, The Midnight Walk, The Elder Scrolls IV: Oblivion Remastered
@@ -624,6 +634,25 @@ static void CheckForPatch()
         }
 
         _patchResult = patchAddressGPU != nullptr && patchAddressSigCheck != nullptr;
+    }
+
+    // DLSSG UE, Clair Obscur: Expedition 33, Hogwarts Legacy
+    if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandFall-wingdk-shipping.exe" ||
+        exeName == "hogwartslegacy.exe")
+    {
+        std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
     }
 }
 
