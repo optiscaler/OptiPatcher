@@ -573,11 +573,26 @@ static void CheckForPatch()
     }
 
     // Supraworld
-    else if (exeName == "supraworld-win64-shipping.exe")
+    else if (exeName == "supraworld-win64-shipping.exe" || exeName == "supraworld-wingdk-shipping.exe")
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
                                  "34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // REMNANT II
+    else if (exeName == "remnant2-win64-shipping.exe" || exeName == "remnant2-wingdk-shipping.exe")
+    {
+        std::string_view pattern("74 03 49 8B C4 46 8B 34 30 E8 "
+                                 "? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
 
         if (patchAddress != nullptr)
         {
@@ -659,7 +674,9 @@ static void CheckForPatch()
         exeName == "talos2-wingdk-shipping.exe" || exeName == "hellisus-win64-shipping.exe" ||
         exeName == "hellisus-wingdk-shipping.exe" || exeName == "robocop-win64-shipping.exe" ||
         exeName == "robocop-wingdk-shipping.exe" || exeName == "supraworld-win64-shipping.exe" ||
-        exeName == "supraworld-wingdk-shipping.exe")
+        exeName == "supraworld-wingdk-shipping.exe" || exeName == "talos1-win64-shipping.exe" ||
+        exeName == "talos1-wingdk-shipping.exe" || exeName == "remnant2-win64-shipping.exe" ||
+        exeName == "remnant2-wingdk-shipping.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
