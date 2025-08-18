@@ -716,8 +716,9 @@ static void CheckForPatch()
         }
     }
 
-    // DLSSG, Witchfire
-    else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe")
+    // DLSSG, Witchfire, Ghostrunner 2
+    else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe" ||
+             exeName == "ghostrunner2-win64-shipping.exe" || exeName == "ghostrunner2-wingdk-shipping.exe")
     {
         std::string_view patternDLSSGCheck1("75 11 B8 02 00 00 00 C6 05 ? "
                                             "? ? ? ? E9 ? ? ? ? E8 "
