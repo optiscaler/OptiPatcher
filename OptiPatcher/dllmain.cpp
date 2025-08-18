@@ -34,7 +34,7 @@ static void CheckForPatch()
         }
     }
 
-    // Clair Obscur: Expedition 33, Deep Rock Galactic, Palworld, Shutokou Battle, Hogwarts Legacy
+    // Clair Obscur: Expedition 33, Deep Rock Galactic, Palworld, Tokyo Xtreme Racer/Shutokou Battle, Hogwarts Legacy
     else if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
              exeName == "fsd-win64-shipping.exe" || exeName == "fsd-wingdk-shipping.exe" ||
              exeName == "palworld-win64-shipping.exe" || exeName == "palworld-wingdk-shipping.exe" ||
@@ -648,7 +648,8 @@ static void CheckForPatch()
 
     // DLSSG
     // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us demo, Robocop: Rogue City,
-    // Supraworld, The Talos Principle, The Elder Scrolls IV: Oblivion Remastered, Shutokou Battle, Hogwarts Legacy
+    // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
+    // Racer/Shutokou Battle, Hogwarts Legacy
     if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
         exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe" ||
         exeName == "hellisus-win64-shipping.exe" || exeName == "hellisus-wingdk-shipping.exe" ||
@@ -713,6 +714,35 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x00 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+    }
+
+    // DLSSG, Witchfire
+    else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe")
+    {
+        std::string_view patternDLSSGCheck1("75 11 B8 02 00 00 00 C6 05 ? "
+                                            "? ? ? ? E9 ? ? ? ? E8 "
+                                            "? ? ? ? 84");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 0);
+
+        if (patchAddressDLSSGCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
+        }
+
+        std::string_view patternDLSSGCheck2("75 19 B9 02 00 00 00 C6 05 ? "
+                                            "? ? ? ? 89 ? ? ? ? ? "
+                                            "8B C1 48 83 C4 28 C3 E8 ? ? "
+                                            "? ? 84");
+        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 0);
+
+        if (patchAddressDLSSGCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
+        }
+
+        _patchResult = patchAddressDLSSGCheck1 != nullptr;
     }
 }
 
