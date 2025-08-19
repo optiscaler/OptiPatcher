@@ -26,6 +26,17 @@ LoadAsiPlugins=true
 
 ---
 
+<!--
+TEMPLATE FOR NEW ENTRIES
+| GAME NAME           | ✔️/❌ | ✅/⛔ | Notes go here                | 
+-->
+
+| Game | DLSS | DLSS-FG | Notes  | 
+| ---- | :--: | :-----: | ------ |
+| 171 | ✔️ |  |  |
+| Achilles: Legends Untold | ✔️ |  |  |
+---
+
 ### Currently supported games with DLSS patch:
 * 171
 * Achilles: Legends Untold
