@@ -9,32 +9,32 @@ TEMPLATE FOR NEW ENTRIES
 
 | Game | DLSS | DLSS-FG | Notes  | 
 | ---- | :--: | :-----: | ------ |
-| 171 | ✔️ |  |  |
+| 171 | ✔️ | ✅ |  |
 | Achilles: Legends Untold | ✔️ | N/A |  |
-| Alone in the Dark 2024 | ✔️ | N/A | _needs testing_ | 
+| Alone in the Dark 2024 | ✔️ | N/A | _Needs testing_ | 
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ |  |  |
-| Atomic Heart | ✔️ |  | _needs testing_ | 
+| Atomic Heart | ✔️ |  | _Needs testing_ | 
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Banishers: Ghosts of New Eden | ✔️ |  |  |
 | Black Myth: Wukong | ✔️ |  |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
-| Deadlink | ✔️ | N/A | _only dx12, no XeSS mode_ |
+| Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Enotria: The Last Song | ✔️ |  |  |
 | Forgive Me Father 2 | ✔️ |  |  |
 | Ghostrunner | ✔️ | N/A |  |
-| Ghostrunner 2 | ✔️ | ✅ | _requires retoggling FG on every boot if not working_ | 
+| Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ | 
 | Hell is Us demo | ✔️ | ✅ |  | 
 | Hogwarts Legacy | ✔️ | ✅ |  |
-| LEGO® Builder's Journey | ✔️ | N/A | _unlock DLSS entry, but no inputs to Opti, needs testing_ |
+| LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
 | Lost Records: Bloom & Rage | ✔️ |  |  |
 | Mafia: The Old Country | ✔️ |  |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ |  |  |
-| Red Dead Redemption 2 | ✔️ | N/A | _thanks to 0x-FADED_ |
+| Red Dead Redemption 2 | ✔️ | N/A | _Thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
 | Robocop Unfinished Business | ✔️ |  | _DLSS check patched, but check [special notes](#special-notes)_ | 
