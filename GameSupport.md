@@ -23,7 +23,7 @@ TEMPLATE FOR NEW ENTRIES
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Enotria: The Last Song | ✔️ |  |  |
-| Forgive Me Father 2 | ✔️ |  |  |
+| Forgive Me Father 2 | ✔️ | ✅ |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ | 
 | Hell is Us demo | ✔️ | ✅ |  | 
@@ -32,14 +32,15 @@ TEMPLATE FOR NEW ENTRIES
 | Lies of P | ✔️ | N/A |  |
 | Lost Records: Bloom & Rage | ✔️ |  |  |
 | Mafia: The Old Country | ✔️ |  |  |
+| Metal Eden demo | ✔️ | ✅ |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ |  |  |
 | Red Dead Redemption 2 | ✔️ | N/A | _Thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
-| Robocop Unfinished Business | ✔️ |  | _DLSS check patched, but check [special notes](#special-notes)_ | 
+| Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
 | Severed Steel | ✔️ |  |  |
-| Still Wakes the Deep | ✔️ |  |  |
+| Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraworld | ✔️ | ✅ |  |
 | The Alters | ✔️ |  |  |
 | The Ascent | ✔️ | N/A |  |
@@ -51,11 +52,11 @@ TEMPLATE FOR NEW ENTRIES
 | Titan Quest II | ✔️ | ✅ |  |
 | Tokyo Xtreme Racer/Shutokou Battle | ✔️ | ✅ |  |
 | Witchfire | ✔️ | ✅ |  |
-| WUCHANG: Fallen Feathers | ✔️ |  |  |
+| WUCHANG: Fallen Feathers | ✔️ | ✅ |  |
 
 ---
 
 > [!NOTE]
 > ### Special notes
-> * Robocop Rogue City and Unfinished Business DLSS plugin is patched, but due to extra checks when not spoofing, to expose DLSS/DLSS-FG properly, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already)  
+> * Robocop Rogue City and Unfinished Business DLSS plugin is patched, but due to extra checks when not spoofing, to expose DLSS/DLSS-FG properly, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already) - for Robocop Unfinished Business `AppData\Local\RoboCopUnfinishedBusiness\Saved\Config\Windows`  
 > * To get XeFG 2.1 for non-Intel GPUs, just replace the XeSS files in `Robocop Rogue City\Engine\Plugins\Runtime\Intel\XeSS\Binaries\ThirdParty\Win64`  
