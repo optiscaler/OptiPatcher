@@ -39,7 +39,7 @@ TEMPLATE FOR NEW ENTRIES
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
-| Severed Steel | ✔️ |  |  |
+| Severed Steel | ✔️ | N/A |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraworld | ✔️ | ✅ |  |
 | The Alters | ✔️ |  |  |
