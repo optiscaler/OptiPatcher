@@ -77,7 +77,7 @@ TEMPLATE FOR NEW ENTRIES
 * The Persistence
 * The Talos Principle 2 - _both DLSS and DLSS-FG_
 * The Talos Principle: Reawakened - _both DLSS and DLSS-FG_
-* Titan Quest II
+* Titan Quest II - _both DLSS and DLSS-FG_
 * Tokyo Xtreme Racer/Shutokou Battle - _both DLSS and DLSS-FG_
 * Witchfire - _both DLSS and DLSS-FG_
 * WUCHANG: Fallen Feathers
