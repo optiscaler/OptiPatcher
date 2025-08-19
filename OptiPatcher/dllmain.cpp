@@ -649,7 +649,7 @@ static void CheckForPatch()
     // DLSSG
     // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us demo, Robocop: Rogue City,
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
-    // Racer/Shutokou Battle, Titan Quest II, Hogwarts Legacy
+    // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy
     if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
         exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe" ||
         exeName == "hellisus-win64-shipping.exe" || exeName == "hellisus-wingdk-shipping.exe" ||
@@ -659,7 +659,8 @@ static void CheckForPatch()
         exeName == "remnant2-win64-shipping.exe" || exeName == "remnant2-wingdk-shipping.exe" ||
         exeName == "oblivionremastered-win64-shipping.exe" || exeName == "oblivionremastered-wingdk-shipping.exe" ||
         exeName == "tokyoxtremeracer-win64-shipping.exe" || exeName == "tokyoxtremeracer-wingdk-shipping.exe" ||
-        exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe" || exeName == "hogwartslegacy.exe")
+        exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe" ||
+        exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" || exeName == "hogwartslegacy.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -676,8 +677,9 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // DLSSG, Deep Rock Galactic
-    else if (exeName == "fsd-win64-shipping.exe" || exeName == "fsd-wingdk-shipping.exe")
+    // DLSSG, Deep Rock Galactic, Black Myth: Wukong
+    else if (exeName == "fsd-win64-shipping.exe" || exeName == "fsd-wingdk-shipping.exe" ||
+             exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
     {
         std::string_view pattern2("75 ? B9 ? ? ? ? C6 05 ? ? ? ? ? 89 0D");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
