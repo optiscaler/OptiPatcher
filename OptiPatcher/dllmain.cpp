@@ -580,6 +580,21 @@ static void CheckForPatch()
         }
     }
 
+    // METAL EDEN demo
+    else if (exeName == "metaleden-win64-shipping.exe" || exeName == "metaleden-wingdk-shipping.exe")
+    {
+        std::string_view pattern("74 03 49 8B C4 8B 34 30 E8 ? "
+                                 "? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -649,7 +664,8 @@ static void CheckForPatch()
     // DLSSG
     // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us demo, Robocop: Rogue City,
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
-    // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy
+    // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
+    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo
     if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
         exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe" ||
         exeName == "hellisus-win64-shipping.exe" || exeName == "hellisus-wingdk-shipping.exe" ||
@@ -660,7 +676,13 @@ static void CheckForPatch()
         exeName == "oblivionremastered-win64-shipping.exe" || exeName == "oblivionremastered-wingdk-shipping.exe" ||
         exeName == "tokyoxtremeracer-win64-shipping.exe" || exeName == "tokyoxtremeracer-wingdk-shipping.exe" ||
         exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe" ||
-        exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" || exeName == "hogwartslegacy.exe")
+        exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" ||
+        exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
+        exeName == "project_plague-win64-shipping.exe" || exeName == "project_plague-wingdk-shipping.exe" ||
+        exeName == "robocopunfinishedbusiness-win64-shipping.exe" ||
+        exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" || exeName == "fmf2-win64-shipping.exe" ||
+        exeName == "fmf2-wingdk-shipping.exe" || exeName == "metaleden-win64-shipping.exe" ||
+        exeName == "metaleden-wingdk-shipping.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
