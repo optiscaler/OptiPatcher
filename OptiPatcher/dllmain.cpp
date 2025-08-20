@@ -665,7 +665,7 @@ static void CheckForPatch()
     // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us demo, Robocop: Rogue City,
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
-    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo
+    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage
     if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
         exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe" ||
         exeName == "hellisus-win64-shipping.exe" || exeName == "hellisus-wingdk-shipping.exe" ||
@@ -680,9 +680,10 @@ static void CheckForPatch()
         exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
         exeName == "project_plague-win64-shipping.exe" || exeName == "project_plague-wingdk-shipping.exe" ||
         exeName == "robocopunfinishedbusiness-win64-shipping.exe" ||
-        exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" || exeName == "fmf2-win64-shipping.exe" ||
-        exeName == "fmf2-wingdk-shipping.exe" || exeName == "metaleden-win64-shipping.exe" ||
-        exeName == "metaleden-wingdk-shipping.exe")
+        exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" || exeName == "bloom&rage.exe" ||
+        exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
+        exeName == "metaleden-win64-shipping.exe" || exeName == "metaleden-wingdk-shipping.exe" ||
+        exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
