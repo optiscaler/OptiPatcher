@@ -19,6 +19,7 @@ TEMPLATE FOR NEW ENTRIES
 | Banishers: Ghosts of New Eden | ✔️ |  |  |
 | Black Myth: Wukong | ✔️ |  |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
+| Cyberpunk 2077 | ✔️ | N/A | Needs CyberEngineTweaks to load ASI |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
