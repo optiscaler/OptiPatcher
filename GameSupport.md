@@ -22,7 +22,7 @@ TEMPLATE FOR NEW ENTRIES
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
-| Enotria: The Last Song | ✔️ |  |  |
+| Enotria: The Last Song | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ | 
@@ -30,11 +30,11 @@ TEMPLATE FOR NEW ENTRIES
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
-| Lost Records: Bloom & Rage | ✔️ |  |  |
+| Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ |  |  |
 | Metal Eden demo | ✔️ | ✅ |  |
 | Palworld | ✔️ | N/A |  |
-| Ranch Simulator | ✔️ |  |  |
+| Ranch Simulator | ✔️ | N/A |  |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
