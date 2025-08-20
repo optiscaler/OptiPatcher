@@ -35,7 +35,7 @@ TEMPLATE FOR NEW ENTRIES
 | Metal Eden demo | ✔️ | ✅ |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ |  |  |
-| Red Dead Redemption 2 | ✔️ | N/A | _Thanks to 0x-FADED_ |
+| Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
