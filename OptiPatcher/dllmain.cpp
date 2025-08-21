@@ -10,6 +10,8 @@ static bool _patchResult = false;
 extern "C" __declspec(dllexport) bool PatchResult() { return _patchResult; }
 extern "C" __declspec(dllexport) void InitializeASI() { return; }
 
+#define CHECK_UE(name) exeName == (#name "-win64-shipping.exe") || exeName == (#name "-wingdk-shipping.exe")
+
 static void CheckForPatch()
 {
     auto exeName = Util::ExePath().filename().string();
@@ -17,8 +19,7 @@ static void CheckForPatch()
     auto exeModule = GetModuleHandle(nullptr);
 
     // Forgive Me Father 2, The Midnight Walk
-    if (exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
-        exeName == "themidnightwalk-win64-shipping.exe" || exeName == "themidnightwalk-wingdk-shipping.exe")
+    if (CHECK_UE(fmf2) || CHECK_UE(themidnightwalk))
     {
         std::string_view pattern("B8 04 00 00 00 74 03 49 8B C7 "
                                  "8B 34 30 4C 89 A4 24 78 02 00 "
@@ -35,10 +36,7 @@ static void CheckForPatch()
     }
 
     // Clair Obscur: Expedition 33, Deep Rock Galactic, Palworld, Tokyo Xtreme Racer/Shutokou Battle, Hogwarts Legacy
-    else if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
-             exeName == "fsd-win64-shipping.exe" || exeName == "fsd-wingdk-shipping.exe" ||
-             exeName == "palworld-win64-shipping.exe" || exeName == "palworld-wingdk-shipping.exe" ||
-             exeName == "tokyoxtremeracer-win64-shipping.exe" || exeName == "tokyoxtremeracer-wingdk-shipping.exe" ||
+    else if (CHECK_UE(sandfall) || CHECK_UE(fsd) || CHECK_UE(palworld) || CHECK_UE(tokyoxtremeracer) ||
              exeName == "hogwartslegacy.exe")
     {
         std::string_view pattern("C6 47 ? ? E9 ? ? ? ? 45 85 ? 7E ? 33 D2 45 8B ? 8D 4A");
@@ -53,21 +51,21 @@ static void CheckForPatch()
     }
 
     // The Elder Scrolls IV: Oblivion Remastered
-    else if (exeName == "oblivionremastered-win64-shipping.exe" || exeName == "oblivionremastered-wingdk-shipping.exe")
-    {
-        std::string_view pattern("C6 47 ? ? E9 ? ? ? ? 85 ? 7E ? 33 D2 44 8B ? 8D 4A");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, -2);
+    // else if (CHECK_UE(oblivionremastered))
+    //{
+    //    std::string_view pattern("C6 47 ? ? E9 ? ? ? ? 85 ? 7E ? 33 D2 44 8B ? 8D 4A");
+    //    auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, -2);
 
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0xEB };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
+    //    if (patchAddress != nullptr)
+    //    {
+    //        std::vector<BYTE> patch = { 0xEB };
+    //        patcher::PatchAddress(patchAddress, &patch);
+    //        _patchResult = true;
+    //    }
+    //}
 
     // Automation
-    else if (exeName == "automationgame-win64-shipping.exe" || exeName == "automationgame-wingdk-shipping.exe")
+    else if (CHECK_UE(automationgame))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 75 ? 80 3D ? ? ? ? ? 72 ? 48 8D 05 ? ? ? ? 41 B9 ? ? ? ? 4C 8D 05 ? "
                                  "? ? ? 48 89 44 24 ? 33 D2 33 C9 E8 ? ? ? ? 48 8D 77");
@@ -82,8 +80,7 @@ static void CheckForPatch()
     }
 
     // 171, Ranch Simulator
-    else if (exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" ||
-             exeName == "ranch_simulator-win64-shipping.exe" || exeName == "ranch_simulator-wingdk-shipping.exe")
+    else if (CHECK_UE(bgg) || CHECK_UE(ranch_simulator))
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
                                  "34 30 E8 ? ? ? ? 84 C0 75");
@@ -98,7 +95,7 @@ static void CheckForPatch()
     }
 
     // The Talos Principle 2
-    else if (exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe")
+    else if (CHECK_UE(talos2))
     {
         std::string_view pattern("42 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
@@ -112,7 +109,7 @@ static void CheckForPatch()
     }
 
     // Witchfire
-    else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe")
+    else if (CHECK_UE(witchfire))
     {
         std::string_view pattern("4C 8B 6D E0 33 C0 48 8B 4D 40 "
                                  "4C 89 6D C0 48 89 45 E0 48 89 "
@@ -129,7 +126,7 @@ static void CheckForPatch()
     }
 
     // The Persistence
-    else if (exeName == "persistence-win64-shipping.exe" || exeName == "persistence-wingdk-shipping.exe")
+    else if (CHECK_UE(persistence))
     {
         std::string_view pattern("33 C9 3B ? ? ? ? ? 0F 95 "
                                  "C1 EB 02 33 C9 8B 1C 8B E8 ? "
@@ -160,7 +157,7 @@ static void CheckForPatch()
     }
 
     // Black Myth: Wukong
-    else if (exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
+    else if (CHECK_UE(b1))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 49 8B C4 "
                                  "74 03 49 8B C6 8B 34 30 89 75 "
@@ -185,7 +182,7 @@ static void CheckForPatch()
 
     // Banishers: Ghosts of New Eden
     // inline patch
-    else if (exeName == "banishers-win64-shipping.exe" || exeName == "banishers-wingdk-shipping.exe")
+    else if (CHECK_UE(banishers))
     {
         std::string_view pattern("C6 00 ? E9 ? ? ? ? 85 ? 7E ? 33 D2 44 8B ? 8D 4A");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, -11);
@@ -200,7 +197,7 @@ static void CheckForPatch()
 
     // Lies of P
     // inline patch
-    else if (exeName == "lop-win64-shipping.exe" || exeName == "lop-wingdk-shipping.exe")
+    else if (CHECK_UE(lop))
     {
         std::string_view pattern("41 B9 1B 00 00 00 C7 44 24 20 "
                                  "02 00 00 00 48 8D ? ? ? ? "
@@ -237,7 +234,7 @@ static void CheckForPatch()
     }
 
     // Alone in the Dark 2024
-    else if (exeName == "aloneinthedark-win64-shipping.exe" || exeName == "aloneinthedark-wingdk-shipping.exe")
+    else if (CHECK_UE(aloneinthedark))
     {
         std::string_view pattern("4C 8B 65 F0 33 C0 48 8B 4D 48 "
                                  "4C 89 65 C0 48 89 45 F0 48 89 "
@@ -254,7 +251,7 @@ static void CheckForPatch()
     }
 
     // Atomic Heart
-    else if (exeName == "atomicheart-win64-shipping.exe" || exeName == "atomicheart-wingdk-shipping.exe")
+    else if (CHECK_UE(atomicheart))
     {
         std::string_view pattern("4C 8B 7D F0 33 C0 48 8B 4D 40 "
                                  "4C 89 7D C0 48 89 45 F0 48 89 "
@@ -272,7 +269,7 @@ static void CheckForPatch()
     }
 
     // The Alters
-    else if (exeName == "thealters-win64-shipping.exe" || exeName == "thealters-wingdk-shipping.exe")
+    else if (CHECK_UE(thealters))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 75 0C E8 "
                                  "? ? ? ? 84 C0 49 8B C7 74 "
@@ -290,7 +287,7 @@ static void CheckForPatch()
     }
 
     // WUCHANG: Fallen Feathers
-    else if (exeName == "project_plague-win64-shipping.exe" || exeName == "project_plague-wingdk-shipping.exe")
+    else if (CHECK_UE(project_plague))
     {
         std::string_view pattern("75 0C E8 ? ? ? ? 84 C0 49 "
                                  "8B C7 74 03 49 8B C6 8B 34 30 "
@@ -308,7 +305,7 @@ static void CheckForPatch()
     }
 
     // Enotria: The Last Song
-    else if (exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe")
+    else if (CHECK_UE(enotria))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 "
                                  "46 8B 34 30 E8 ? ? ? ? 84 "
@@ -323,7 +320,7 @@ static void CheckForPatch()
     }
 
     // The Ascent
-    else if (exeName == "theascent-win64-shipping.exe" || exeName == "theascent-wingdk-shipping.exe")
+    else if (CHECK_UE(theascent))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
                                  "45 33 ED E9 ? ? ? ? E8 ? "
@@ -338,7 +335,7 @@ static void CheckForPatch()
     }
 
     // Ghostrunner
-    else if (exeName == "ghostrunner-win64-shipping.exe" || exeName == "ghostrunner-wingdk-shipping.exe")
+    else if (CHECK_UE(ghostrunner))
     {
         std::string_view pattern("75 14 44 88 6F 30");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0);
@@ -351,7 +348,7 @@ static void CheckForPatch()
     }
 
     // Ghostrunner 2
-    else if (exeName == "ghostrunner2-win64-shipping.exe" || exeName == "ghostrunner2-wingdk-shipping.exe")
+    else if (CHECK_UE(ghostrunner2))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
                                  "E8 ? ? ? ? 84 C0 75 ");
@@ -365,7 +362,7 @@ static void CheckForPatch()
     }
 
     // Deadlink
-    else if (exeName == "deadlink-win64-shipping.exe" || exeName == "deadlink-wingdk-shipping.exe")
+    else if (CHECK_UE(deadlink))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
                                  "E8 ? ? ? ? 84 C0 75");
@@ -379,7 +376,7 @@ static void CheckForPatch()
     }
 
     // Amid Evil
-    else if (exeName == "amidevil-win64-shipping.exe" || exeName == "amidevil-wingdk-shipping.exe")
+    else if (CHECK_UE(amidevil))
     {
         std::string_view pattern("48 85 DB 74 08 48 8B CB E8 ? "
                                  "? ? ? E8 ? ? ? ? 84 C0 75");
@@ -393,7 +390,7 @@ static void CheckForPatch()
     }
 
     // Severed Steel
-    else if (exeName == "thankyouverycool-win64-shipping.exe" || exeName == "thankyouverycool-wingdk-shipping.exe")
+    else if (CHECK_UE(thankyouverycool))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 ");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -406,7 +403,7 @@ static void CheckForPatch()
     }
 
     // Achilles: Legends Untold
-    else if (exeName == "achilles-win64-shipping.exe" || exeName == "achilles-wingdk-shipping.exe")
+    else if (CHECK_UE(achilles))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -432,7 +429,7 @@ static void CheckForPatch()
     }
 
     // Titan Quest II
-    else if (exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe")
+    else if (CHECK_UE(tq2))
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
                                  "8B 34 30 E8 ? ? ? ? 84 C0 "
@@ -479,7 +476,7 @@ static void CheckForPatch()
     }
 
     // RoboCop: Rogue City
-    else if (exeName == "robocop-win64-shipping.exe" || exeName == "robocop-wingdk-shipping.exe")
+    else if (CHECK_UE(robocop))
     {
         std::string_view patternDLSSCheck("74 03 49 8B C5 46 8B 3C 38 E8 "
                                           "? ? ? ? 84 C0 75");
@@ -505,9 +502,8 @@ static void CheckForPatch()
     }
 
     // RoboCop: Unfinished Business, Ready or Not
-    else if (exeName == "robocopunfinishedbusiness-win64-shipping.exe" ||
-             exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" ||
-             exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe")
+    else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
+             exeName == "readyornot-wingdk-shipping.exe")
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -520,7 +516,7 @@ static void CheckForPatch()
     }
 
     // The Talos Principle: Reawakened
-    else if (exeName == "talos1-win64-shipping.exe" || exeName == "talos1-wingdk-shipping.exe")
+    else if (CHECK_UE(talos1))
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
                                  "8B 34 06 E8 ? ? ? ? 84 C0 "
@@ -552,7 +548,7 @@ static void CheckForPatch()
     }
 
     // Supraworld
-    else if (exeName == "supraworld-win64-shipping.exe" || exeName == "supraworld-wingdk-shipping.exe")
+    else if (CHECK_UE(supraworld))
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
                                  "34 30 E8 ? ? ? ? 84 C0 75");
@@ -567,7 +563,7 @@ static void CheckForPatch()
     }
 
     // REMNANT II
-    else if (exeName == "remnant2-win64-shipping.exe" || exeName == "remnant2-wingdk-shipping.exe")
+    else if (CHECK_UE(remnant2))
     {
         std::string_view pattern("74 03 49 8B C4 46 8B 34 30 E8 "
                                  "? ? ? ? 84 C0 75");
@@ -582,7 +578,7 @@ static void CheckForPatch()
     }
 
     // METAL EDEN demo
-    else if (exeName == "metaleden-win64-shipping.exe" || exeName == "metaleden-wingdk-shipping.exe")
+    else if (CHECK_UE(metaleden))
     {
         std::string_view pattern("74 03 49 8B C4 8B 34 30 E8 ? "
                                  "? ? ? 84 C0 75");
@@ -668,25 +664,11 @@ static void CheckForPatch()
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
     // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage,
     // The Alters, Ready or Not
-    if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
-        exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe" ||
-        exeName == "hellisus-win64-shipping.exe" || exeName == "hellisus-wingdk-shipping.exe" ||
-        exeName == "robocop-win64-shipping.exe" || exeName == "robocop-wingdk-shipping.exe" ||
-        exeName == "supraworld-win64-shipping.exe" || exeName == "supraworld-wingdk-shipping.exe" ||
-        exeName == "talos1-win64-shipping.exe" || exeName == "talos1-wingdk-shipping.exe" ||
-        exeName == "remnant2-win64-shipping.exe" || exeName == "remnant2-wingdk-shipping.exe" ||
-        exeName == "oblivionremastered-win64-shipping.exe" || exeName == "oblivionremastered-wingdk-shipping.exe" ||
-        exeName == "tokyoxtremeracer-win64-shipping.exe" || exeName == "tokyoxtremeracer-wingdk-shipping.exe" ||
-        exeName == "tq2-win64-shipping.exe" || exeName == "tq2-wingdk-shipping.exe" ||
-        exeName == "bgg-win64-shipping.exe" || exeName == "bgg-wingdk-shipping.exe" ||
-        exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
-        exeName == "project_plague-win64-shipping.exe" || exeName == "project_plague-wingdk-shipping.exe" ||
-        exeName == "robocopunfinishedbusiness-win64-shipping.exe" ||
-        exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" || exeName == "bloom&rage.exe" ||
-        exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
-        exeName == "metaleden-win64-shipping.exe" || exeName == "metaleden-wingdk-shipping.exe" ||
-        exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe" ||
-        exeName == "thealters-win64-shipping.exe" || exeName == "thealters-wingdk-shipping.exe" ||
+    if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
+        CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
+        CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
+        CHECK_UE(project_plague) || CHECK_UE(robocopunfinishedbusiness) || exeName == "bloom&rage.exe" ||
+        CHECK_UE(fmf2) || CHECK_UE(metaleden) || CHECK_UE(enotria) || CHECK_UE(thealters) ||
         exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
@@ -705,8 +687,7 @@ static void CheckForPatch()
     }
 
     // DLSSG, Deep Rock Galactic, Black Myth: Wukong
-    else if (exeName == "fsd-win64-shipping.exe" || exeName == "fsd-wingdk-shipping.exe" ||
-             exeName == "b1-win64-shipping.exe" || exeName == "b1-wingdk-shipping.exe")
+    else if (CHECK_UE(fsd) || CHECK_UE(b1))
     {
         std::string_view pattern2("75 ? B9 ? ? ? ? C6 05 ? ? ? ? ? 89 0D");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
@@ -719,7 +700,7 @@ static void CheckForPatch()
     }
 
     // DLSSG, Banishers
-    else if (exeName == "banishers-win64-shipping.exe" || exeName == "banishers-wingdk-shipping.exe")
+    else if (CHECK_UE(banishers))
     {
         // Makes the game always tag resources, this means that DLSSG inputs work but Nukem's mod doesn't
         std::string_view pattern2("48 83 EC ? E8 ? ? ? ? 84 C0 75 ? 48 83 C4 ? C3 65 48 8B 04 25 ? ? ? ? BA");
@@ -733,7 +714,7 @@ static void CheckForPatch()
     }
 
     // Disable dilated MVs, Palworld
-    else if (exeName == "palworld-win64-shipping.exe" || exeName == "palworld-wingdk-shipping.exe")
+    else if (CHECK_UE(palworld))
     {
         std::string_view pattern2("83 FE ? 0F B6 C8");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 2);
@@ -746,8 +727,7 @@ static void CheckForPatch()
     }
 
     // DLSSG, Witchfire, Ghostrunner 2
-    else if (exeName == "witchfire-win64-shipping.exe" || exeName == "witchfire-wingdk-shipping.exe" ||
-             exeName == "ghostrunner2-win64-shipping.exe" || exeName == "ghostrunner2-wingdk-shipping.exe")
+    else if (CHECK_UE(witchfire) || CHECK_UE(ghostrunner2))
     {
         std::string_view patternDLSSGCheck1("75 11 B8 02 00 00 00 C6 05 ? "
                                             "? ? ? ? E9 ? ? ? ? E8 "
