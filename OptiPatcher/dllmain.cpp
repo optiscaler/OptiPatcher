@@ -504,9 +504,10 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business
+    // RoboCop: Unfinished Business, Ready or Not
     else if (exeName == "robocopunfinishedbusiness-win64-shipping.exe" ||
-             exeName == "robocopunfinishedbusiness-wingdk-shipping.exe")
+             exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" ||
+             exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe")
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -665,7 +666,8 @@ static void CheckForPatch()
     // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us demo, Robocop: Rogue City,
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
-    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage
+    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage,
+    // The Alters, Ready or Not
     if (exeName == "sandfall-win64-shipping.exe" || exeName == "sandfall-wingdk-shipping.exe" ||
         exeName == "talos2-win64-shipping.exe" || exeName == "talos2-wingdk-shipping.exe" ||
         exeName == "hellisus-win64-shipping.exe" || exeName == "hellisus-wingdk-shipping.exe" ||
@@ -683,7 +685,9 @@ static void CheckForPatch()
         exeName == "robocopunfinishedbusiness-wingdk-shipping.exe" || exeName == "bloom&rage.exe" ||
         exeName == "fmf2-win64-shipping.exe" || exeName == "fmf2-wingdk-shipping.exe" ||
         exeName == "metaleden-win64-shipping.exe" || exeName == "metaleden-wingdk-shipping.exe" ||
-        exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe")
+        exeName == "enotria-win64-shipping.exe" || exeName == "enotria-wingdk-shipping.exe" ||
+        exeName == "thealters-win64-shipping.exe" || exeName == "thealters-wingdk-shipping.exe" ||
+        exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe")
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
