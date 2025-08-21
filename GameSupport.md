@@ -35,6 +35,7 @@ TEMPLATE FOR NEW ENTRIES
 | Metal Eden demo | ✔️ | ✅ |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ | N/A |  |
+| Ready or Not | ✔️ | ✅ |  |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ | 
@@ -42,7 +43,7 @@ TEMPLATE FOR NEW ENTRIES
 | Severed Steel | ✔️ | N/A |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraworld | ✔️ | ✅ |  |
-| The Alters | ✔️ |  |  |
+| The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
 | The Elder Scrolls IV: Oblivion Remastered | ✔️ |  |  |
 | The Midnight Walk | ✔️ |  | _Opti can't catch DLSS input yet_ | 
