@@ -17,7 +17,7 @@ TEMPLATE FOR NEW ENTRIES
 | Atomic Heart | ✔️ |  | _Needs testing_ | 
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Banishers: Ghosts of New Eden | ✔️ |  |  |
-| Black Myth: Wukong | ✔️ |  |  |
+| Black Myth: Wukong | ✔️ | ✅ |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
