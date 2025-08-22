@@ -45,7 +45,8 @@ TEMPLATE FOR NEW ENTRIES
 | Supraworld | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
-| The Elder Scrolls IV: Oblivion Remastered | ✔️ |  |  |
+| The Elder Scrolls IV: Oblivion Remastered | ❌ |  | Disabled for now |
+| The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Midnight Walk | ✔️ |  | _Opti can't catch DLSS input yet_ | 
 | The Persistence | ✔️ | N/A |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
