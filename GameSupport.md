@@ -26,6 +26,7 @@ TEMPLATE FOR NEW ENTRIES
 | Forgive Me Father 2 | ✔️ | ✅ |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ | 
+| Ghostwire: Tokyo | ✔️ | N/A |  |
 | Hell is Us demo | ✔️ | ✅ |  | 
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |

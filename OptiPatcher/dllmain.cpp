@@ -233,6 +233,23 @@ static void CheckForPatch()
         }
     }
 
+    // Ghostwire: Tokyo
+    // inline patch, double test
+    else if (exeName == "gwt.exe")
+    {
+        std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? "
+                                 "? ? ? 81 3D ? ? ? ? ? "
+                                 "? ? ? 0F 85 ? ? ? ? 85");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
