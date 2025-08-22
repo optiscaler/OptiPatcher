@@ -592,6 +592,22 @@ static void CheckForPatch()
         }
     }
 
+    // The First Berserker: Khazan
+    else if (CHECK_UE(bbq))
+    {
+        std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? "
+                                 "? E9 ? ? ? ? E8 ? ? ? "
+                                 "? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -744,6 +760,36 @@ static void CheckForPatch()
                                             "? ? ? ? 89 ? ? ? ? ? "
                                             "8B C1 48 83 C4 28 C3 E8 ? ? "
                                             "? ? 84");
+        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 0);
+
+        if (patchAddressDLSSGCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
+        }
+
+        _patchResult = patchAddressDLSSGCheck1 != nullptr;
+    }
+
+    // DLSSG, The First Berserker: Khazan
+    else if (CHECK_UE(bbq))
+    {
+        std::string_view patternDLSSGCheck1("75 21 C7 05 ? ? ? ? ? ? "
+                                            "? ? C6 05 ? ? ? ? ? B8 "
+                                            "02 00 00 00 48 8B 5C 24 30 48 "
+                                            "83 C4 20 5F C3 E8 ? ? ? ?");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 0);
+
+        if (patchAddressDLSSGCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
+        }
+
+        std::string_view patternDLSSGCheck2("75 1B C7 05 ? ? ? ? ? ? "
+                                            "? ? C6 05 ? ? ? ? ? B8 "
+                                            "02 00 00 00 E9 ? ? ? ? E8 "
+                                            "? ? ? ? 84");
         auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 0);
 
         if (patchAddressDLSSGCheck2 != nullptr)
