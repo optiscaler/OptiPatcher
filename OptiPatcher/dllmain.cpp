@@ -406,21 +406,8 @@ static void CheckForPatch()
         }
     }
 
-    // Severed Steel
-    else if (CHECK_UE(thankyouverycool))
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 ");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Achilles: Legends Untold
-    else if (CHECK_UE(achilles))
+    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2
+    else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -614,6 +601,54 @@ static void CheckForPatch()
     {
         std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? "
                                  "? E9 ? ? ? ? E8 ? ? ? "
+                                 "? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Sifu
+    else if (CHECK_UE(sifu))
+    {
+        std::string_view pattern("74 05 E8 ? ? ? ? 45 33 F6 "
+                                 "E9 ? ? ? ? E8 ? ? ? ? "
+                                 "84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Shadow Warrior 3: Definitive Edition
+    else if (exeName == "sw3.exe")
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
+                                 "0F B6 47 30 E9 ? ? ? ? E8 "
+                                 "? ? ? ? 84 C0 75 0B C6 47");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 24);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Evil West
+    else if (CHECK_UE(highmoon))
+    {
+        std::string_view pattern("74 05 E8 ? ? ? ? 4C 8D ? "
+                                 "? ? ? ? EB 52 E8 ? ? ? "
                                  "? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
