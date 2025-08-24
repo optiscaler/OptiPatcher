@@ -45,6 +45,7 @@ TEMPLATE FOR NEW ENTRIES
 | Severed Steel | ✔️ | N/A |  |
 | Shadow Warrior 3: Definitive Edition | ✔️ | N/A | Add Fakenvapi if framerate locked to very low numbers (might force Reflex on unsupported GPUs) |
 | Sifu | ✔️ | N/A |  |
+| S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraworld | ✔️ | ✅ |  |
 | System Shock (2023) | ✔️ | N/A |  |
@@ -59,6 +60,7 @@ TEMPLATE FOR NEW ENTRIES
 | Titan Quest II | ✔️ | ✅ |  |
 | Tokyo Xtreme Racer/Shutokou Battle | ✔️ | ✅ |  |
 | Trepang2 | ✔️ | N/A |  |
+| VOID/BREAKER | ✔️ | N/A | No DLSS-FG in early access release, but SL checks are patched for the future |
 | Witchfire | ✔️ | ✅ |  |
 | WUCHANG: Fallen Feathers | ✔️ | ✅ |  |
 
