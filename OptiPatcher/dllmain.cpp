@@ -250,6 +250,42 @@ static void CheckForPatch()
         }
     }
 
+    // Atomic Heart
+    // inline patch
+    else if (CHECK_UE(atomicheart))
+    {
+        std::string_view pattern("48 8B 4D 10 48 85 C9 74 05 E8 "
+                                 "? ? ? ? 81 3D ? ? ? ? "
+                                 "? ? ? ? 74");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // METAL GEAR SOLID Δ: SNAKE EATER
+    // inline patch
+    else if (CHECK_UE(mgsdelta))
+    {
+        std::string_view pattern("49 8B C5 74 03 49 8B C4 81 3D "
+                                 "? ? ? ? ? ? ? ? 44 8B "
+                                 "04 30");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 8);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
@@ -257,24 +293,6 @@ static void CheckForPatch()
                                  "4C 89 65 C0 48 89 45 F0 48 89 "
                                  "45 F8 48 85 C9 74 05 E8 ? ? "
                                  "? ? E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Atomic Heart
-    else if (CHECK_UE(atomicheart))
-    {
-        std::string_view pattern("4C 8B 7D F0 33 C0 48 8B 4D 40 "
-                                 "4C 89 7D C0 48 89 45 F0 48 89 "
-                                 "45 F8 48 85 C9 74 05 E8 ? ? "
-                                 "? ? E8 ? ? ? ? 84 C0 75");
-
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
 
         if (patchAddress != nullptr)
@@ -406,8 +424,9 @@ static void CheckForPatch()
         }
     }
 
-    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2
-    else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps))
+    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive
+    else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
+             CHECK_UE(pendriverpro))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -505,9 +524,9 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business, Ready or Not
+    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
-             exeName == "readyornot-wingdk-shipping.exe")
+             exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -692,6 +711,86 @@ static void CheckForPatch()
         }
     }
 
+    // SILENT HILL 2 Remake
+    else if (CHECK_UE(shproto))
+    {
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
+                                 "46 8B 3C 38 E8 ? ? ? ? 84 "
+                                 "C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Lords of the Fallen 2023
+    else if (CHECK_UE(lotf2))
+    {
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 "
+                                 "46 8B 3C 38 E8 ? ? ? ? 84 "
+                                 "C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Flintlock: The Siege of Dawn
+    else if (CHECK_UE(saltpeter))
+    {
+        std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? "
+                                 "? E9 ? ? ? ? E8 ? ? ? "
+                                 "? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Avowed
+    else if (CHECK_UE(avowed))
+    {
+        std::string_view pattern("4C 89 AC 24 40 02 00 00 4C 89 "
+                                 "B4 24 38 02 00 00 E8 ? ? ? "
+                                 "? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Eternal Strands
+    else if (CHECK_UE(eternalstrandssteam))
+    {
+        std::string_view pattern("4C 89 A4 24 78 02 00 00 4C 89 "
+                                 "B4 24 38 02 00 00 E8 ? ? ? "
+                                 "? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -763,14 +862,16 @@ static void CheckForPatch()
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
     // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage,
-    // The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER
+    // The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake, NINJA GAIDEN
+    // 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
         CHECK_UE(project_plague) || CHECK_UE(robocopunfinishedbusiness) || exeName == "bloom&rage.exe" ||
         CHECK_UE(fmf2) || CHECK_UE(metaleden) || CHECK_UE(enotria) || CHECK_UE(thealters) ||
         exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe" ||
-        CHECK_UE(stalker2) || CHECK_UE(voidbreaker))
+        CHECK_UE(stalker2) || CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) ||
+        CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -787,8 +888,8 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // DLSSG, Deep Rock Galactic, Black Myth: Wukong
-    else if (CHECK_UE(fsd) || CHECK_UE(b1))
+    // DLSSG, Deep Rock Galactic, Black Myth: Wukong, Lords of the Fallen 2023
+    else if (CHECK_UE(fsd) || CHECK_UE(b1) || CHECK_UE(lotf2))
     {
         std::string_view pattern2("75 ? B9 ? ? ? ? C6 05 ? ? ? ? ? 89 0D");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
