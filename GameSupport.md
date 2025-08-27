@@ -26,7 +26,7 @@ TEMPLATE FOR NEW ENTRIES
 | Enotria: The Last Song | ✔️ | ✅ |  |
 | Eternal Strands | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
-| Flintlock: The Siege of Dawn | ✔️ | ✅ | _Needs testing_ |
+| Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
@@ -35,7 +35,7 @@ TEMPLATE FOR NEW ENTRIES
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
-| Lords of the Fallen 2023 | ✔️ | ✅ | _Needs testing_ |
+| Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Metal Eden demo | ✔️ | ✅ |  |
