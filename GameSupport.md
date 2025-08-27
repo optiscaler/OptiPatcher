@@ -17,7 +17,7 @@ TEMPLATE FOR NEW ENTRIES
 | Atomic Heart | ✔️ | ⛔ |  |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ | _Needs testing_ |
-| Banishers: Ghosts of New Eden | ✔️ | ✅ | _DLSS-FG will still be greyed out, but Opti 0.9 with DLSSG SL inputs works after enabling FG_ [Screenshot](https://github.com/user-attachments/assets/3183610c-5f44-4e51-8e65-681967391a87) |
+| Banishers: Ghosts of New Eden | ✔️ | ✅ | _DLSS-FG will still be greyed out, but Opti 0.9 with DLSSG SL inputs works after enabling FG_ - [Screenshot](https://i.ibb.co/YFg36zfm/Banishers-Ghosts-of-New-Eden-2025-08-27-14-35.png) |
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
