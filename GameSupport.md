@@ -37,6 +37,7 @@ TEMPLATE FOR NEW ENTRIES
 | Lies of P | ✔️ | N/A |  |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
+| Lost Souls Aside | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Metal Eden demo | ✔️ | ✅ |  |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | N/A |  |
