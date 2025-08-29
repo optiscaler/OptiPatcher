@@ -11,6 +11,7 @@ TEMPLATE FOR NEW ENTRIES
 | ---- | :--: | :-----: | ------ |
 | 171 | ✔️ | ✅ |  |
 | Achilles: Legends Untold | ✔️ | N/A |  |
+| AdInfinitum | ✔️ | N/A |  |
 | Alone in the Dark 2024 | ✔️ | N/A | _Needs testing_ |
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ⛔ |  |
