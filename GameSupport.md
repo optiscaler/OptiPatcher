@@ -11,7 +11,7 @@ TEMPLATE FOR NEW ENTRIES
 | ---- | :--: | :-----: | ------ |
 | 171 | ✔️ | ✅ |  |
 | Achilles: Legends Untold | ✔️ | N/A |  |
-| AdInfinitum | ✔️ | N/A |  |
+| Ad Infinitum | ✔️ | N/A |  |
 | Alone in the Dark 2024 | ✔️ | N/A | _Needs testing_ |
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ⛔ |  |
@@ -39,7 +39,7 @@ TEMPLATE FOR NEW ENTRIES
 | Lies of P | ✔️ | N/A |  |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
-| Lost Souls Aside | ✔️ | ✅ |  |
+| Lost Soul Aside | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Metal Eden demo | ✔️ | ✅ |  |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | N/A |  |
