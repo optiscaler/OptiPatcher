@@ -26,6 +26,7 @@ TEMPLATE FOR NEW ENTRIES
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Enotria: The Last Song | ✔️ | ✅ |  |
 | Eternal Strands | ✔️ | ✅ |  |
+| EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
