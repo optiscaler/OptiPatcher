@@ -286,6 +286,24 @@ static void CheckForPatch()
         }
     }
 
+    // EVERSPACE 2
+    // inline patch
+    else if (CHECK_UE(es2))
+    {
+        std::string_view pattern("48 8D ? ? ? ? ? E8 ? ? "
+                                 "? ? 81 3D ? ? ? ? ? ? "
+                                 "? ? 0F 85 ? ? ? ? 85");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
@@ -1014,6 +1032,42 @@ static void CheckForPatch()
         {
             std::vector<BYTE> patch = { 0xEB };
             patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
+        }
+
+        _patchResult = patchAddressDLSSGCheck1 != nullptr;
+    }
+
+    // DLSSG, EVERSPACE 2
+    else if (CHECK_UE(es2))
+    {
+        // DLSSG, Deep DVC
+        std::string_view patternDLSSGCheck1("81 3D ? ? ? ? ? ? ? ? 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 0);
+
+        if (patchAddressDLSSGCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
+        }
+
+        // Reflex
+        std::string_view patternDLSSGCheck2("81 3D ? ? ? ? ? ? ? ? 75 78 E8 ? ? ? ? 84 C0");
+        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 0);
+
+        if (patchAddressDLSSGCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
+        }
+
+        // Late Warp
+        std::string_view patternDLSSGCheck3("81 3D ? ? ? ? ? ? ? ? 75 57 E8 ? ? ? ? 84 C0");
+        auto patchAddressDLSSGCheck3 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck3, 0);
+
+        if (patchAddressDLSSGCheck3 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck3, &patch);
         }
 
         _patchResult = patchAddressDLSSGCheck1 != nullptr;
