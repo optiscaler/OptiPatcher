@@ -34,6 +34,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
 | Hell is Us demo | ✔️ | ✅ |  |
+| High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |

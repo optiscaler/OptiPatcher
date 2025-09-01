@@ -827,10 +827,10 @@ static void CheckForPatch()
     }
 
     // Ad Infinitum, INDIKA
-    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika))
+    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 "
-                                 "? ? ? ? 84 C0 75");
+                                 "? ? ? ? 84 C0 75"); 
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
 
         if (patchAddress != nullptr)
