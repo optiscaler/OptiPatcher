@@ -830,7 +830,7 @@ static void CheckForPatch()
     else if (CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) || CHECK_UE(moria))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 "
-                                 "? ? ? ? 84 C0 75"); 
+                                 "? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
 
         if (patchAddress != nullptr)
@@ -847,6 +847,21 @@ static void CheckForPatch()
         std::string_view pattern("49 8B C5 46 8B 3C 38 E8 ? ? "
                                  "? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Land of the Vikings
+    else if (CHECK_UE(vikingoyunu))
+    {
+        std::string_view pattern("4C 8D ? ? ? ? ? E9 ? ? "
+                                 "? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
 
         if (patchAddress != nullptr)
         {
