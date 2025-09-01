@@ -542,9 +542,9 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black
+    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Brothers: A Tale of Two Sons Remake
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
-             exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black))
+             exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(brothers))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
