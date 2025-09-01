@@ -442,9 +442,10 @@ static void CheckForPatch()
         }
     }
 
-    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim, Loopmancer
+    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
+    // Loopmancer, Blacktail
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
-             CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer))
+             CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
