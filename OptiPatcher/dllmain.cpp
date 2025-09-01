@@ -841,6 +841,21 @@ static void CheckForPatch()
         }
     }
 
+    // TEKKEN 8
+    else if (CHECK_UE(polaris))
+    {
+        std::string_view pattern("49 8B C5 46 8B 3C 38 E8 ? ? "
+                                 "? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")

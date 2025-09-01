@@ -62,6 +62,7 @@ TEMPLATE FOR NEW ENTRIES
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraworld | ✔️ | ✅ |  |
 | System Shock (2023) | ✔️ | N/A |  |
+| TEKKEN 8 | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
 | The Elder Scrolls IV: Oblivion Remastered | ❌ | ⛔ | _Disabled for now_ |
