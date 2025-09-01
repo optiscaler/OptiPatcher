@@ -826,8 +826,8 @@ static void CheckForPatch()
         }
     }
 
-    // Ad Infinitum
-    else if (CHECK_UE(adinfinitum))
+    // Ad Infinitum, INDIKA
+    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 "
                                  "? ? ? ? 84 C0 75");

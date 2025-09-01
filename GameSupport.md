@@ -35,6 +35,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostwire: Tokyo | ✔️ | N/A |  |
 | Hell is Us demo | ✔️ | ✅ |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
+| INDIKA | ✔️ | N/A |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
