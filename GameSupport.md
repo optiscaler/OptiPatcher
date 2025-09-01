@@ -67,6 +67,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Ascent | ✔️ | N/A |  |
 | The Elder Scrolls IV: Oblivion Remastered | ❌ | ⛔ | _Disabled for now_ |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
+| The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ⛔ | _Opti can't catch DLSS input yet_ |
 | The Persistence | ✔️ | N/A |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |

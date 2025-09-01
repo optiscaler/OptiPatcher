@@ -826,8 +826,8 @@ static void CheckForPatch()
         }
     }
 
-    // Ad Infinitum, INDIKA, High On Life
-    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon))
+    // Ad Infinitum, INDIKA, High On Life, The Lord of the Rings: Return to Moria™
+    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) || CHECK_UE(moria))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 "
                                  "? ? ? ? 84 C0 75"); 
