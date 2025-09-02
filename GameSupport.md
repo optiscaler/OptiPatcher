@@ -19,7 +19,9 @@ TEMPLATE FOR NEW ENTRIES
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ | _Needs testing_ |
 | Banishers: Ghosts of New Eden | ✔️ | ✅ | _DLSS-FG will still be greyed out, but Opti 0.9 with DLSSG SL inputs works after enabling FG_ - [Screenshot](https://i.ibb.co/YFg36zfm/Banishers-Ghosts-of-New-Eden-2025-08-27-14-35.png) |
+| Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
+| Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
@@ -30,15 +32,19 @@ TEMPLATE FOR NEW ENTRIES
 | Evil West | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
+| Frozenheim | ✔️ | N/A |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
+| High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
+| Land of the Vikings | ✔️ | N/A |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
+| Loopmancer | ✔️ | ✅ |  |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Lost Soul Aside | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
@@ -66,6 +72,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Ascent | ✔️ | N/A |  |
 | The Elder Scrolls IV: Oblivion Remastered | ❌ | ⛔ | _Disabled for now_ |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
+| The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ⛔ | _Opti can't catch DLSS input yet_ |
 | The Persistence | ✔️ | N/A |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |

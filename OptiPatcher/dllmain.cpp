@@ -442,9 +442,10 @@ static void CheckForPatch()
         }
     }
 
-    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive
+    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
+    // Loopmancer, Blacktail
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
-             CHECK_UE(pendriverpro))
+             CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -542,9 +543,10 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ demo)
+    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ demo), Brothers: A Tale of Two Sons Remake
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
-             exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus))
+             exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
+             CHECK_UE(brothers))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -826,8 +828,8 @@ static void CheckForPatch()
         }
     }
 
-    // Ad Infinitum, INDIKA
-    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika))
+    // Ad Infinitum, INDIKA, High On Life, The Lord of the Rings: Return to Moria™
+    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) || CHECK_UE(moria))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 "
                                  "? ? ? ? 84 C0 75");
@@ -847,6 +849,21 @@ static void CheckForPatch()
         std::string_view pattern("49 8B C5 46 8B 3C 38 E8 ? ? "
                                  "? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Land of the Vikings
+    else if (CHECK_UE(vikingoyunu))
+    {
+        std::string_view pattern("4C 8D ? ? ? ? ? E9 ? ? "
+                                 "? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
 
         if (patchAddress != nullptr)
         {
