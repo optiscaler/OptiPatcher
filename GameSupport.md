@@ -36,7 +36,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
-| Hell is Us demo | ✔️ | ✅ |  |
+| Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
 | High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
