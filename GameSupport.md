@@ -50,7 +50,7 @@ TEMPLATE FOR NEW ENTRIES
 | Lost Soul Aside | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Metal Eden demo | ✔️ | ✅ |  |
-| METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | N/A |  |
+| METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ | _Needs testing_ |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
