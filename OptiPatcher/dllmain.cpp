@@ -544,7 +544,8 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ demo), Brothers: A Tale of Two Sons Remake
+    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ demo), Brothers: A Tale of Two
+    // Sons Remake
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers))
@@ -874,6 +875,20 @@ static void CheckForPatch()
         }
     }
 
+    // Cronos: The New Dawn
+    else if (CHECK_UE(cronos))
+    {
+        std::string_view pattern("74 03 49 8B C4 46 8B 34 30 E8 ? ? ? ? 84 C0 75 09");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -946,7 +961,7 @@ static void CheckForPatch()
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
     // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage,
     // The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake, NINJA GAIDEN
-    // 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside
+    // 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New Dawn
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -954,7 +969,8 @@ static void CheckForPatch()
         CHECK_UE(fmf2) || CHECK_UE(metaleden) || CHECK_UE(enotria) || CHECK_UE(thealters) ||
         exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe" ||
         CHECK_UE(stalker2) || CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) ||
-        CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam))
+        CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) ||
+        CHECK_UE(cronos))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

@@ -23,6 +23,7 @@ TEMPLATE FOR NEW ENTRIES
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
+| Cronos: The New Dawn | ✔️ | ✅ |  |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
