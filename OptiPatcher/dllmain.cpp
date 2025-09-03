@@ -888,6 +888,22 @@ static void CheckForPatch()
         }
     }
 
+    // Echo Point Nova
+    else if (CHECK_UE(greylock))
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
+                                 "E8 ? ? ? ? 84 C0 75 09 C6 "
+                                 "47 30 02");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -984,21 +1000,6 @@ static void CheckForPatch()
                 start = (uintptr_t) patchAddress;
             }
         } while (patchAddress != nullptr);
-    }
-
-    // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER
-    else if (CHECK_UE(mgsdelta))
-    {
-        // Make slForceTagging always return true
-        std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 B9 E4 00 00 00 48 8B 00 8B 04 01 39 ? ? ? ? "
-                                  "? 7F 1E 80 3D ? ? ? ? ? 75");
-        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
-
-        if (patchAddress2 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
-            patcher::PatchAddress(patchAddress2, &patch);
-        }
     }
 
     // DLSSG, Deep Rock Galactic, Black Myth: Wukong, Lords of the Fallen 2023
@@ -1134,6 +1135,36 @@ static void CheckForPatch()
         }
 
         _patchResult = patchAddressDLSSGCheck1 != nullptr;
+    }
+
+    // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER
+    else if (CHECK_UE(mgsdelta))
+    {
+        // Make slForceTagging always return true
+        std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 B9 E4 00 00 00 48 8B 00 8B 04 01 39 ? ? ? ? "
+                                  "? 7F 1E 80 3D ? ? ? ? ? 75");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
+    // DLSSG, Atomic Heart
+    else if (CHECK_UE(atomicheart))
+    {
+        // Make slForceTagging always return true
+        std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ? "
+                                  "? 7F 24 80 3D ? ? ? ? ? 75");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
     }
 }
 
