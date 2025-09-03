@@ -987,6 +987,21 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
+    // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER
+    else if (CHECK_UE(mgsdelta))
+    {
+        // Make slForceTagging always return true
+        std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 B9 E4 00 00 00 48 8B 00 8B 04 01 39 ? ? ? ? "
+                                  "? 7F 1E 80 3D ? ? ? ? ? 75");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
     // DLSSG, Deep Rock Galactic, Black Myth: Wukong, Lords of the Fallen 2023
     else if (CHECK_UE(fsd) || CHECK_UE(b1) || CHECK_UE(lotf2))
     {
