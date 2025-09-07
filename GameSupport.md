@@ -25,6 +25,7 @@ TEMPLATE FOR NEW ENTRIES
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
+| Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Echo Point Nova | ✔️ | N/A |  |
@@ -50,9 +51,10 @@ TEMPLATE FOR NEW ENTRIES
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Lost Soul Aside | ✔️ | ✅ |  |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
-| Metal Eden demo | ✔️ | ✅ |  |
-| METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
+| Metal Eden | ✔️ | ✅ | _Full game doesn't have DLSS-FG atm, but check [special notes](#special-notes) for manual activation. Demo should also be supported_ |
+| METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ | _Needs testing_ |
+| Otherskin | ✔️ | N/A | _Needs testing_ |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ | N/A |  |
@@ -91,5 +93,26 @@ TEMPLATE FOR NEW ENTRIES
 
 > [!NOTE]
 > ### Special notes
-> * Robocop Rogue City and Unfinished Business DLSS plugin is patched, but due to extra checks when not spoofing, to expose DLSS/DLSS-FG properly, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already) - for Robocop Unfinished Business `AppData\Local\RoboCopUnfinishedBusiness\Saved\Config\Windows`  
-> * To get XeFG 2.1 for non-Intel GPUs, just replace the XeSS files in `Robocop Rogue City\Engine\Plugins\Runtime\Intel\XeSS\Binaries\ThirdParty\Win64`  
+> * **Robocop Rogue City and Unfinished Business** DLSS plugin is patched, but due to extra checks when not spoofing, to expose DLSS/DLSS-FG properly, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already)    
+>   * For **Robocop Unfinished Business** - `AppData\Local\RoboCopUnfinishedBusiness\Saved\Config\Windows`
+> * To get XeFG 2.1 for non-Intel GPUs, just replace the XeSS files in `Robocop Rogue City\Engine\Plugins\Runtime\Intel\XeSS\Binaries\ThirdParty\Win64` 
+> --- 
+> * To fix weird transparencies in **METAL GEAR SOLID Δ: SNAKE EATER**, add this to **Engine.ini**  
+>	* Engine.ini location - `%LOCALAPPDATA%\MGSDelta\Saved\Config\Windows\`  
+> ```ini
+> [SystemSettings]
+> r.Streamline.ClearSceneColorAlpha=false
+> ```
+> ---
+> * To enable **"hidden" DLSS-FG** (e.g. Metal Eden, Daemon X Machina: Titanic Scion), you have to add these commands to **Engine.ini** (locations below)
+>	* If no **Engine.ini present**, then create one and make it **read-only** to avoid being deleted (same goes if the game deletes it on launch in general)
+> ```ini
+> [SystemSettings]
+> r.Streamline.DLSSG.Enable=1
+> t.Streamline.Reflex.Enable=1
+> r.Streamline.DilateMotionVectors=0
+> r.Streamline.ClearSceneColorAlpha=false
+> r.NGX.DLSS.DilateMotionVectors=0
+> ``` 
+> * **Metal Eden** - `%LOCALAPPDATA%\MetalEden\Saved\Config\Windows\`  
+> * **Daemon X Machina: Titanic Scion** - `%LOCALAPPDATA%\DXMTS\Saved\Config\Windows`  
