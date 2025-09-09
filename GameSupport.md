@@ -17,7 +17,7 @@ TEMPLATE FOR NEW ENTRIES
 | ARK: Survival Ascended | ✔️ | ⛔ |  |
 | Atomic Heart | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7Jhmv44j/Atomic-Heart-2025-09-04-02-46.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
-| Avowed | ✔️ | ✅ | _Needs testing_ |
+| Avowed | ✔️ | ✅ |  |
 | Banishers: Ghosts of New Eden | ✔️ | ✅ | _DLSS-FG will still be greyed out, but Opti 0.9 with DLSSG SL inputs works after enabling FG_ - [Screenshot](https://i.ibb.co/YFg36zfm/Banishers-Ghosts-of-New-Eden-2025-08-27-14-35.png) |
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
