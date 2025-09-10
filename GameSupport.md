@@ -12,7 +12,7 @@ TEMPLATE FOR NEW ENTRIES
 | 171 | ✔️ | ✅ |  |
 | Achilles: Legends Untold | ✔️ | N/A |  |
 | Ad Infinitum | ✔️ | N/A |  |
-| Alone in the Dark 2024 | ✔️ | N/A | _Needs testing_ |
+| Alone in the Dark 2024 | ✔️ | N/A |  |
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ⛔ |  |
 | Atomic Heart | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7Jhmv44j/Atomic-Heart-2025-09-04-02-46.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
@@ -53,8 +53,8 @@ TEMPLATE FOR NEW ENTRIES
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Metal Eden | ✔️ | ✅ | _Full game doesn't have DLSS-FG atm, but check [special notes](#special-notes) for manual activation. Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
-| NINJA GAIDEN 2 Black | ✔️ | ✅ | _Needs testing_ |
-| Otherskin | ✔️ | N/A | _Needs testing_ |
+| NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
+| Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ | N/A |  |
