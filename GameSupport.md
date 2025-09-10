@@ -24,13 +24,14 @@ TEMPLATE FOR NEW ENTRIES
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
-| Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
+| Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
+| Deadzone Rogue | ✔️ | ✅ | _Steam exe_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Echo Point Nova | ✔️ | N/A |  |
 | Enotria: The Last Song | ✔️ | ✅ |  |
-| Eternal Strands | ✔️ | ✅ |  |
+| Eternal Strands | ✔️ | ✅ | _Steam exe_ |
 | EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
@@ -49,7 +50,7 @@ TEMPLATE FOR NEW ENTRIES
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
 | Loopmancer | ✔️ | ⛔ |  |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
-| Lost Soul Aside | ✔️ | ✅ |  |
+| Lost Soul Aside | ✔️ | ✅ | _Steam exe_ |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Metal Eden | ✔️ | ✅ | _Full game doesn't have DLSS-FG atm, but check [special notes](#special-notes) for manual activation. Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
@@ -58,7 +59,7 @@ TEMPLATE FOR NEW ENTRIES
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
 | Ranch Simulator | ✔️ | N/A |  |
-| Ready or Not | ✔️ | ✅ |  |
+| Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
