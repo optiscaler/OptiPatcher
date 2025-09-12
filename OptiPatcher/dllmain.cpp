@@ -545,10 +545,10 @@ static void CheckForPatch()
     }
 
     // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ demo), Brothers: A Tale of Two
-    // Sons Remake, Otherskin
+    // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
-             CHECK_UE(brothers) || CHECK_UE(otherskin))
+             CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -934,6 +934,20 @@ static void CheckForPatch()
         }
     }
 
+    // Chernobylite Enhanced Edition
+    else if (CHECK_UE(chernobylgame))
+    {
+        std::string_view pattern("74 05 E8 ? ? ? ? 45 33 F6 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1007,7 +1021,7 @@ static void CheckForPatch()
     // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage,
     // The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake, NINJA GAIDEN
     // 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New Dawn, Daemon X
-    // Machina: Titanic Scion, Deadzone Rogue
+    // Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion Zone
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1016,7 +1030,8 @@ static void CheckForPatch()
         exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe" ||
         CHECK_UE(stalker2) || CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) ||
         CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) ||
-        CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe")
+        CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
+        CHECK_UE(chernobylite2))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -1189,6 +1204,21 @@ static void CheckForPatch()
         // Make slForceTagging always return true
         std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ? "
                                   "? 7F 24 80 3D ? ? ? ? ? 75");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
+    // DLSSG, ARK: Survival Ascended
+    else if (exeName == "arkascended.exe")
+    {
+        // Make slForceTagging always return true
+        std::string_view pattern2(
+            "48 83 EC 28 65 48 8B 04 25 58 00 00 00 48 8B 28 B8 04 01 00 00 8B 04 28 39 ? ? ? ? ? 7F 5D 80 3D");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
 
         if (patchAddress2 != nullptr)

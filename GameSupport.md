@@ -14,7 +14,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ad Infinitum | ✔️ | N/A |  |
 | Alone in the Dark 2024 | ✔️ | N/A |  |
 | Amid Evil | ✔️ | N/A |  |
-| ARK: Survival Ascended | ✔️ | ⛔ |  |
+| ARK: Survival Ascended | ✔️ | ✅ | _Needs testing <br> Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
 | Atomic Heart | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7Jhmv44j/Atomic-Heart-2025-09-04-02-46.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
@@ -22,6 +22,8 @@ TEMPLATE FOR NEW ENTRIES
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
+| Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
+| Chernobylite 2: Exclusion Zone | ✔️ | ✅ | _Needs testing_ |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
@@ -81,6 +83,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ⛔ | _Opti can't catch DLSS input yet_ |
 | The Persistence | ✔️ | N/A |  |
+| The Sinking City Remastered | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
 | The Talos Principle: Reawakened | ✔️ | ✅ |  |
 | Titan Quest II | ✔️ | ✅ |  |
