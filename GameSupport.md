@@ -23,7 +23,7 @@ TEMPLATE FOR NEW ENTRIES
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
 | Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
-| Chernobylite 2: Exclusion Zone | ✔️ | ✅ | _Needs testing_ |
+| Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
