@@ -15,6 +15,7 @@ TEMPLATE FOR NEW ENTRIES
 | Alone in the Dark 2024 | ✔️ | N/A |  |
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ✅ | _Needs testing <br> Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
+| Assetto Corsa Competizione | ✔️ | N/A |  |
 | Atomic Heart | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7Jhmv44j/Atomic-Heart-2025-09-04-02-46.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
@@ -25,6 +26,7 @@ TEMPLATE FOR NEW ENTRIES
 | Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
+| Commandos: Origins | ✔️ | N/A |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
@@ -54,8 +56,10 @@ TEMPLATE FOR NEW ENTRIES
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Lost Soul Aside | ✔️ | ✅ | _Steam exe_ |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
+| Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
 | Metal Eden | ✔️ | ✅ | _Full game doesn't have DLSS-FG atm, but check [special notes](#special-notes) for manual activation. Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
+| MindsEye | ✔️ | ✅ |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
@@ -70,11 +74,13 @@ TEMPLATE FOR NEW ENTRIES
 | Shadow Warrior 3: Definitive Edition | ✔️ | N/A | _Add Fakenvapi if framerate locked to very low numbers (might force Reflex on unsupported GPUs)_ |
 | Sifu | ✔️ | N/A |  |
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
+| South of Midnight | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraworld | ✔️ | ✅ |  |
 | System Shock (2023) | ✔️ | N/A |  |
 | TEKKEN 8 | ✔️ | N/A |  |
+| Tempest Rising | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
 | The Elder Scrolls IV: Oblivion Remastered | ❌ | ⛔ | _Disabled for now_ |
@@ -88,6 +94,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Talos Principle: Reawakened | ✔️ | ✅ |  |
 | Titan Quest II | ✔️ | ✅ |  |
 | Tokyo Xtreme Racer/Shutokou Battle | ✔️ | ✅ |  |
+| Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
 | VOID/BREAKER | ✔️ | N/A | _No DLSS-FG in early access release, but SL checks are patched for the future_ |
 | Witchfire | ✔️ | ✅ |  |
