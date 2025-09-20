@@ -41,6 +41,7 @@ TEMPLATE FOR NEW ENTRIES
 | Evil West | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
+| Frostpunk 2 | ✔️ | ✅ |  |
 | Frozenheim | ✔️ | N/A |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
