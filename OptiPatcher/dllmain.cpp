@@ -50,15 +50,15 @@ static void CheckForPatch()
         }
     }
 
-    // The Elder Scrolls IV: Oblivion Remastered
+    //// The Elder Scrolls IV: Oblivion Remastered
     // else if (CHECK_UE(oblivionremastered))
     //{
-    //    std::string_view pattern("C6 47 ? ? E9 ? ? ? ? 85 ? 7E ? 33 D2 44 8B ? 8D 4A");
-    //    auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, -2);
+    //     std::string_view pattern("4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
+    //     auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
 
     //    if (patchAddress != nullptr)
     //    {
-    //        std::vector<BYTE> patch = { 0xEB };
+    //        std::vector<BYTE> patch = { 0x0C, 0x01 };
     //        patcher::PatchAddress(patchAddress, &patch);
     //        _patchResult = true;
     //    }
@@ -304,9 +304,9 @@ static void CheckForPatch()
         }
     }
 
-    // South of Midnight
+    // South of Midnight, Little Nightmares III Demo
     // inline patch
-    else if (exeName == "southofmidnight.exe")
+    else if (exeName == "southofmidnight.exe" || exeName == "littlenightmaresiii.exe")
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74 09");
 
@@ -458,12 +458,12 @@ static void CheckForPatch()
         }
     }
 
-    // Severed Steel demo, Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
+    // Severed Steel (+ Demo), Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
     // Loopmancer, Blacktail, The Lord of the Rings: Gollum™, Mandragora: Whispers of the Witch Tree, Tony Hawk's Pro
-    // Skater 3 + 4
+    // Skater 3 + 4, Way of the Hunter
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
              CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail) ||
-             CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe")
+             CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe" || CHECK_UE(wayofthehunter))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -561,12 +561,13 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ demo), Brothers: A Tale of Two
-    // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins, MindsEye
+    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
+    // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
+    // MindsEye, Crisol: Theater of Idols Demo
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
-             CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye))
+             CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -640,7 +641,7 @@ static void CheckForPatch()
         }
     }
 
-    // METAL EDEN demo
+    // METAL EDEN (+ Demo)
     else if (CHECK_UE(metaleden))
     {
         std::string_view pattern("74 03 49 8B C4 8B 34 30 E8 ? "
@@ -1063,14 +1064,14 @@ static void CheckForPatch()
     // DLSSG / Extra
 
     // DLSSG
-    // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us (+demo), Robocop: Rogue City,
+    // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us (+ Demo), Robocop: Rogue City,
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
-    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden demo, Enotria: The Last Song, Bloom&Rage,
-    // The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake, NINJA GAIDEN
-    // 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New Dawn, Daemon X
-    // Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Tempest
-    // Rising, MindsEye
+    // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden (+ Demo), Enotria: The Last Song,
+    // Bloom&Rage, The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake,
+    // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New
+    // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
+    // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1080,7 +1081,7 @@ static void CheckForPatch()
         CHECK_UE(stalker2) || CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) ||
         CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) ||
         CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
-        CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye))
+        CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

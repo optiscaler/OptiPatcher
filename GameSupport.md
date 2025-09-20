@@ -27,6 +27,7 @@ TEMPLATE FOR NEW ENTRIES
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Commandos: Origins | ✔️ | N/A |  |
+| Crisol: Theater of Idols Demo | ✔️ | ✅ |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
@@ -51,6 +52,7 @@ TEMPLATE FOR NEW ENTRIES
 | Land of the Vikings | ✔️ | N/A |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
+| Little Nightmares III Demo | ✔️ | ⛔ |  |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
 | Loopmancer | ✔️ | ⛔ |  |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
@@ -83,7 +85,6 @@ TEMPLATE FOR NEW ENTRIES
 | Tempest Rising | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
-| The Elder Scrolls IV: Oblivion Remastered | ❌ | ⛔ | _Disabled for now_ |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ |  |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
@@ -97,6 +98,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
 | VOID/BREAKER | ✔️ | N/A | _No DLSS-FG in early access release, but SL checks are patched for the future_ |
+| Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
 | Witchfire | ✔️ | ✅ |  |
 | WUCHANG: Fallen Feathers | ✔️ | ✅ |  |
 
