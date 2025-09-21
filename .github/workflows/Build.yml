@@ -28,5 +28,5 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        path: '${{env.GITHUB_WORKSPACE}}\x64\Release\*.asi'
+        path: '${{ github.workspace }}\x64\Release\OptiPatcher.asi'
         if-no-files-found: error      
