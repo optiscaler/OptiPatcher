@@ -47,6 +47,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
+| Hi-Fi RUSH | ✔️ | N/A |  |
 | High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
@@ -67,12 +68,14 @@ TEMPLATE FOR NEW ENTRIES
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
+| Project Borealis: Prologue | ✔️ | ✅ |  |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
+| Senua’s Saga: Hellblade II | ✔️ | ✅ |  |
 | Severed Steel | ✔️ | N/A |  |
 | Shadow Warrior 3: Definitive Edition | ✔️ | N/A | _Add Fakenvapi if framerate locked to very low numbers (might force Reflex on unsupported GPUs)_ |
 | Sifu | ✔️ | N/A |  |

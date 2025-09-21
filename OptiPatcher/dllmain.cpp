@@ -304,13 +304,29 @@ static void CheckForPatch()
         }
     }
 
-    // South of Midnight, Little Nightmares III Demo
+    // South of Midnight, Little Nightmares III Demo, Hi-Fi RUSH
     // inline patch
-    else if (exeName == "southofmidnight.exe" || exeName == "littlenightmaresiii.exe")
+    else if (exeName == "southofmidnight.exe" || exeName == "littlenightmaresiii.exe" || exeName == "hi-fi-rush.exe")
     {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74 09");
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
 
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 10);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Project Borealis: Prologue
+    // inline patch
+    else if (CHECK_UE(projectborealis))
+    {
+        std::string_view pattern("B0 01 84 C0 75 05 BB 04 00 00 00 81 3D ? ? ? ? ? ? ? ? 41 8B 1C 1E 74");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
 
         if (patchAddress != nullptr)
         {
@@ -998,6 +1014,21 @@ static void CheckForPatch()
         }
     }
 
+    // Senua’s Saga: Hellblade II
+    else if (CHECK_UE(hellblade2))
+    {
+        std::string_view pattern(
+            "49 8B C7 8B 34 30 4C 89 A4 24 78 02 00 00 4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 27);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1072,7 +1103,7 @@ static void CheckForPatch()
     // Bloom&Rage, The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake,
     // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New
     // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
-    // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2
+    // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1083,7 +1114,7 @@ static void CheckForPatch()
         CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) ||
         CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
         CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
-        CHECK_UE(frostpunk2))
+        CHECK_UE(frostpunk2) || CHECK_UE(hellblade2))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -1230,6 +1261,32 @@ static void CheckForPatch()
         {
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddressDLSSGCheck3, &patch);
+        }
+
+        _patchResult = patchAddressDLSSGCheck1 != nullptr;
+    }
+
+    // DLSSG, Project Borealis: Prologue
+    else if (CHECK_UE(projectborealis))
+    {
+        // DLSSG
+        std::string_view patternDLSSGCheck1("80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74 1B");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 13);
+
+        if (patchAddressDLSSGCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
+        }
+
+        // Deep DVC
+        std::string_view patternDLSSGCheck2("80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74 2B");
+        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 13);
+
+        if (patchAddressDLSSGCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
         }
 
         _patchResult = patchAddressDLSSGCheck1 != nullptr;
