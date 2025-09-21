@@ -28,5 +28,6 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
+        name: 'OptiPatcher.zip'
         path: '${{ github.workspace }}\x64\Release\OptiPatcher.asi'
         if-no-files-found: error      
