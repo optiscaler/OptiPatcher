@@ -54,7 +54,7 @@ TEMPLATE FOR NEW ENTRIES
 | Land of the Vikings | ✔️ | N/A |  |
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
-| Little Nightmares III Demo | ✔️ | ⛔ |  |
+| Little Nightmares III Demo | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
 | Loopmancer | ✔️ | ⛔ |  |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |

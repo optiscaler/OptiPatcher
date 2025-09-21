@@ -1270,8 +1270,10 @@ static void CheckForPatch()
     else if (CHECK_UE(projectborealis))
     {
         // DLSSG
-        std::string_view patternDLSSGCheck1("80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74 1B");
-        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 13);
+        std::string_view patternDLSSGCheck1(
+            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
+            "74 1B C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 35);
 
         if (patchAddressDLSSGCheck1 != nullptr)
         {
@@ -1280,8 +1282,10 @@ static void CheckForPatch()
         }
 
         // Deep DVC
-        std::string_view patternDLSSGCheck2("80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74 2B");
-        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 13);
+        std::string_view patternDLSSGCheck2(
+            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
+            "74 2B C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
+        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 35);
 
         if (patchAddressDLSSGCheck2 != nullptr)
         {
@@ -1290,6 +1294,20 @@ static void CheckForPatch()
         }
 
         _patchResult = patchAddressDLSSGCheck1 != nullptr;
+    }
+
+    // DLSSG, Little Nightmares III Demo
+    else if (exeName == "littlenightmaresiii.exe")
+    {
+        std::string_view pattern2("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? "
+                                  "81 3D ? ? ? ? ? ? ? ? 74 19 B9 02 00 00 00 C6 05 ? ? ? ? ? 89");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 35);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
     }
 
     // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER
