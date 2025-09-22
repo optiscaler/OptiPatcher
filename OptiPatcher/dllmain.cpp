@@ -1328,15 +1328,40 @@ static void CheckForPatch()
     // DLSSG, Atomic Heart
     else if (CHECK_UE(atomicheart))
     {
-        // Make slForceTagging always return true
-        std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ? "
-                                  "? 7F 24 80 3D ? ? ? ? ? 75");
-        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+        //// Make slForceTagging always return true
+        // std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ?
+        // "
+        //                           "? 7F 24 80 3D ? ? ? ? ? 75");
+        // auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
 
-        if (patchAddress2 != nullptr)
+        // if (patchAddress2 != nullptr)
+        //{
+        //     std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+        //     patcher::PatchAddress(patchAddress2, &patch);
+        // }
+
+        // Check1
+        std::string_view patternDLSSGCheck1(
+            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
+            "74 3E C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 35);
+
+        if (patchAddressDLSSGCheck1 != nullptr)
         {
-            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
-            patcher::PatchAddress(patchAddress2, &patch);
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
+        }
+
+        // Check2
+        std::string_view patternDLSSGCheck2(
+            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
+            "74 25 C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
+        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 35);
+
+        if (patchAddressDLSSGCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
         }
     }
 

@@ -16,7 +16,7 @@ TEMPLATE FOR NEW ENTRIES
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ✅ | _Needs testing <br> Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
 | Assetto Corsa Competizione | ✔️ | N/A |  |
-| Atomic Heart | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7Jhmv44j/Atomic-Heart-2025-09-04-02-46.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
+| Atomic Heart | ✔️ | ✅ |  |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
 | Banishers: Ghosts of New Eden | ✔️ | ✅ | _DLSS-FG will still be greyed out, but Opti 0.9 with DLSSG SL inputs works after enabling FG_ - [Screenshot](https://i.ibb.co/YFg36zfm/Banishers-Ghosts-of-New-Eden-2025-08-27-14-35.png) |
