@@ -1029,6 +1029,20 @@ static void CheckForPatch()
         }
     }
 
+    // SILENT HILL f
+    else if (CHECK_UE(shf))
+    {
+        std::string_view pattern("49 8B C5 8B 3C 38 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1147,14 +1161,26 @@ static void CheckForPatch()
     // DLSSG, Banishers
     else if (CHECK_UE(banishers))
     {
-        // Makes the game always tag resources, this means that DLSSG inputs work but Nukem's mod doesn't
-        std::string_view pattern2("48 83 EC ? E8 ? ? ? ? 84 C0 75 ? 48 83 C4 ? C3 65 48 8B 04 25 ? ? ? ? BA");
-        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 11);
+        //// Makes the game always tag resources, this means that DLSSG inputs work but Nukem's mod doesn't
+        // std::string_view pattern2("48 83 EC ? E8 ? ? ? ? 84 C0 75 ? 48 83 C4 ? C3 65 48 8B 04 25 ? ? ? ? BA");
+        // auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 11);
 
-        if (patchAddress2 != nullptr)
+        // if (patchAddress2 != nullptr)
+        //{
+        //     std::vector<BYTE> patch = { 0x90, 0x90 };
+        //     patcher::PatchAddress(patchAddress2, &patch);
+        // }
+
+        // DLSSG check
+        std::string_view patternDLSSGCheck1(
+            "80 3D ? ? ? ? ? 74 09 80 3D ? ? ? ? ? 74 30 80 3D ? ? ? ? ? 75 27 81 3D ? ? ? ? ? ? ? ? 75 1B 80 3D ? ? ? "
+            "? ? 74 12 80 3D ? ? ? ? ? 74 09 48 83 C4 28 E9 ? ? ? ? 32 C0 48 83 C4 28");
+        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 27);
+
+        if (patchAddressDLSSGCheck1 != nullptr)
         {
-            std::vector<BYTE> patch = { 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress2, &patch);
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
         }
     }
 
@@ -1266,34 +1292,24 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSGCheck1 != nullptr;
     }
 
-    // DLSSG, Project Borealis: Prologue
-    else if (CHECK_UE(projectborealis))
+    // DLSSG
+    // Project Borealis: Prologue, Atomic Heart, ARK: Survival Ascended
+    else if (CHECK_UE(projectborealis) || CHECK_UE(atomicheart) || exeName == "arkascended.exe")
     {
-        // DLSSG
-        std::string_view patternDLSSGCheck1(
-            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
-            "74 1B C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
-        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 35);
-
-        if (patchAddressDLSSGCheck1 != nullptr)
+        std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 "
+                                 "3D ? ? ? ? ? ? ? ? 74 ? C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
         {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
-        }
-
-        // Deep DVC
-        std::string_view patternDLSSGCheck2(
-            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
-            "74 2B C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
-        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 35);
-
-        if (patchAddressDLSSGCheck2 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
-        }
-
-        _patchResult = patchAddressDLSSGCheck1 != nullptr;
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 35, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 34;
+            }
+        } while (patchAddress != nullptr);
     }
 
     // DLSSG, Little Nightmares III Demo
@@ -1325,60 +1341,36 @@ static void CheckForPatch()
         }
     }
 
-    // DLSSG, Atomic Heart
-    else if (CHECK_UE(atomicheart))
-    {
-        //// Make slForceTagging always return true
-        // std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ?
-        // "
-        //                           "? 7F 24 80 3D ? ? ? ? ? 75");
-        // auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+    //// DLSSG, Atomic Heart
+    // else if (CHECK_UE(atomicheart))
+    //{
+    //     // Make slForceTagging always return true
+    //     std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ?
+    //     "
+    //                               "? 7F 24 80 3D ? ? ? ? ? 75");
+    //     auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
 
-        // if (patchAddress2 != nullptr)
-        //{
-        //     std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
-        //     patcher::PatchAddress(patchAddress2, &patch);
-        // }
+    //    if (patchAddress2 != nullptr)
+    //    {
+    //        std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+    //        patcher::PatchAddress(patchAddress2, &patch);
+    //    }
+    //}
 
-        // Check1
-        std::string_view patternDLSSGCheck1(
-            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
-            "74 3E C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
-        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 35);
+    //// DLSSG, ARK: Survival Ascended
+    // else if (exeName == "arkascended.exe")
+    //{
+    //     // Make slForceTagging always return true
+    //      std::string_view pattern2(
+    //          "48 83 EC 28 65 48 8B 04 25 58 00 00 00 48 8B 28 B8 04 01 00 00 8B 04 28 39 ? ? ? ? ? 7F 5D 80 3D");
+    //      auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
 
-        if (patchAddressDLSSGCheck1 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
-        }
-
-        // Check2
-        std::string_view patternDLSSGCheck2(
-            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? "
-            "74 25 C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
-        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 35);
-
-        if (patchAddressDLSSGCheck2 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
-        }
-    }
-
-    // DLSSG, ARK: Survival Ascended
-    else if (exeName == "arkascended.exe")
-    {
-        // Make slForceTagging always return true
-        std::string_view pattern2(
-            "48 83 EC 28 65 48 8B 04 25 58 00 00 00 48 8B 28 B8 04 01 00 00 8B 04 28 39 ? ? ? ? ? 7F 5D 80 3D");
-        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
-
-        if (patchAddress2 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
-            patcher::PatchAddress(patchAddress2, &patch);
-        }
-    }
+    //     if (patchAddress2 != nullptr)
+    //    {
+    //         std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+    //         patcher::PatchAddress(patchAddress2, &patch);
+    //     }
+    //}
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)

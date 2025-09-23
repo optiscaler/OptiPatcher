@@ -14,12 +14,12 @@ TEMPLATE FOR NEW ENTRIES
 | Ad Infinitum | ✔️ | N/A |  |
 | Alone in the Dark 2024 | ✔️ | N/A |  |
 | Amid Evil | ✔️ | N/A |  |
-| ARK: Survival Ascended | ✔️ | ✅ | _Needs testing <br> Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden_ |
+| ARK: Survival Ascended | ✔️ | ✅ | _Needs testing_ |
 | Assetto Corsa Competizione | ✔️ | N/A |  |
 | Atomic Heart | ✔️ | ✅ |  |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
-| Banishers: Ghosts of New Eden | ✔️ | ✅ | _DLSS-FG will still be greyed out, but Opti 0.9 with DLSSG SL inputs works after enabling FG_ - [Screenshot](https://i.ibb.co/YFg36zfm/Banishers-Ghosts-of-New-Eden-2025-08-27-14-35.png) |
+| Banishers: Ghosts of New Eden | ✔️ | ✅ |  |
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
@@ -61,14 +61,14 @@ TEMPLATE FOR NEW ENTRIES
 | Lost Soul Aside | ✔️ | ✅ | _Steam exe_ |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
 | Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
-| Metal Eden | ✔️ | ✅ | _Full game doesn't have DLSS-FG atm, but check [special notes](#special-notes) for manual activation. Demo should also be supported_ |
+| Metal Eden | ✔️ | ✅ | _Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | MindsEye | ✔️ | ✅ |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
-| Project Borealis: Prologue | ✔️ | ✅ |  |
+| Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
@@ -80,6 +80,7 @@ TEMPLATE FOR NEW ENTRIES
 | Shadow Warrior 3: Definitive Edition | ✔️ | N/A | _Add Fakenvapi if framerate locked to very low numbers (might force Reflex on unsupported GPUs)_ |
 | Sifu | ✔️ | N/A |  |
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
+| SILENT HILL f | ✔️ | N/A |  |
 | South of Midnight | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
