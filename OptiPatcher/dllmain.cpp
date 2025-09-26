@@ -82,8 +82,7 @@ static void CheckForPatch()
     // 171, Ranch Simulator
     else if (CHECK_UE(bgg) || CHECK_UE(ranch_simulator))
     {
-        std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
-                                 "34 30 E8 ? ? ? ? 84 C0 75");
+        std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
 
         if (patchAddress != nullptr)
@@ -144,8 +143,7 @@ static void CheckForPatch()
     // Lost Records: Bloom & Rage
     else if (exeName == "bloom&rage.exe")
     {
-        std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B "
-                                 "3C 38 E8 ? ? ? ? 84 C0 75");
+        std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
 
         if (patchAddress != nullptr)
@@ -389,21 +387,6 @@ static void CheckForPatch()
         }
     }
 
-    // Enotria: The Last Song
-    else if (CHECK_UE(enotria))
-    {
-        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 "
-                                 "46 8B 34 30 E8 ? ? ? ? 84 "
-                                 "C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // The Ascent
     else if (CHECK_UE(theascent))
     {
@@ -432,25 +415,10 @@ static void CheckForPatch()
         }
     }
 
-    // Ghostrunner 2
-    else if (CHECK_UE(ghostrunner2))
+    // Ghostrunner 2, Deadlink
+    else if (CHECK_UE(ghostrunner2) || CHECK_UE(deadlink))
     {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
-                                 "E8 ? ? ? ? 84 C0 75 ");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Deadlink
-    else if (CHECK_UE(deadlink))
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
-                                 "E8 ? ? ? ? 84 C0 75");
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
         if (patchAddress != nullptr)
         {
@@ -476,11 +444,12 @@ static void CheckForPatch()
 
     // Severed Steel (+ Demo), Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
     // Loopmancer, Blacktail, The Lord of the Rings: Gollum™, Mandragora: Whispers of the Witch Tree, Tony Hawk's Pro
-    // Skater 3 + 4, Way of the Hunter, Mortal Kombat 1
+    // Skater 3 + 4, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, INDIKA, High On Life, The Lord of the Rings:
+    // Return to Moria
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
              CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail) ||
              CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe" || CHECK_UE(wayofthehunter) ||
-             exeName == "mk12.exe")
+             exeName == "mk12.exe" || CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) || CHECK_UE(moria))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -580,12 +549,12 @@ static void CheckForPatch()
 
     // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
     // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
-    // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2
+    // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
-             CHECK_UE(frostpunk2))
+             CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -752,22 +721,6 @@ static void CheckForPatch()
         }
     }
 
-    // VOID/BREAKER
-    else if (CHECK_UE(voidbreaker))
-    {
-        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 "
-                                 "46 8B 34 30 E8 ? ? ? ? 84 "
-                                 "C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // SILENT HILL 2 Remake
     else if (CHECK_UE(shproto))
     {
@@ -865,26 +818,10 @@ static void CheckForPatch()
         }
     }
 
-    // Ad Infinitum, INDIKA, High On Life, The Lord of the Rings: Return to Moria™
-    else if (CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) || CHECK_UE(moria))
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 "
-                                 "? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // TEKKEN 8
     else if (CHECK_UE(polaris))
     {
-        std::string_view pattern("49 8B C5 46 8B 3C 38 E8 ? ? "
-                                 "? ? 84 C0 75");
+        std::string_view pattern("49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
 
         if (patchAddress != nullptr)
@@ -898,8 +835,7 @@ static void CheckForPatch()
     // Land of the Vikings
     else if (CHECK_UE(vikingoyunu))
     {
-        std::string_view pattern("4C 8D ? ? ? ? ? E9 ? ? "
-                                 "? ? E8 ? ? ? ? 84 C0 75");
+        std::string_view pattern("4C 8D ? ? ? ? ? E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
 
         if (patchAddress != nullptr)
@@ -943,8 +879,7 @@ static void CheckForPatch()
     // Daemon X Machina: Titanic Scion
     else if (CHECK_UE(game))
     {
-        std::string_view pattern("4C 89 B4 24 38 02 00 00 E8 ? "
-                                 "? ? ? 84 C0 75 09 C6 47 40");
+        std::string_view pattern("4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75 09 C6 47 40");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
 
         if (patchAddress != nullptr)
@@ -997,24 +932,8 @@ static void CheckForPatch()
         }
     }
 
-    // Tempest Rising
-    else if (CHECK_UE(tempest))
-    {
-        std::string_view pattern("49 8B C7 8B 34 30 4C 89 A4 24 "
-                                 "78 02 00 00 4C 89 B4 24 38 02 "
-                                 "00 00 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 27);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Senua’s Saga: Hellblade II
-    else if (CHECK_UE(hellblade2))
+    // Tempest Rising, Senua’s Saga: Hellblade II
+    else if (CHECK_UE(tempest) || CHECK_UE(hellblade2))
     {
         std::string_view pattern(
             "49 8B C7 8B 34 30 4C 89 A4 24 78 02 00 00 4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
