@@ -476,10 +476,11 @@ static void CheckForPatch()
 
     // Severed Steel (+ Demo), Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
     // Loopmancer, Blacktail, The Lord of the Rings: Gollum™, Mandragora: Whispers of the Witch Tree, Tony Hawk's Pro
-    // Skater 3 + 4, Way of the Hunter
+    // Skater 3 + 4, Way of the Hunter, Mortal Kombat 1
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
              CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail) ||
-             CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe" || CHECK_UE(wayofthehunter))
+             CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe" || CHECK_UE(wayofthehunter) ||
+             exeName == "mk12.exe")
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -740,10 +741,8 @@ static void CheckForPatch()
     // S.T.A.L.K.E.R. 2: Heart of Chornobyl
     else if (CHECK_UE(stalker2))
     {
-        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 "
-                                 "46 8B 3C 38 E8 ? ? ? ? 84 "
-                                 "C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+        std::string_view pattern("49 8B C6 8B 34 30 89 75 90 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
 
         if (patchAddress != nullptr)
         {
@@ -1324,6 +1323,25 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+    }
+
+    // DLSSG, The Midnight Walk
+    else if (CHECK_UE(themidnightwalk))
+    {
+        std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 "
+                                 "? ? ? ? 84 C0 75 ? C7 05 ? ? ? ? ? ? ? ?");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 40, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 34;
+            }
+        } while (patchAddress != nullptr);
     }
 
     // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER

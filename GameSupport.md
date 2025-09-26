@@ -55,8 +55,8 @@ TEMPLATE FOR NEW ENTRIES
 | LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
 | Little Nightmares III Demo | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
-| Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command_ |
-| Loopmancer | ✔️ | ⛔ |  |
+| Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command - [PCGW](https://www.pcgamingwiki.com/wiki/Lords_of_the_Fallen_(2023)#Video)_ |
+| Loopmancer | ✔️ | ⛔ | _SL1_ |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Lost Soul Aside | ✔️ | ✅ | _Steam exe_ |
 | Mafia: The Old Country | ✔️ | ⛔ |  |
@@ -64,6 +64,7 @@ TEMPLATE FOR NEW ENTRIES
 | Metal Eden | ✔️ | ✅ | _Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | MindsEye | ✔️ | ✅ |  |
+| Mortal Kombat 1 | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
@@ -91,9 +92,9 @@ TEMPLATE FOR NEW ENTRIES
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
-| The Lord of the Rings: Gollum™ | ✔️ | ⛔ |  |
+| The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
-| The Midnight Walk | ✔️ | ⛔ | _Opti can't catch DLSS input yet_ |
+| The Midnight Walk | ✔️ | ✅ | _Opti can't catch DLSS inputs yet (or any actually)_ |
 | The Persistence | ✔️ | N/A |  |
 | The Sinking City Remastered | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
