@@ -140,8 +140,8 @@ static void CheckForPatch()
         }
     }
 
-    // Lost Records: Bloom & Rage
-    else if (exeName == "bloom&rage.exe")
+    // Lost Records: Bloom & Rage, F1 Manager 2024
+    else if (exeName == "bloom&rage.exe" || exeName == "f1manager24.exe")
     {
         std::string_view pattern("49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);

@@ -40,6 +40,7 @@ TEMPLATE FOR NEW ENTRIES
 | Eternal Strands | ✔️ | ✅ | _Steam exe_ |
 | EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
+| F1 Manager 2024 | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
 | Frostpunk 2 | ✔️ | ✅ |  |
