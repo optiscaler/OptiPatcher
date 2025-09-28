@@ -23,6 +23,7 @@ TEMPLATE FOR NEW ENTRIES
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
+| Celestial Empire | ✔️ | ✅ |  |
 | Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
