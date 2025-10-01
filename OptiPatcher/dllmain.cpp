@@ -587,9 +587,7 @@ static void CheckForPatch()
     // Mafia: The Old Country
     else if (exeName == "mafiatheoldcountry.exe")
     {
-        std::string_view pattern("E8 ? ? ? ? 34 01 0F B6 C0 "
-                                 "8B 3C 87 E8 ? ? ? ? 84 C0 "
-                                 "0F 84");
+        std::string_view pattern("E8 ? ? ? ? 34 01 0F B6 C0 8B 3C 87 E8 ? ? ? ? 84 C0 0F 84");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
 
         if (patchAddress != nullptr)
@@ -1260,36 +1258,24 @@ static void CheckForPatch()
         // }
     }
 
-    //// DLSSG, Atomic Heart
-    // else if (CHECK_UE(atomicheart))
-    //{
-    //     // Make slForceTagging always return true
-    //     std::string_view pattern2("48 83 EC 28 65 48 8B 04 25 58 00 00 00 BA F8 00 00 00 48 8B 08 8B 04 0A 39 ? ? ? ?
-    //     "
-    //                               "? 7F 24 80 3D ? ? ? ? ? 75");
-    //     auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
-
-    //    if (patchAddress2 != nullptr)
-    //    {
-    //        std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
-    //        patcher::PatchAddress(patchAddress2, &patch);
-    //    }
-    //}
-
-    //// DLSSG, ARK: Survival Ascended
-    // else if (exeName == "arkascended.exe")
-    //{
-    //     // Make slForceTagging always return true
-    //      std::string_view pattern2(
-    //          "48 83 EC 28 65 48 8B 04 25 58 00 00 00 48 8B 28 B8 04 01 00 00 8B 04 28 39 ? ? ? ? ? 7F 5D 80 3D");
-    //      auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
-
-    //     if (patchAddress2 != nullptr)
-    //    {
-    //         std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
-    //         patcher::PatchAddress(patchAddress2, &patch);
-    //     }
-    //}
+    // DLSSG, Mafia: The Old Country
+    else if (exeName == "mafiatheoldcountry.exe")
+    {
+        std::string_view pattern("80 3D ? ? ? ? ? 0F 94 C0 80 3D ? ? ? ? ? 0F 95 C1 08 C1 BE 01 00 00 00 80 F9 01 0F "
+                                 "85 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 54, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 54;
+            }
+        } while (patchAddress != nullptr);
+    }
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
