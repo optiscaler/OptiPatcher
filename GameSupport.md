@@ -12,6 +12,7 @@ TEMPLATE FOR NEW ENTRIES
 | 171 | ✔️ | ✅ |  |
 | Achilles: Legends Untold | ✔️ | N/A |  |
 | Ad Infinitum | ✔️ | N/A |  |
+| Alien: Rogue Incursion Evolved Edition | ✔️ | ✅ |  |
 | Alone in the Dark 2024 | ✔️ | N/A |  |
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ✅ | _Needs testing_ |
@@ -105,6 +106,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tokyo Xtreme Racer/Shutokou Battle | ✔️ | ✅ |  |
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
+| Until Dawn | ✔️ | ✅ |  |
 | VOID/BREAKER | ✔️ | N/A | _No DLSS-FG in early access release, but SL checks are patched for the future_ |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
 | Witchfire | ✔️ | ✅ |  |

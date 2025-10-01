@@ -549,12 +549,14 @@ static void CheckForPatch()
 
     // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
     // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
-    // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire
+    // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
+    // Alien: Rogue Incursion Evolved Edition
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
-             CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06))
+             CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06) ||
+             CHECK_UE(midnight))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -613,11 +615,10 @@ static void CheckForPatch()
         }
     }
 
-    // REMNANT II
-    else if (CHECK_UE(remnant2))
+    // REMNANT II, Cronos: The New Dawn
+    else if (CHECK_UE(remnant2) || CHECK_UE(cronos))
     {
-        std::string_view pattern("74 03 49 8B C4 46 8B 34 30 E8 "
-                                 "? ? ? ? 84 C0 75");
+        std::string_view pattern("74 03 49 8B C4 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
 
         if (patchAddress != nullptr)
@@ -631,8 +632,7 @@ static void CheckForPatch()
     // METAL EDEN (+ Demo)
     else if (CHECK_UE(metaleden))
     {
-        std::string_view pattern("74 03 49 8B C4 8B 34 30 E8 ? "
-                                 "? ? ? 84 C0 75");
+        std::string_view pattern("74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
 
         if (patchAddress != nullptr)
@@ -646,9 +646,7 @@ static void CheckForPatch()
     // The First Berserker: Khazan
     else if (CHECK_UE(bbq))
     {
-        std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? "
-                                 "? E9 ? ? ? ? E8 ? ? ? "
-                                 "? 84 C0 75");
+        std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? ? E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
         if (patchAddress != nullptr)
@@ -846,20 +844,6 @@ static void CheckForPatch()
         }
     }
 
-    // Cronos: The New Dawn
-    else if (CHECK_UE(cronos))
-    {
-        std::string_view pattern("74 03 49 8B C4 46 8B 34 30 E8 ? ? ? ? 84 C0 75 09");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Echo Point Nova
     else if (CHECK_UE(greylock))
     {
@@ -932,8 +916,8 @@ static void CheckForPatch()
         }
     }
 
-    // Tempest Rising, Senua’s Saga: Hellblade II
-    else if (CHECK_UE(tempest) || CHECK_UE(hellblade2))
+    // Tempest Rising, Senua’s Saga: Hellblade II, Until Dawn
+    else if (CHECK_UE(tempest) || CHECK_UE(hellblade2) || CHECK_UE(bates))
     {
         std::string_view pattern(
             "49 8B C7 8B 34 30 4C 89 A4 24 78 02 00 00 4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
@@ -1036,7 +1020,7 @@ static void CheckForPatch()
     // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New
     // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
-    // Empire
+    // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1047,7 +1031,8 @@ static void CheckForPatch()
         CHECK_UE(saltpeter) || CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) ||
         CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
         CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
-        CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06))
+        CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
+        CHECK_UE(bates))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -1119,9 +1104,7 @@ static void CheckForPatch()
     // DLSSG, Witchfire, Ghostrunner 2
     else if (CHECK_UE(witchfire) || CHECK_UE(ghostrunner2))
     {
-        std::string_view patternDLSSGCheck1("75 11 B8 02 00 00 00 C6 05 ? "
-                                            "? ? ? ? E9 ? ? ? ? E8 "
-                                            "? ? ? ? 84");
+        std::string_view patternDLSSGCheck1("75 11 B8 02 00 00 00 C6 05 ? ? ? ? ? E9 ? ? ? ? E8 ? ? ? ? 84");
         auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 0);
 
         if (patchAddressDLSSGCheck1 != nullptr)
@@ -1130,10 +1113,8 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
         }
 
-        std::string_view patternDLSSGCheck2("75 19 B9 02 00 00 00 C6 05 ? "
-                                            "? ? ? ? 89 ? ? ? ? ? "
-                                            "8B C1 48 83 C4 28 C3 E8 ? ? "
-                                            "? ? 84");
+        std::string_view patternDLSSGCheck2(
+            "75 19 B9 02 00 00 00 C6 05 ? ? ? ? ? 89 ? ? ? ? ? 8B C1 48 83 C4 28 C3 E8 ? ? ? ? 84");
         auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 0);
 
         if (patchAddressDLSSGCheck2 != nullptr)
@@ -1148,31 +1129,19 @@ static void CheckForPatch()
     // DLSSG, The First Berserker: Khazan
     else if (CHECK_UE(bbq))
     {
-        std::string_view patternDLSSGCheck1("75 21 C7 05 ? ? ? ? ? ? "
-                                            "? ? C6 05 ? ? ? ? ? B8 "
-                                            "02 00 00 00 48 8B 5C 24 30 48 "
-                                            "83 C4 20 5F C3 E8 ? ? ? ?");
-        auto patchAddressDLSSGCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck1, 0);
-
-        if (patchAddressDLSSGCheck1 != nullptr)
+        std::string_view pattern("75 ? C7 05 ? ? ? ? ? ? ? ? C6 05 ? ? ? ? ? B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
         {
-            std::vector<BYTE> patch = { 0xEB };
-            patcher::PatchAddress(patchAddressDLSSGCheck1, &patch);
-        }
-
-        std::string_view patternDLSSGCheck2("75 1B C7 05 ? ? ? ? ? ? "
-                                            "? ? C6 05 ? ? ? ? ? B8 "
-                                            "02 00 00 00 E9 ? ? ? ? E8 "
-                                            "? ? ? ? 84");
-        auto patchAddressDLSSGCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSGCheck2, 0);
-
-        if (patchAddressDLSSGCheck2 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0xEB };
-            patcher::PatchAddress(patchAddressDLSSGCheck2, &patch);
-        }
-
-        _patchResult = patchAddressDLSSGCheck1 != nullptr;
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 24;
+            }
+        } while (patchAddress != nullptr);
     }
 
     // DLSSG, EVERSPACE 2
