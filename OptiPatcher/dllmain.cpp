@@ -550,13 +550,13 @@ static void CheckForPatch()
     // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
     // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
     // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
-    // Alien: Rogue Incursion Evolved Edition
+    // Alien: Rogue Incursion Evolved Edition, Manor Lords
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
              CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06) ||
-             CHECK_UE(midnight))
+             CHECK_UE(midnight) || CHECK_UE(manorlords))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
