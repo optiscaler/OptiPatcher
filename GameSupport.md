@@ -70,6 +70,7 @@ TEMPLATE FOR NEW ENTRIES
 | MindsEye | ✔️ | ✅ |  |
 | Mortal Kombat 1 | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
+| Nobody Wants to Die | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |

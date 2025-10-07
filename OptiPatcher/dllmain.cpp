@@ -550,13 +550,13 @@ static void CheckForPatch()
     // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
     // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
     // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
-    // Alien: Rogue Incursion Evolved Edition, Manor Lords
+    // Alien: Rogue Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
              CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06) ||
-             CHECK_UE(midnight) || CHECK_UE(manorlords))
+             CHECK_UE(midnight) || CHECK_UE(manorlords) || CHECK_UE(detnoir) || CHECK_UE(minotaur))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -932,8 +932,8 @@ static void CheckForPatch()
     // SILENT HILL f
     else if (CHECK_UE(shf))
     {
-        std::string_view pattern("49 8B C5 8B 3C 38 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 8B 3C 38 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
 
         if (patchAddress != nullptr)
         {
@@ -1018,7 +1018,7 @@ static void CheckForPatch()
     // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New
     // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
-    // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn
+    // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1030,7 +1030,7 @@ static void CheckForPatch()
         CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
         CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
         CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
-        CHECK_UE(bates))
+        CHECK_UE(bates) || CHECK_UE(minotaur))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
