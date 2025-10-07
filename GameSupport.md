@@ -55,7 +55,6 @@ TEMPLATE FOR NEW ENTRIES
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
 | Land of the Vikings | ✔️ | N/A |  |
-| LEGO® Builder's Journey | ✔️ | N/A | _Unlocks DLSS entry, but no inputs to Opti, needs testing_ |
 | Lies of P | ✔️ | N/A |  |
 | Little Nightmares III Demo | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command - [PCGW](https://www.pcgamingwiki.com/wiki/Lords_of_the_Fallen_(2023)#Video)_ |
@@ -79,6 +78,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
+| Riven (2024) | ✔️ | N/A |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | Senua’s Saga: Hellblade II | ✔️ | ✅ |  |

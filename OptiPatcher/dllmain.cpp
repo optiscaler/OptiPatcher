@@ -461,19 +461,6 @@ static void CheckForPatch()
         }
     }
 
-    // LEGO® Builder's Journey
-    else if (exeName == "unityplayer.exe")
-    {
-        std::string_view pattern("48 8D 15 ? ? ? ? 48 89 D9 E8 ? ? ? ? 48 83 F8 FF");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0xB8, 0x00, 0x00, 0x00, 0x00 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Titan Quest II
     else if (CHECK_UE(tq2))
     {
@@ -941,6 +928,32 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+    }
+
+    // Riven (2024)
+    else if (CHECK_UE(riven))
+    {
+        // DLSS classic check
+        std::string_view patternDLSSCheck1("84 C0 49 8B C6 74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");
+        auto patchAddressDLSSCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck1, 18);
+
+        if (patchAddressDLSSCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressDLSSCheck1, &patch);
+        }
+
+        // DLSS menu string check
+        std::string_view patternDLSSCheck2("48 83 EC 28 E8 ? ? ? ? 84 C0 74 5E 48 83 3D");
+        auto patchAddressDLSSCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck2, 9);
+
+        if (patchAddressDLSSCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressDLSSCheck2, &patch);
+        }
+
+        _patchResult = patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr;
     }
 
     // DOOM Eternal
