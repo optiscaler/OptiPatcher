@@ -99,7 +99,7 @@ TEMPLATE FOR NEW ENTRIES
 | The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
-| The Midnight Walk | ✔️ | ✅ | _Opti can't catch DLSS inputs yet (or any actually)_ |
+| The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG <br> Requires retoggling upscalers and FG on every game boot_ |
 | The Persistence | ✔️ | N/A |  |
 | The Sinking City Remastered | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
