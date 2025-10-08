@@ -930,8 +930,8 @@ static void CheckForPatch()
         }
     }
 
-    // Riven (2024)
-    else if (CHECK_UE(riven))
+    // Riven (2024), Myst (2021)
+    else if (CHECK_UE(riven) || CHECK_UE(myst))
     {
         // DLSS classic check
         std::string_view patternDLSSCheck1("84 C0 49 8B C6 74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");

@@ -68,6 +68,7 @@ TEMPLATE FOR NEW ENTRIES
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | MindsEye | ✔️ | ✅ |  |
 | Mortal Kombat 1 | ✔️ | N/A |  |
+| Myst (2021) | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Nobody Wants to Die | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
@@ -99,7 +100,7 @@ TEMPLATE FOR NEW ENTRIES
 | The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
-| The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG <br> Requires retoggling upscalers and FG on every game boot_ |
+| The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG_ |
 | The Persistence | ✔️ | N/A |  |
 | The Sinking City Remastered | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
