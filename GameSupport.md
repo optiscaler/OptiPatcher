@@ -56,7 +56,7 @@ TEMPLATE FOR NEW ENTRIES
 | INDIKA | ✔️ | N/A |  |
 | Land of the Vikings | ✔️ | N/A |  |
 | Lies of P | ✔️ | N/A |  |
-| Little Nightmares III Demo | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
+| Little Nightmares III | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command - [PCGW](https://www.pcgamingwiki.com/wiki/Lords_of_the_Fallen_(2023)#Video)_ |
 | Loopmancer | ✔️ | ⛔ | _SL1_ |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |

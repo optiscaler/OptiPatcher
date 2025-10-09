@@ -302,7 +302,7 @@ static void CheckForPatch()
         }
     }
 
-    // South of Midnight, Little Nightmares III Demo, Hi-Fi RUSH
+    // South of Midnight, Little Nightmares III, Hi-Fi RUSH
     // inline patch
     else if (exeName == "southofmidnight.exe" || exeName == "littlenightmaresiii.exe" || exeName == "hi-fi-rush.exe")
     {
@@ -1121,7 +1121,7 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // DLSSG, Little Nightmares III Demo
+    // DLSSG, Little Nightmares III
     else if (exeName == "littlenightmaresiii.exe")
     {
         std::string_view pattern2("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? "
