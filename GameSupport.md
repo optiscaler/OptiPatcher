@@ -110,7 +110,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
 | Until Dawn | ✔️ | ✅ |  |
-| VOID/BREAKER | ✔️ | N/A | _No DLSS-FG in early access release, but SL checks are patched for the future_ |
+| VOID/BREAKER | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
 | Witchfire | ✔️ | ✅ |  |
 | WUCHANG: Fallen Feathers | ✔️ | ✅ |  |
@@ -141,4 +141,5 @@ TEMPLATE FOR NEW ENTRIES
 > r.NGX.DLSS.DilateMotionVectors=0
 > ``` 
 > * **Metal Eden** - `%LOCALAPPDATA%\MetalEden\Saved\Config\Windows\`  
-> * **Daemon X Machina: Titanic Scion** - `%LOCALAPPDATA%\DXMTS\Saved\Config\Windows`  
+> * **Daemon X Machina: Titanic Scion** - `%LOCALAPPDATA%\DXMTS\Saved\Config\Windows` 
+> * **VOID/BREAKER** - `%LOCALAPPDATA%\VOIDBREAKER\Saved\Config\Windows` 

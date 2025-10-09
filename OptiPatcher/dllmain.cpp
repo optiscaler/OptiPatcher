@@ -79,8 +79,8 @@ static void CheckForPatch()
         }
     }
 
-    // 171, Ranch Simulator
-    else if (CHECK_UE(bgg) || CHECK_UE(ranch_simulator))
+    // 171, Ranch Simulator, Supraworld
+    else if (CHECK_UE(bgg) || CHECK_UE(ranch_simulator) || CHECK_UE(supraworld))
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
@@ -431,8 +431,7 @@ static void CheckForPatch()
     // Amid Evil
     else if (CHECK_UE(amidevil))
     {
-        std::string_view pattern("48 85 DB 74 08 48 8B CB E8 ? "
-                                 "? ? ? E8 ? ? ? ? 84 C0 75");
+        std::string_view pattern("48 85 DB 74 08 48 8B CB E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
         if (patchAddress != nullptr)
         {
@@ -461,12 +460,10 @@ static void CheckForPatch()
         }
     }
 
-    // Titan Quest II
-    else if (CHECK_UE(tq2))
+    // Titan Quest II, METAL EDEN (+ Demo)
+    else if (CHECK_UE(tq2) || CHECK_UE(metaleden))
     {
-        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
-                                 "8B 34 30 E8 ? ? ? ? 84 C0 "
-                                 "75 25");
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
         if (patchAddress != nullptr)
         {
@@ -511,8 +508,7 @@ static void CheckForPatch()
     // RoboCop: Rogue City
     else if (CHECK_UE(robocop))
     {
-        std::string_view patternDLSSCheck("74 03 49 8B C5 46 8B 3C 38 E8 "
-                                          "? ? ? ? 84 C0 75");
+        std::string_view patternDLSSCheck("74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddressDLSSCheck = (void*) scanner::GetAddress(exeModule, patternDLSSCheck, 14);
 
         if (patchAddressDLSSCheck != nullptr)
@@ -521,8 +517,7 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddressDLSSCheck, &patch);
         }
 
-        std::string_view patternXeFGCheck("83 F8 03 0F 85 ? ? ? ? E8 "
-                                          "? ? ? ? 84 C0 0F 84");
+        std::string_view patternXeFGCheck("83 F8 03 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84");
         auto patchAddressXeFGCheck = (void*) scanner::GetAddress(exeModule, patternXeFGCheck, 14);
 
         if (patchAddressXeFGCheck != nullptr)
@@ -558,9 +553,7 @@ static void CheckForPatch()
     // The Talos Principle: Reawakened
     else if (CHECK_UE(talos1))
     {
-        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
-                                 "8B 34 06 E8 ? ? ? ? 84 C0 "
-                                 "75 25");
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 8B 34 06 E8 ? ? ? ? 84 C0 75 25");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
 
         if (patchAddress != nullptr)
@@ -585,21 +578,6 @@ static void CheckForPatch()
         }
     }
 
-    // Supraworld
-    else if (CHECK_UE(supraworld))
-    {
-        std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B "
-                                 "34 30 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // REMNANT II, Cronos: The New Dawn
     else if (CHECK_UE(remnant2) || CHECK_UE(cronos))
     {
@@ -614,22 +592,8 @@ static void CheckForPatch()
         }
     }
 
-    // METAL EDEN (+ Demo)
-    else if (CHECK_UE(metaleden))
-    {
-        std::string_view pattern("74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // The First Berserker: Khazan
-    else if (CHECK_UE(bbq))
+    // The First Berserker: Khazan, Flintlock: The Siege of Dawn
+    else if (CHECK_UE(bbq) || CHECK_UE(saltpeter))
     {
         std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? ? E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
@@ -642,12 +606,10 @@ static void CheckForPatch()
         }
     }
 
-    // Sifu
-    else if (CHECK_UE(sifu))
+    // Sifu, Chernobylite Enhanced Edition
+    else if (CHECK_UE(sifu) || CHECK_UE(chernobylgame))
     {
-        std::string_view pattern("74 05 E8 ? ? ? ? 45 33 F6 "
-                                 "E9 ? ? ? ? E8 ? ? ? ? "
-                                 "84 C0 75");
+        std::string_view pattern("74 05 E8 ? ? ? ? 45 33 F6 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
 
         if (patchAddress != nullptr)
@@ -677,9 +639,7 @@ static void CheckForPatch()
     // Evil West
     else if (CHECK_UE(highmoon))
     {
-        std::string_view pattern("74 05 E8 ? ? ? ? 4C 8D ? "
-                                 "? ? ? ? EB 52 E8 ? ? ? "
-                                 "? 84 C0 75");
+        std::string_view pattern("74 05 E8 ? ? ? ? 4C 8D ? ? ? ? ? EB 52 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
         if (patchAddress != nullptr)
@@ -707,9 +667,7 @@ static void CheckForPatch()
     // SILENT HILL 2 Remake
     else if (CHECK_UE(shproto))
     {
-        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 "
-                                 "46 8B 3C 38 E8 ? ? ? ? 84 "
-                                 "C0 75");
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
 
         if (patchAddress != nullptr)
@@ -720,29 +678,11 @@ static void CheckForPatch()
         }
     }
 
-    // Lords of the Fallen 2023
-    else if (CHECK_UE(lotf2))
+    // Lords of the Fallen 2023, TEKKEN 8
+    else if (CHECK_UE(lotf2) || CHECK_UE(polaris))
     {
-        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 "
-                                 "46 8B 3C 38 E8 ? ? ? ? 84 "
-                                 "C0 75");
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Flintlock: The Siege of Dawn
-    else if (CHECK_UE(saltpeter))
-    {
-        std::string_view pattern("0F 84 ? ? ? ? E8 ? ? ? "
-                                 "? E9 ? ? ? ? E8 ? ? ? "
-                                 "? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
         if (patchAddress != nullptr)
         {
@@ -801,20 +741,6 @@ static void CheckForPatch()
         }
     }
 
-    // TEKKEN 8
-    else if (CHECK_UE(polaris))
-    {
-        std::string_view pattern("49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Land of the Vikings
     else if (CHECK_UE(vikingoyunu))
     {
@@ -832,9 +758,7 @@ static void CheckForPatch()
     // Echo Point Nova
     else if (CHECK_UE(greylock))
     {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
-                                 "E8 ? ? ? ? 84 C0 75 09 C6 "
-                                 "47 30 02");
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 09 C6 47 30 02");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
 
         if (patchAddress != nullptr)
@@ -864,20 +788,6 @@ static void CheckForPatch()
     {
         std::string_view pattern("45 33 FF 41 8B F7 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Chernobylite Enhanced Edition
-    else if (CHECK_UE(chernobylgame))
-    {
-        std::string_view pattern("74 05 E8 ? ? ? ? 45 33 F6 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
 
         if (patchAddress != nullptr)
         {
