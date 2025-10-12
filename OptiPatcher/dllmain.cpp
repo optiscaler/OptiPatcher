@@ -350,6 +350,23 @@ static void CheckForPatch()
         }
     }
 
+    // FINAL FANTASY VII REBIRTH
+    // inline patch
+    else if (exeName == "ff7rebirth_.exe")
+    {
+        std::string_view pattern("48 2B E0 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 48 83 3D ? ? ? ? ? 0F 84 ? ? ? ? 81 3D ? ? ? "
+                                 "? ? ? ? ? 0F 85 ? ? ? ? 8D 48 60");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 30);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
