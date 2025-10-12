@@ -27,6 +27,7 @@ TEMPLATE FOR NEW ENTRIES
 | Celestial Empire | ✔️ | ✅ |  |
 | Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
+| Chorus | ✔️ | N/A |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | Commandos: Origins | ✔️ | N/A |  |
 | Crisol: Theater of Idols Demo | ✔️ | ✅ |  |
@@ -35,6 +36,9 @@ TEMPLATE FOR NEW ENTRIES
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deadzone Rogue | ✔️ | ✅ | _Steam exe_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
+| Deliver Us Mars | ✔️ | ✅ |  |
+| Deliver Us The Moon | ✔️ | N/A |  |
+| Destroy All Humans! 2 - Reprobed | ✔️ | ⛔ | _SL1_ |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Echo Point Nova | ✔️ | N/A |  |
 | Enotria: The Last Song | ✔️ | ✅ |  |
@@ -50,10 +54,13 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
+| Hell Pie | ✔️ | N/A |  |
 | Hi-Fi RUSH | ✔️ | N/A |  |
 | High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
+| Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
+| Jusant | ✔️ | ✅ |  |
 | Land of the Vikings | ✔️ | N/A |  |
 | Lies of P | ✔️ | N/A |  |
 | Little Nightmares III | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
@@ -91,6 +98,8 @@ TEMPLATE FOR NEW ENTRIES
 | South of Midnight | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
+| Supraland | ✔️ | N/A |  |
+| Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
 | Supraworld | ✔️ | ✅ |  |
 | System Shock (2023) | ✔️ | N/A |  |
 | TEKKEN 8 | ✔️ | N/A |  |
@@ -110,6 +119,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
 | Until Dawn | ✔️ | ✅ |  |
+| VLADiK BRUTAL | ✔️ | N/A |  |
 | VOID/BREAKER | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
 | Witchfire | ✔️ | ✅ |  |

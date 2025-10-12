@@ -334,6 +334,22 @@ static void CheckForPatch()
         }
     }
 
+    // Jusant
+    // inline patch
+    else if (CHECK_UE(asc))
+    {
+        std::string_view pattern("49 8B C4 45 33 FF EB 06 45 33 FF 41 8B C7 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
@@ -415,19 +431,6 @@ static void CheckForPatch()
         }
     }
 
-    // Ghostrunner 2, Deadlink
-    else if (CHECK_UE(ghostrunner2) || CHECK_UE(deadlink))
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Amid Evil
     else if (CHECK_UE(amidevil))
     {
@@ -444,11 +447,14 @@ static void CheckForPatch()
     // Severed Steel (+ Demo), Achilles: Legends Untold, System Shock (2023), Trepang2, Pacific Drive, Frozenheim,
     // Loopmancer, Blacktail, The Lord of the Rings: Gollum™, Mandragora: Whispers of the Witch Tree, Tony Hawk's Pro
     // Skater 3 + 4, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, INDIKA, High On Life, The Lord of the Rings:
-    // Return to Moria
+    // Return to Moria, Ghostrunner 2, Deadlink, Destroy All Humans! 2 - Reprobed, Supraland Six Inches Under, VLADiK
+    // BRUTAL, Hell Pie, Deliver Us Mars
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
              CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail) ||
              CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe" || CHECK_UE(wayofthehunter) ||
-             exeName == "mk12.exe" || CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) || CHECK_UE(moria))
+             exeName == "mk12.exe" || CHECK_UE(adinfinitum) || CHECK_UE(indika) || CHECK_UE(oregon) ||
+             CHECK_UE(moria) || CHECK_UE(ghostrunner2) || CHECK_UE(deadlink) || CHECK_UE(dh) ||
+             CHECK_UE(supralandsiu) || CHECK_UE(vladik_brutal) || CHECK_UE(hellpie) || CHECK_UE(deliverusmars))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -866,6 +872,62 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr;
     }
 
+    // Chorus
+    else if (CHECK_UE(chorus))
+    {
+        std::string_view pattern("74 05 E8 ? ? ? ? 0F B6 47 30 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Supraland
+    else if (CHECK_UE(supraland))
+    {
+        std::string_view pattern("45 33 ED E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Immortals of Aveum
+    else if (CHECK_UE(immortalsofaveum))
+    {
+        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C6 8B 34 30 89 75 80 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Deliver Us The Moon
+    else if (CHECK_UE(moonman))
+    {
+        std::string_view pattern("74 05 E8 ? ? ? ? 45 33 ED E9 ? ? ? ? E8 ? ? ? ? 84 C0 75 09");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -933,6 +995,7 @@ static void CheckForPatch()
     // DLSSG / Extra
 
     // DLSSG
+    //
     // Clair Obscur: Expedition 33, The Talos Principle 2, Hell is Us (+ Demo), Robocop: Rogue City,
     // Supraworld, The Talos Principle Reawakened, REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
@@ -941,7 +1004,7 @@ static void CheckForPatch()
     // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New
     // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
-    // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest
+    // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -953,7 +1016,7 @@ static void CheckForPatch()
         CHECK_UE(cronos) || CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
         CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
         CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
-        CHECK_UE(bates) || CHECK_UE(minotaur))
+        CHECK_UE(bates) || CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -970,7 +1033,8 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // DLSSG, Deep Rock Galactic, Black Myth: Wukong, Lords of the Fallen 2023
+    // DLSSG
+    // Deep Rock Galactic, Black Myth: Wukong, Lords of the Fallen 2023
     else if (CHECK_UE(fsd) || CHECK_UE(b1) || CHECK_UE(lotf2))
     {
         std::string_view pattern2("75 ? B9 ? ? ? ? C6 05 ? ? ? ? ? 89 0D");
@@ -983,8 +1047,9 @@ static void CheckForPatch()
         }
     }
 
-    // DLSSG, Banishers
-    else if (CHECK_UE(banishers))
+    // DLSSG
+    // Banishers: Ghosts of New Eden, Jusant
+    else if (CHECK_UE(banishers) || CHECK_UE(asc))
     {
         //// Makes the game always tag resources, this means that DLSSG inputs work but Nukem's mod doesn't
         // std::string_view pattern2("48 83 EC ? E8 ? ? ? ? 84 C0 75 ? 48 83 C4 ? C3 65 48 8B 04 25 ? ? ? ? BA");
@@ -1022,7 +1087,8 @@ static void CheckForPatch()
         }
     }
 
-    // DLSSG, Witchfire, Ghostrunner 2
+    // DLSSG
+    // Witchfire, Ghostrunner 2
     else if (CHECK_UE(witchfire) || CHECK_UE(ghostrunner2))
     {
         std::string_view patternDLSSGCheck1("75 11 B8 02 00 00 00 C6 05 ? ? ? ? ? E9 ? ? ? ? E8 ? ? ? ? 84");
@@ -1140,6 +1206,25 @@ static void CheckForPatch()
     {
         std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 "
                                  "? ? ? ? 84 C0 75 ? C7 05 ? ? ? ? ? ? ? ?");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 40, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 34;
+            }
+        } while (patchAddress != nullptr);
+    }
+
+    // DLSSG, Deliver Us Mars
+    else if (CHECK_UE(deliverusmars))
+    {
+        std::string_view pattern(
+            "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         uintptr_t start = 0;
         void* patchAddress = nullptr;
         do
