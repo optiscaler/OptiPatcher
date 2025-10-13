@@ -84,7 +84,7 @@ TEMPLATE FOR NEW ENTRIES
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
-| Postal 4: No Regerts | ✔️ | ✅ |  |
+| Postal 4: No Regerts | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
@@ -100,7 +100,7 @@ TEMPLATE FOR NEW ENTRIES
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
 | SILENT HILL f | ✔️ | N/A |  |
 | South of Midnight | ✔️ | N/A |  |
-| Spirit of the North 2 | ✔️ | ✅ |  |
+| Spirit of the North 2 | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | SPRAWL | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
