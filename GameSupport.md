@@ -49,6 +49,7 @@ TEMPLATE FOR NEW ENTRIES
 | FINAL FANTASY VII REBIRTH | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
+| Fort Solis | ✔️ | ✅ |  |
 | Frostpunk 2 | ✔️ | ✅ |  |
 | Frozenheim | ✔️ | N/A |  |
 | Ghostrunner | ✔️ | N/A |  |
@@ -63,6 +64,7 @@ TEMPLATE FOR NEW ENTRIES
 | INDIKA | ✔️ | N/A |  |
 | Jusant | ✔️ | ✅ |  |
 | Land of the Vikings | ✔️ | N/A |  |
+| Layers of Fear (2023) | ✔️ | ✅ |  |
 | Lies of P | ✔️ | N/A |  |
 | Little Nightmares III | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command - [PCGW](https://www.pcgamingwiki.com/wiki/Lords_of_the_Fallen_(2023)#Video)_ |
@@ -82,6 +84,7 @@ TEMPLATE FOR NEW ENTRIES
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
+| Postal 4: No Regerts | ✔️ | ✅ |  |
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
@@ -97,6 +100,8 @@ TEMPLATE FOR NEW ENTRIES
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
 | SILENT HILL f | ✔️ | N/A |  |
 | South of Midnight | ✔️ | N/A |  |
+| Spirit of the North 2 | ✔️ | ✅ |  |
+| SPRAWL | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraland | ✔️ | N/A |  |
@@ -115,6 +120,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Sinking City Remastered | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
 | The Talos Principle: Reawakened | ✔️ | ✅ |  |
+| The Thaumaturge | ✔️ | ✅ |  |
 | Titan Quest II | ✔️ | ✅ |  |
 | Tokyo Xtreme Racer/Shutokou Battle | ✔️ | ✅ |  |
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
