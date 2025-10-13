@@ -62,6 +62,7 @@ TEMPLATE FOR NEW ENTRIES
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
+| INDUSTRIA 2 Demo | ✔️ | ✅ |  |
 | Jusant | ✔️ | ✅ |  |
 | Land of the Vikings | ✔️ | N/A |  |
 | Layers of Fear (2023) | ✔️ | ✅ |  |
