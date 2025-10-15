@@ -89,6 +89,7 @@ TEMPLATE FOR NEW ENTRIES
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
+| REANIMAL Demo | ✔️ | ✅ | _For future use_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | REMNANT II | ✔️ | ✅ |  |
 | Riven (2024) | ✔️ | N/A |  |
@@ -104,6 +105,7 @@ TEMPLATE FOR NEW ENTRIES
 | Spirit of the North 2 | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | SPRAWL | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
+| Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Supraland | ✔️ | N/A |  |
 | Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
@@ -127,6 +129,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
 | Until Dawn | ✔️ | ✅ |  |
+| Valor Mortis Playtest | ✔️ | ✅ | _For future use_ |
 | VLADiK BRUTAL | ✔️ | N/A |  |
 | VOID/BREAKER | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
