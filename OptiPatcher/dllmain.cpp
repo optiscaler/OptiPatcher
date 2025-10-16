@@ -35,19 +35,43 @@ static void CheckForPatch()
         }
     }
 
-    //// The Elder Scrolls IV: Oblivion Remastered
-    // else if (CHECK_UE(oblivionremastered))
-    //{
-    //     std::string_view pattern("4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
-    //     auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
+    // The Elder Scrolls IV: Oblivion Remastered
+    else if (CHECK_UE(oblivionremastered))
+    {
+        // DLSS classic check
+        std::string_view patternDLSSCheck1("84 C0 B8 04 00 00 00 74 03 49 8B C7 8B 34 30 4C 89 A4 24 78 02 00 00 4C "
+                                           "89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
+        auto patchAddressDLSSCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck1, 36);
 
-    //    if (patchAddress != nullptr)
-    //    {
-    //        std::vector<BYTE> patch = { 0x0C, 0x01 };
-    //        patcher::PatchAddress(patchAddress, &patch);
-    //        _patchResult = true;
-    //    }
-    //}
+        if (patchAddressDLSSCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressDLSSCheck1, &patch);
+        }
+
+        // IsNvidia under FFXFrameInterpolation
+        std::string_view patternDLSSCheck2("84 C0 74 24 48 85 DB 74 1F E8 ? ? ? ? 84 C0 74");
+        auto patchAddressDLSSCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck2, 14);
+
+        if (patchAddressDLSSCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressDLSSCheck2, &patch);
+        }
+
+        // IsNvidia under FFXFSR3TemporalUpscaling
+        std::string_view patternDLSSCheck3("48 85 C0 74 19 B0 01 48 83 C4 28 C3 E8 ? ? ? ? 84 C0 74");
+        auto patchAddressDLSSCheck3 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck3, 17);
+
+        if (patchAddressDLSSCheck3 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddressDLSSCheck3, &patch);
+        }
+
+        _patchResult =
+            patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr && patchAddressDLSSCheck3 != nullptr;
+    }
 
     // Automation
     else if (CHECK_UE(automationgame))
@@ -123,10 +147,8 @@ static void CheckForPatch()
     // Black Myth: Wukong
     else if (CHECK_UE(b1))
     {
-        std::string_view pattern("E8 ? ? ? ? 84 C0 49 8B C4 "
-                                 "74 03 49 8B C6 8B 34 30 89 75 "
-                                 "80 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 26);
+        std::string_view pattern("84 C0 75 05 49 8B F4 EB 04 33 C0 8B F0 42 8B 34 36 89 75 90 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 25);
 
         // Check for benchmark
         if (patchAddress == nullptr)

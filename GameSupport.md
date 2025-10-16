@@ -115,6 +115,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tempest Rising | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
+| The Elder Scrolls IV: Oblivion Remastered | ✔️ | ✅ |  |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
