@@ -55,6 +55,9 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
+| Grand Theft Auto III – The Definitive Edition | ✔️ | N/A |  |
+| Grand Theft Auto: San Andreas – The Definitive Edition | ✔️ | N/A |  |
+| Grand Theft Auto: Vice City – The Definitive Edition | ✔️ | N/A |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
 | Hell Pie | ✔️ | N/A |  |
 | Hi-Fi RUSH | ✔️ | N/A |  |

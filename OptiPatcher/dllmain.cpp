@@ -383,6 +383,22 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr;
     }
 
+    // Grand Theft Auto: The Trilogy – The Definitive Edition - III, Vice City and San Andreas
+    // inline patch
+    else if (exeName == "sanandreas.exe" || exeName == "libertycity.exe" || exeName == "vicecity.exe")
+    {
+        std::string_view pattern("45 33 E4 E9 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 8);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
