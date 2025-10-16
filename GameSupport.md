@@ -55,6 +55,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
+| Gotham Knights | ✔️ | N/A |  |
 | Grand Theft Auto III – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: San Andreas – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: Vice City – The Definitive Edition | ✔️ | N/A |  |
@@ -83,6 +84,7 @@ TEMPLATE FOR NEW ENTRIES
 | MindsEye | ✔️ | ✅ |  |
 | Mortal Kombat 1 | ✔️ | N/A |  |
 | Myst (2021) | ✔️ | N/A |  |
+| Necromunda: Hired Gun | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Nobody Wants to Die | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
@@ -110,6 +112,7 @@ TEMPLATE FOR NEW ENTRIES
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
+| Suicide Squad: Kill the Justice League | ✔️ | N/A | _Useable only in **Offline mode** with **EAC disabled**_ |
 | Supraland | ✔️ | N/A |  |
 | Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
 | Supraworld | ✔️ | ✅ |  |

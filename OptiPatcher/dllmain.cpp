@@ -399,6 +399,60 @@ static void CheckForPatch()
         }
     }
 
+    // Suicide Squad: Kill the Justice League
+    // inline patch
+    else if (exeName == "suicidesquad_ktjl.exe")
+    {
+        std::string_view pattern("41 BE 24 00 00 00 84 C0 0F 84 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Gotham Knights
+    // inline patch
+    else if (exeName == "gothamknights.exe")
+    {
+        // DLSS classic check
+        std::string_view patternDLSSCheck1("48 85 C9 74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
+        auto patchAddressDLSSCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck1, 10);
+
+        if (patchAddressDLSSCheck1 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSCheck1, &patch);
+        }
+
+        // DLSS inputs activation check
+        std::string_view patternDLSSCheck2("89 47 38 E9 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+        auto patchAddressDLSSCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck2, 8);
+
+        if (patchAddressDLSSCheck2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSCheck2, &patch);
+        }
+
+        // DLSS UI menu string check
+        std::string_view patternDLSSCheck3("E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+        auto patchAddressDLSSCheck3 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck3, 5);
+
+        if (patchAddressDLSSCheck3 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSSCheck3, &patch);
+        }
+
+        _patchResult =
+            patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr && patchAddressDLSSCheck3 != nullptr;
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
@@ -913,8 +967,8 @@ static void CheckForPatch()
         }
     }
 
-    // Supraland
-    else if (CHECK_UE(supraland))
+    // Supraland, Necromunda: Hired Gun
+    else if (CHECK_UE(supraland) || CHECK_UE(necromunda))
     {
         std::string_view pattern("45 33 ED E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
