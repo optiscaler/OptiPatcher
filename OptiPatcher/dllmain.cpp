@@ -552,7 +552,7 @@ static void CheckForPatch()
     // Skater 3 + 4, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, INDIKA, High On Life, The Lord of the Rings:
     // Return to Moria, Ghostrunner 2, Deadlink, Destroy All Humans! 2 - Reprobed, Supraland Six Inches Under, VLADiK
     // BRUTAL, Hell Pie, Deliver Us Mars, Postal 4: No Regerts, SPRAWL, Deep Rock Galactic, Echo Point Nova, Witchfire,
-    // Hogwarts Legacy
+    // Hogwarts Legacy, Sherlock Holmes: The Awakened
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(achilles) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) ||
              CHECK_UE(pendriverpro) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) || CHECK_UE(blacktail) ||
              CHECK_UE(tom) || CHECK_UE(man) || exeName == "thps34.exe" || CHECK_UE(wayofthehunter) ||
@@ -560,7 +560,7 @@ static void CheckForPatch()
              CHECK_UE(moria) || CHECK_UE(ghostrunner2) || CHECK_UE(deadlink) || CHECK_UE(dh) ||
              CHECK_UE(supralandsiu) || CHECK_UE(vladik_brutal) || CHECK_UE(hellpie) || CHECK_UE(deliverusmars) ||
              CHECK_UE(postal4) || CHECK_UE(sprawl) || CHECK_UE(fsd) || CHECK_UE(greylock) || CHECK_UE(witchfire) ||
-             exeName == "hogwartslegacy.exe")
+             exeName == "hogwartslegacy.exe" || exeName == "shta.exe")
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -778,9 +778,9 @@ static void CheckForPatch()
         }
     }
 
-    // Lords of the Fallen 2023, TEKKEN 8, Layers of Fear (2023), The Thaumaturge, Palworld
+    // Lords of the Fallen 2023, TEKKEN 8, Layers of Fear (2023), The Thaumaturge, Palworld, The Casting of Frank Stone
     else if (CHECK_UE(lotf2) || CHECK_UE(polaris) || CHECK_UE(layersoffear) || CHECK_UE(thethaumaturge) ||
-             CHECK_UE(palworld))
+             CHECK_UE(palworld) || CHECK_UE(castingfrankstone))
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -884,8 +884,8 @@ static void CheckForPatch()
         }
     }
 
-    // Assetto Corsa Competizione
-    else if (CHECK_UE(ac2))
+    // Assetto Corsa Competizione, Bright Memory Infinite
+    else if (CHECK_UE(ac2) || CHECK_UE(brightmemoryinfinite))
     {
         std::string_view pattern("C6 47 30 01 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
@@ -1086,7 +1086,7 @@ static void CheckForPatch()
     // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
     // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum, Fort
-    // Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2 Demo, REANIMAL Demo
+    // Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2 Demo, REANIMAL Demo, The Casting of Frank Stone
     if (CHECK_UE(sandfall) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) ||
         CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) ||
         CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1099,7 +1099,8 @@ static void CheckForPatch()
         CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
         CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
         CHECK_UE(bates) || CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) ||
-        CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe")
+        CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" ||
+        CHECK_UE(castingfrankstone))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

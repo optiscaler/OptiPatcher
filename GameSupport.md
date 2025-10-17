@@ -23,6 +23,7 @@ TEMPLATE FOR NEW ENTRIES
 | Banishers: Ghosts of New Eden | ✔️ | ✅ |  |
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
+| Bright Memory Infinite | ✔️ | ⛔ | _SL1_ |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
 | Celestial Empire | ✔️ | ✅ |  |
 | Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
@@ -103,6 +104,7 @@ TEMPLATE FOR NEW ENTRIES
 | Senua’s Saga: Hellblade II | ✔️ | ✅ |  |
 | Severed Steel | ✔️ | N/A |  |
 | Shadow Warrior 3: Definitive Edition | ✔️ | N/A | _Add Fakenvapi if framerate locked to very low numbers (might force Reflex on unsupported GPUs)_ |
+| Sherlock Holmes: The Awakened | ✔️ | N/A |  |
 | Sifu | ✔️ | N/A |  |
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
 | SILENT HILL f | ✔️ | N/A |  |
@@ -121,6 +123,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tempest Rising | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
+| The Casting of Frank Stone | ✔️ | ✅ |  |
 | The Elder Scrolls IV: Oblivion Remastered | ✔️ | ✅ |  |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
