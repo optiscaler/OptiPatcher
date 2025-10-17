@@ -453,6 +453,22 @@ static void CheckForPatch()
             patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr && patchAddressDLSSCheck3 != nullptr;
     }
 
+    // Redfall
+    // inline patch
+    else if (exeName == "redfall.exe")
+    {
+        std::string_view pattern("49 8D 7D 48 E9 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
@@ -1341,6 +1357,20 @@ static void CheckForPatch()
                 start = (uintptr_t) patchAddress + 45;
             }
         } while (patchAddress != nullptr);
+    }
+
+    // DLSSG, Redfall
+    else if (exeName == "redfall.exe")
+    {
+        std::string_view pattern2("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? "
+                                  "81 3D ? ? ? ? ? ? ? ? 0F 85");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 35);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
     }
 
     // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER

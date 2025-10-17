@@ -97,6 +97,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | REANIMAL Demo | ✔️ | ✅ | _For future use_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
+| Redfall | ✔️ | ✅ |  |
 | REMNANT II | ✔️ | ✅ |  |
 | Riven (2024) | ✔️ | N/A |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
