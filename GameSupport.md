@@ -69,7 +69,7 @@ TEMPLATE FOR NEW ENTRIES
 | INDIKA | ✔️ | N/A |  |
 | INDUSTRIA 2 Demo | ✔️ | ✅ |  |
 | Jusant | ✔️ | ✅ |  |
-| Keeper | ✔️ | ✅ |  |
+| Keeper | ✔️ | ✅ | _WinGDK exe supported also_ |
 | Land of the Vikings | ✔️ | N/A |  |
 | Layers of Fear (2023) | ✔️ | ✅ |  |
 | Lies of P | ✔️ | N/A |  |
