@@ -142,6 +142,7 @@ TEMPLATE FOR NEW ENTRIES
 | Trepang2 | ✔️ | N/A |  |
 | Until Dawn | ✔️ | ✅ |  |
 | Valor Mortis Playtest | ✔️ | ✅ | _For future use_ |
+| Vampire: The Masquerade - Bloodlines 2 | ✔️ | ✅ |  |
 | VLADiK BRUTAL | ✔️ | N/A |  |
 | VOID/BREAKER | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |

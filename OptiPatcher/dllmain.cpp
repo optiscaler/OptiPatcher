@@ -872,8 +872,8 @@ static void CheckForPatch()
         }
     }
 
-    // Daemon X Machina: Titanic Scion
-    else if (CHECK_UE(game))
+    // Daemon X Machina: Titanic Scion, Vampire: The Masquerade - Bloodlines 2
+    else if (CHECK_UE(game) || CHECK_UE(bloodlines2))
     {
         std::string_view pattern("4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75 09 C6 47 40");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
@@ -1135,8 +1135,8 @@ static void CheckForPatch()
 
     // DLSSG
     //
-    // Keeper (+WinGDK PaganIdol exe)
-    else if (CHECK_UE(keeper) || CHECK_UE(paganidol))
+    // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2
+    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
