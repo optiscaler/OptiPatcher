@@ -469,6 +469,22 @@ static void CheckForPatch()
         }
     }
 
+    // The Outer Worlds 2
+    // inline patch
+    else if (CHECK_UE(theouterworlds2))
+    {
+        std::string_view pattern("E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Alone in the Dark 2024
     else if (CHECK_UE(aloneinthedark))
     {
@@ -646,7 +662,7 @@ static void CheckForPatch()
     // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
     // Alien: Rogue Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis,
     // Spirit of the North 2, Tokyo Xtreme Racer/Shutokou Battle, Clair Obscur: Expedition 33, INDUSTRIA 2 Demo,
-    // REANIMAL Demo, Keeper (+WinGDK PaganIdol exe)
+    // REANIMAL Demo, Keeper (+WinGDK PaganIdol exe), Stygian: Outer Gods, Tormented Souls 2
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
@@ -654,7 +670,8 @@ static void CheckForPatch()
              CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06) ||
              CHECK_UE(midnight) || CHECK_UE(manorlords) || CHECK_UE(detnoir) || CHECK_UE(minotaur) ||
              CHECK_UE(sycamore) || CHECK_UE(sotn2) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(sandfall) ||
-             CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(keeper) || CHECK_UE(paganidol))
+             CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(keeper) || CHECK_UE(paganidol) ||
+             CHECK_UE(stygian) || CHECK_UE(tormentedsouls2))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -841,14 +858,11 @@ static void CheckForPatch()
         }
     }
 
-    // Lost Souls Aside
+    // Lost Soul Aside
     else if (CHECK_UE(projectlsasteam))
     {
-        std::string_view pattern("48 8B 4D 00 48 8B 44 24 40 48 "
-                                 "89 45 E8 48 85 C9 74 05 E8 ? "
-                                 "? ? ? E8 ? ? ? ? 84 C0 "
-                                 "75 ");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 28);
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 09 44 88 6F 30");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
 
         if (patchAddress != nullptr)
         {
@@ -1098,7 +1112,7 @@ static void CheckForPatch()
     // Racer/Shutokou Battle, Titan Quest II, 171, Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen
     // Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden (+ Demo), Enotria: The Last Song,
     // Bloom&Rage, The Alters, Ready or Not, S.T.A.L.K.E.R. 2: Heart of Chornobyl, VOID/BREAKER, SILENT HILL 2 Remake,
-    // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Souls Aside, Cronos: The New
+    // NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Soul Aside, Cronos: The New
     // Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
     // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum, Fort
@@ -1135,8 +1149,8 @@ static void CheckForPatch()
 
     // DLSSG
     //
-    // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2
-    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2))
+    // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods
+    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -1391,6 +1405,25 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+    }
+
+    // DLSSG, The Outer Worlds 2
+    else if (CHECK_UE(theouterworlds2))
+    {
+        std::string_view pattern(
+            "44 38 ? ? ? ? ? 0F 85 ? ? ? ? 44 38 ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 26, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 38;
+            }
+        } while (patchAddress != nullptr);
     }
 
     // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER

@@ -116,6 +116,7 @@ TEMPLATE FOR NEW ENTRIES
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
+| Stygian: Outer Gods | ✔️ | ✅ |  |
 | Suicide Squad: Kill the Justice League | ✔️ | N/A | _Useable only in **Offline mode** with **EAC disabled**_ |
 | Supraland | ✔️ | N/A |  |
 | Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
@@ -131,6 +132,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG_ |
+| The Outer Worlds 2 | ✔️ | ✅ |  |
 | The Persistence | ✔️ | N/A |  |
 | The Sinking City Remastered | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
@@ -139,6 +141,7 @@ TEMPLATE FOR NEW ENTRIES
 | Titan Quest II | ✔️ | ✅ |  |
 | Tokyo Xtreme Racer/Shutokou Battle | ✔️ | ✅ |  |
 | Tony Hawk's Pro Skater 3 + 4 | ✔️ | N/A |  |
+| Tormented Souls 2 | ✔️ | N/A |  |
 | Trepang2 | ✔️ | N/A |  |
 | Until Dawn | ✔️ | ✅ |  |
 | Valor Mortis Playtest | ✔️ | ✅ | _For future use_ |
