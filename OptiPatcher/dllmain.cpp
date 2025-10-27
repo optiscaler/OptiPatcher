@@ -1039,6 +1039,20 @@ static void CheckForPatch()
         }
     }
 
+    // RV There Yet?
+    else if (CHECK_UE(ride))
+    {
+        std::string_view pattern("84 C0 75 05 49 8B F7 EB 02 33 F6 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
