@@ -47,7 +47,7 @@ TEMPLATE FOR NEW ENTRIES
 | EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
 | F1 Manager 2024 | ✔️ | N/A |  |
-| FINAL FANTASY VII REBIRTH | ✔️ | N/A |  |
+| FINAL FANTASY VII REBIRTH | ✔️ | ✅ |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
 | Fort Solis | ✔️ | ✅ |  |
@@ -89,6 +89,7 @@ TEMPLATE FOR NEW ENTRIES
 | Necromunda: Hired Gun | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Nobody Wants to Die | ✔️ | N/A |  |
+| Of Ash and Steel (Demo) | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
