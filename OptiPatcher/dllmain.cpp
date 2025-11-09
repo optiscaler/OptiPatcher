@@ -1053,6 +1053,19 @@ static void CheckForPatch()
         }
     }
 
+    else if (CHECK_UE(voyagesteam))
+    {
+        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1164,7 +1177,7 @@ static void CheckForPatch()
     // DLSSG
     //
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods
-    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian))
+    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) || CHECK_UE(voyagesteam))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
