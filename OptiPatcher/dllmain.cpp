@@ -685,7 +685,7 @@ static void CheckForPatch()
              CHECK_UE(midnight) || CHECK_UE(manorlords) || CHECK_UE(detnoir) || CHECK_UE(minotaur) ||
              CHECK_UE(sycamore) || CHECK_UE(sotn2) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(sandfall) ||
              CHECK_UE(sandfallgog) || CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(keeper) ||
-             CHECK_UE(paganidol) || CHECK_UE(stygian) || CHECK_UE(tormentedsouls2))
+             CHECK_UE(paganidol) || CHECK_UE(stygian) || CHECK_UE(tormentedsouls2) || CHECK_UE(voyagesteam))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -1044,19 +1044,6 @@ static void CheckForPatch()
     {
         std::string_view pattern("84 C0 75 05 49 8B F7 EB 02 33 F6 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    else if (CHECK_UE(voyagesteam))
-    {
-        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
 
         if (patchAddress != nullptr)
         {
