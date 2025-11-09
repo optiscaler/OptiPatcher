@@ -131,6 +131,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Casting of Frank Stone | ✔️ | ✅ |  |
 | The Elder Scrolls IV: Oblivion Remastered | ✔️ | ✅ |  |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
+| The Last Caretaker | ✔️ | ✅ |  |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG_ |
