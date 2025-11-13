@@ -205,11 +205,8 @@ static void CheckForPatch()
     // inline patch
     else if (exeName == "arkascended.exe")
     {
-        std::string_view pattern("E8 ? ? ? ? 84 C0 74 02 B0 "
-                                 "01 84 C0 49 8B C5 74 03 49 8B "
-                                 "C4 81 3D ? ? ? ? ? ? ? "
-                                 "? 44 8B 04 30");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
+        std::string_view pattern("84 C0 74 02 B0 01 84 C0 49 8B C5 74 03 49 8B C4 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 16);
 
         if (patchAddress != nullptr)
         {
@@ -1164,7 +1161,8 @@ static void CheckForPatch()
     // DLSSG
     //
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker
-    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) || CHECK_UE(voyagesteam))
+    else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
+             CHECK_UE(voyagesteam))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
@@ -1236,9 +1234,10 @@ static void CheckForPatch()
     }
 
     // DLSSG
-    // Witchfire, Ghostrunner 2, Deliver Us Mars, Layers of Fear (2023), The Thaumaturge
+    //
+    // Witchfire, Ghostrunner 2, Deliver Us Mars, Layers of Fear (2023), The Thaumaturge, The Midnight Walk
     else if (CHECK_UE(witchfire) || CHECK_UE(ghostrunner2) || CHECK_UE(deliverusmars) || CHECK_UE(layersoffear) ||
-             CHECK_UE(thethaumaturge))
+             CHECK_UE(thethaumaturge) || CHECK_UE(themidnightwalk))
     {
         std::string_view pattern(
             "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 75");
@@ -1311,60 +1310,10 @@ static void CheckForPatch()
     }
 
     // DLSSG
-    // Project Borealis: Prologue, Atomic Heart, ARK: Survival Ascended
-    else if (CHECK_UE(projectborealis) || CHECK_UE(atomicheart) || exeName == "arkascended.exe")
-    {
-        std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 "
-                                 "3D ? ? ? ? ? ? ? ? 74 ? C7 05 ? ? ? ? ? ? ? ? B8 02 00 00 00 C6 05");
-        uintptr_t start = 0;
-        void* patchAddress = nullptr;
-        do
-        {
-            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 35, start);
-            if (patchAddress != nullptr)
-            {
-                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-                patcher::PatchAddress(patchAddress, &patch);
-                start = (uintptr_t) patchAddress + 34;
-            }
-        } while (patchAddress != nullptr);
-    }
-
-    // DLSSG, Little Nightmares III
-    else if (exeName == "littlenightmaresiii.exe")
-    {
-        std::string_view pattern2("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? "
-                                  "81 3D ? ? ? ? ? ? ? ? 74 19 B9 02 00 00 00 C6 05 ? ? ? ? ? 89");
-        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 35);
-
-        if (patchAddress2 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress2, &patch);
-        }
-    }
-
-    // DLSSG, The Midnight Walk
-    else if (CHECK_UE(themidnightwalk))
-    {
-        std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 "
-                                 "? ? ? ? 84 C0 75 ? C7 05 ? ? ? ? ? ? ? ?");
-        uintptr_t start = 0;
-        void* patchAddress = nullptr;
-        do
-        {
-            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 40, start);
-            if (patchAddress != nullptr)
-            {
-                std::vector<BYTE> patch = { 0x0C, 0x01 };
-                patcher::PatchAddress(patchAddress, &patch);
-                start = (uintptr_t) patchAddress + 34;
-            }
-        } while (patchAddress != nullptr);
-    }
-
-    // DLSSG, Stellar Blade
-    else if (CHECK_UE(sb))
+    //
+    // Project Borealis: Prologue, Atomic Heart, ARK: Survival Ascended, Little Nightmares III, Stellar Blade
+    else if (CHECK_UE(projectborealis) || CHECK_UE(atomicheart) || exeName == "arkascended.exe" ||
+             exeName == "littlenightmaresiii.exe" || CHECK_UE(sb))
     {
         std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 "
                                  "3D ? ? ? ? ? ? ? ? 74");
@@ -1377,7 +1326,7 @@ static void CheckForPatch()
             {
                 std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
                 patcher::PatchAddress(patchAddress, &patch);
-                start = (uintptr_t) patchAddress + 45;
+                start = (uintptr_t) patchAddress + 46;
             }
         } while (patchAddress != nullptr);
     }
