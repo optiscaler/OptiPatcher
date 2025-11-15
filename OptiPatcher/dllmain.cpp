@@ -752,8 +752,8 @@ static void CheckForPatch()
         }
     }
 
-    // Sifu, Chernobylite Enhanced Edition
-    else if (CHECK_UE(sifu) || CHECK_UE(chernobylgame))
+    // Sifu, Chernobylite Enhanced Edition, STAR WARS Jedi: Survivor
+    else if (CHECK_UE(sifu) || CHECK_UE(chernobylgame) || exeName == "jedisurvivor.exe")
     {
         std::string_view pattern("74 05 E8 ? ? ? ? 45 33 F6 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
@@ -1379,6 +1379,20 @@ static void CheckForPatch()
         if (patchAddress2 != nullptr)
         {
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
+    // DLSSG, STAR WARS Jedi: Survivor
+    else if (exeName == "jedisurvivor.exe")
+    {
+        std::string_view pattern2(
+            "80 3D ? ? ? ? ? 74 09 80 3D ? ? ? ? ? 74 2D 80 3D ? ? ? ? ? 75 24 E8 ? ? ? ? 84 C0 74");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 32);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
     }

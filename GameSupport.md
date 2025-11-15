@@ -117,6 +117,7 @@ TEMPLATE FOR NEW ENTRIES
 | Spirit of the North 2 | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | SPRAWL | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
+| STAR WARS Jedi: Survivor | ✔️ | ✅ |  |
 | Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Stygian: Outer Gods | ✔️ | ✅ |  |
