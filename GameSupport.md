@@ -17,6 +17,7 @@ TEMPLATE FOR NEW ENTRIES
 | Amid Evil | ✔️ | N/A |  |
 | ARK: Survival Ascended | ✔️ | ✅ | _Needs testing_ |
 | Assetto Corsa Competizione | ✔️ | N/A |  |
+| Assetto Corsa Rally | ✔️ | ✅ |  |
 | Atomic Heart | ✔️ | ✅ |  |
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
