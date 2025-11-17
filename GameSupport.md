@@ -102,6 +102,7 @@ TEMPLATE FOR NEW ENTRIES
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | Redfall | ✔️ | ✅ |  |
 | REMNANT II | ✔️ | ✅ |  |
+| Revenge of the Savage Planet | ✔️ | N/A |  |
 | Riven (2024) | ✔️ | N/A |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
@@ -153,6 +154,7 @@ TEMPLATE FOR NEW ENTRIES
 | Vampire: The Masquerade - Bloodlines 2 | ✔️ | ✅ |  |
 | VLADiK BRUTAL | ✔️ | N/A |  |
 | VOID/BREAKER | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
+| Voidtrain | ✔️ | N/A |  |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
 | Witchfire | ✔️ | ✅ |  |
 | WUCHANG: Fallen Feathers | ✔️ | ✅ |  |
