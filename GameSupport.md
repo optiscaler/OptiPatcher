@@ -116,6 +116,7 @@ TEMPLATE FOR NEW ENTRIES
 | SILENT HILL f | ✔️ | N/A |  |
 | South of Midnight | ✔️ | N/A |  |
 | Spirit of the North 2 | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
+| SpongeBob SquarePants: Titans of the Tide | ✔️ | ✅ |  |
 | SPRAWL | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
 | STAR WARS Jedi: Survivor | ✔️ | ✅ |  |
