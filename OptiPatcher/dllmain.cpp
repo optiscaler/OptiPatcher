@@ -88,8 +88,8 @@ static void CheckForPatch()
         }
     }
 
-    // 171, Ranch Simulator, Supraworld
-    else if (CHECK_UE(bgg) || CHECK_UE(ranch_simulator) || CHECK_UE(supraworld))
+    // 171, Ranch Simulator
+    else if (CHECK_UE(bgg) || CHECK_UE(ranch_simulator))
     {
         std::string_view pattern("49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
@@ -181,48 +181,11 @@ static void CheckForPatch()
         }
     }
 
-    // Lies of P
-    // inline patch
-    else if (CHECK_UE(lop))
-    {
-        std::string_view pattern("41 B9 1B 00 00 00 C7 44 24 20 "
-                                 "02 00 00 00 48 8D ? ? ? ? "
-                                 "? 48 8D 4D 68 45 8D 41 E9 E8 "
-                                 "? ? ? ? 48 8B 4D 10 48 85 "
-                                 "C9 74 05 E8 ? ? ? ? 81 3D "
-                                 "? ? ? ? ? ? ? ? 74 0D");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 48);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // ARK: Survival Ascended
-    // inline patch
-    else if (exeName == "arkascended.exe")
-    {
-        std::string_view pattern("84 C0 74 02 B0 01 84 C0 49 8B C5 74 03 49 8B C4 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 16);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Ghostwire: Tokyo
     // inline patch, double test
     else if (exeName == "gwt.exe")
     {
-        std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? "
-                                 "? ? ? 81 3D ? ? ? ? ? "
-                                 "? ? ? 0F 85 ? ? ? ? 85");
+        std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85 ? ? ? ? 85");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
 
         if (patchAddress != nullptr)
@@ -233,31 +196,11 @@ static void CheckForPatch()
         }
     }
 
-    // Atomic Heart
+    // METAL GEAR SOLID Δ: SNAKE EATER, ARK: Survival Ascended
     // inline patch
-    else if (CHECK_UE(atomicheart))
+    else if (CHECK_UE(mgsdelta) || exeName == "arkascended.exe")
     {
-        std::string_view pattern("48 8B 4D 10 48 85 C9 74 05 E8 "
-                                 "? ? ? ? 81 3D ? ? ? ? "
-                                 "? ? ? ? 74");
-
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 14);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // METAL GEAR SOLID Δ: SNAKE EATER
-    // inline patch
-    else if (CHECK_UE(mgsdelta))
-    {
-        std::string_view pattern("49 8B C5 74 03 49 8B C4 81 3D "
-                                 "? ? ? ? ? ? ? ? 44 8B "
-                                 "04 30");
+        std::string_view pattern("49 8B C5 74 03 49 8B C4 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30");
 
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 8);
 
@@ -273,9 +216,7 @@ static void CheckForPatch()
     // inline patch
     else if (CHECK_UE(es2))
     {
-        std::string_view pattern("48 8D ? ? ? ? ? E8 ? ? "
-                                 "? ? 81 3D ? ? ? ? ? ? "
-                                 "? ? 0F 85 ? ? ? ? 85");
+        std::string_view pattern("48 8D ? ? ? ? ? E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85 ? ? ? ? 85");
 
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
 
@@ -287,10 +228,10 @@ static void CheckForPatch()
         }
     }
 
-    // South of Midnight, Little Nightmares III, Hi-Fi RUSH, Lost Soul Aside
+    // South of Midnight, Little Nightmares III, Hi-Fi RUSH, Lost Soul Aside, Lies of P, Atomic Heart
     // inline patch
     else if (exeName == "southofmidnight.exe" || exeName == "littlenightmaresiii.exe" || exeName == "hi-fi-rush.exe" ||
-             CHECK_UE(projectlsasteam))
+             CHECK_UE(projectlsasteam) || CHECK_UE(lop) || CHECK_UE(atomicheart))
     {
         std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
 
@@ -498,66 +439,13 @@ static void CheckForPatch()
         }
     }
 
-    // Alone in the Dark 2024
-    else if (CHECK_UE(aloneinthedark))
-    {
-        std::string_view pattern("4C 8B 65 F0 33 C0 48 8B 4D 48 "
-                                 "4C 89 65 C0 48 89 45 F0 48 89 "
-                                 "45 F8 48 85 C9 74 05 E8 ? ? "
-                                 "? ? E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 37);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // The Alters
     else if (CHECK_UE(thealters))
     {
-        std::string_view pattern("E8 ? ? ? ? 84 C0 75 0C E8 "
-                                 "? ? ? ? 84 C0 49 8B C7 74 "
-                                 "03 49 8B C6 8B 34 30 E8 ? ? "
-                                 "? ? 84 C0 75");
+        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C6 8B 34 30 E8 ? ? ? ? 84 C0 75");
 
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 32);
 
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // WUCHANG: Fallen Feathers
-    else if (CHECK_UE(project_plague))
-    {
-        std::string_view pattern("75 0C E8 ? ? ? ? 84 C0 49 "
-                                 "8B C7 74 03 49 8B C6 8B 34 30 "
-                                 "89 75 80 E8 ? ? ? ? 84 C0 "
-                                 "75");
-
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 28);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // The Ascent
-    else if (CHECK_UE(theascent))
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
-                                 "45 33 ED E9 ? ? ? ? E8 ? "
-                                 "? ? ? 84 C0");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 23);
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
@@ -610,7 +498,7 @@ static void CheckForPatch()
     // Untold, Frozenheim, Loopmancer, Blacktail, The Lord of the Rings: Gollum, Mandragora: Whispers of the Witch Tree,
     // INDIKA, The Lord of the Rings: Return to Moria, VLADiK BRUTAL, Hell Pie, Deliver Us Mars, Postal 4: No Regerts,
     // SPRAWL, Echo Point Nova, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, Sherlock Holmes: The Awakened, Tony
-    // Hawk's Pro Skater 3 + 4, Of Ash and Steel (Demo), Voidtrain
+    // Hawk's Pro Skater 3 + 4, Of Ash and Steel (Demo), Voidtrain, Alone in the Dark 2024
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) || CHECK_UE(oregon) ||
              CHECK_UE(ghostrunner2) || CHECK_UE(deadlink) || CHECK_UE(dh) || CHECK_UE(supralandsiu) || CHECK_UE(fsd) ||
              CHECK_UE(witchfire) || exeName == "hogwartslegacy.exe" || CHECK_UE(achilles) || CHECK_UE(frozenheim) ||
@@ -618,7 +506,7 @@ static void CheckForPatch()
              CHECK_UE(moria) || CHECK_UE(vladik_brutal) || CHECK_UE(hellpie) || CHECK_UE(deliverusmars) ||
              CHECK_UE(postal4) || CHECK_UE(sprawl) || CHECK_UE(greylock) || CHECK_UE(wayofthehunter) ||
              exeName == "mk12.exe" || CHECK_UE(adinfinitum) || exeName == "shta.exe" || exeName == "thps34.exe" ||
-             CHECK_UE(ofashandsteeldata) || CHECK_UE(voidtrain))
+             CHECK_UE(ofashandsteeldata) || CHECK_UE(voidtrain) || CHECK_UE(aloneinthedark))
     {
         std::string_view pattern("48 89 45 ? 48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -635,22 +523,6 @@ static void CheckForPatch()
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Still Wakes the Deep
-    else if (exeName == "stillwakesthedeep.exe")
-    {
-        std::string_view pattern("74 03 49 8B C7 8B 34 30 4C 89 "
-                                 "A4 24 78 02 00 00 4C 89 B4 24 "
-                                 "38 02 00 00 E8 ? ? ? ? 84 "
-                                 "C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 29);
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
@@ -689,7 +561,7 @@ static void CheckForPatch()
     // Alien: Rogue Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis,
     // Spirit of the North 2, Tokyo Xtreme Racer/Shutokou Battle, Clair Obscur: Expedition 33 (+ GOG), INDUSTRIA 2 Demo,
     // REANIMAL Demo, Keeper (+WinGDK PaganIdol exe), Stygian: Outer Gods, Tormented Souls 2, The Last Caretaker,
-    // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide
+    // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Echoes of the End: Enhanced Edition, Supraworld
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
@@ -699,7 +571,7 @@ static void CheckForPatch()
              CHECK_UE(sycamore) || CHECK_UE(sotn2) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(sandfall) ||
              CHECK_UE(sandfallgog) || CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(keeper) ||
              CHECK_UE(paganidol) || CHECK_UE(stygian) || CHECK_UE(tormentedsouls2) || CHECK_UE(voyagesteam) ||
-             exeName == "acr.exe" || CHECK_UE(ghost))
+             exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(thedarken) || CHECK_UE(supraworld))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -714,7 +586,7 @@ static void CheckForPatch()
     // The Talos Principle: Reawakened
     else if (CHECK_UE(talos1))
     {
-        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 8B 34 06 E8 ? ? ? ? 84 C0 75 25");
+        std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 8B 34 06 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
 
         if (patchAddress != nullptr)
@@ -781,22 +653,6 @@ static void CheckForPatch()
         }
     }
 
-    // Shadow Warrior 3: Definitive Edition
-    else if (exeName == "sw3.exe")
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? "
-                                 "0F B6 47 30 E9 ? ? ? ? E8 "
-                                 "? ? ? ? 84 C0 75 0B C6 47");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 24);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
     // Evil West
     else if (CHECK_UE(highmoon))
     {
@@ -825,9 +681,10 @@ static void CheckForPatch()
         }
     }
 
-    // Lords of the Fallen 2023, TEKKEN 8, Layers of Fear (2023), The Thaumaturge, Palworld, The Casting of Frank Stone
+    // Lords of the Fallen 2023, TEKKEN 8, Layers of Fear (2023), The Thaumaturge, Palworld, The Casting of Frank Stone,
+    // WUCHANG: Fallen Feathers
     else if (CHECK_UE(lotf2) || CHECK_UE(polaris) || CHECK_UE(layersoffear) || CHECK_UE(thethaumaturge) ||
-             CHECK_UE(palworld) || CHECK_UE(castingfrankstone))
+             CHECK_UE(palworld) || CHECK_UE(castingfrankstone) || CHECK_UE(project_plague))
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -843,25 +700,7 @@ static void CheckForPatch()
     // Avowed
     else if (CHECK_UE(avowed))
     {
-        std::string_view pattern("4C 89 AC 24 40 02 00 00 4C 89 "
-                                 "B4 24 38 02 00 00 E8 ? ? ? "
-                                 "? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Eternal Strands
-    else if (CHECK_UE(eternalstrandssteam))
-    {
-        std::string_view pattern("4C 89 A4 24 78 02 00 00 4C 89 "
-                                 "B4 24 38 02 00 00 E8 ? ? ? "
-                                 "? 84 C0 75");
+        std::string_view pattern("4C 89 AC 24 40 02 00 00 4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
 
         if (patchAddress != nullptr)
@@ -928,8 +767,10 @@ static void CheckForPatch()
         }
     }
 
-    // Tempest Rising, Senua’s Saga: Hellblade II, Until Dawn, Revenge of the Savage Planet
-    else if (CHECK_UE(tempest) || CHECK_UE(hellblade2) || CHECK_UE(bates) || CHECK_UE(towers))
+    // Tempest Rising, Senua’s Saga: Hellblade II, Until Dawn, Revenge of the Savage Planet, Still Wakes the Deep,
+    // Eternal Strands
+    else if (CHECK_UE(tempest) || CHECK_UE(hellblade2) || CHECK_UE(bates) || CHECK_UE(towers) ||
+             exeName == "stillwakesthedeep.exe" || CHECK_UE(eternalstrandssteam))
     {
         std::string_view pattern(
             "49 8B C7 8B 34 30 4C 89 A4 24 78 02 00 00 4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
@@ -983,8 +824,8 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck1 != nullptr && patchAddressDLSSCheck2 != nullptr;
     }
 
-    // Chorus
-    else if (CHECK_UE(chorus))
+    // Chorus, Shadow Warrior 3: Definitive Edition
+    else if (CHECK_UE(chorus) || exeName == "sw3.exe")
     {
         std::string_view pattern("74 05 E8 ? ? ? ? 0F B6 47 30 E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 21);
@@ -997,8 +838,8 @@ static void CheckForPatch()
         }
     }
 
-    // Supraland, Necromunda: Hired Gun
-    else if (CHECK_UE(supraland) || CHECK_UE(necromunda))
+    // Supraland, Necromunda: Hired Gun, The Ascent
+    else if (CHECK_UE(supraland) || CHECK_UE(necromunda) || CHECK_UE(theascent))
     {
         std::string_view pattern("45 33 ED E9 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 13);
@@ -1130,7 +971,7 @@ static void CheckForPatch()
     // Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Tempest Rising, MindsEye, Crisol:
     // Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial Empire, Alien: Rogue Incursion Evolved
     // Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum, Fort Solis, Postal 4: No Regerts, Spirit of the
-    // North 2, INDUSTRIA 2 Demo, REANIMAL Demo, The Casting of Frank Stone
+    // North 2, INDUSTRIA 2 Demo, REANIMAL Demo, The Casting of Frank Stone, Echoes of the End: Enhanced Edition
     if (CHECK_UE(sandfall) || CHECK_UE(sandfallgog) || CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) ||
         CHECK_UE(supraworld) || CHECK_UE(talos1) || CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) ||
         CHECK_UE(tokyoxtremeracer) || CHECK_UE(tq2) || CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" ||
@@ -1144,7 +985,7 @@ static void CheckForPatch()
         CHECK_UE(crtoiprototype) || CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) ||
         CHECK_UE(midnight) || CHECK_UE(bates) || CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) ||
         CHECK_UE(sycamore) || CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) ||
-        exeName == "reanimal.exe" || CHECK_UE(castingfrankstone))
+        exeName == "reanimal.exe" || CHECK_UE(castingfrankstone) || CHECK_UE(thedarken))
 
     // 10 lines of games per pattern should be enough before it gets messy, keep adding to the new section below
 
@@ -1435,7 +1276,7 @@ static void CheckForPatch()
     // inline patch
     else if (CHECK_UE(stalker2))
     {
-        std::string_view pattern("0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+        std::string_view pattern("0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85"); // covers SL and extra r14b ones
         uintptr_t start = 0;
         void* patchAddress = nullptr;
         do

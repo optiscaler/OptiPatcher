@@ -43,6 +43,7 @@ TEMPLATE FOR NEW ENTRIES
 | Destroy All Humans! 2 - Reprobed | ✔️ | ⛔ | _SL1_ |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Echo Point Nova | ✔️ | N/A |  |
+| Echoes of the End: Enhanced Edition | ✔️ | ✅ |  |
 | Enotria: The Last Song | ✔️ | ✅ |  |
 | Eternal Strands | ✔️ | ✅ | _Steam exe_ |
 | EVERSPACE 2 | ✔️ | ✅ |  |
