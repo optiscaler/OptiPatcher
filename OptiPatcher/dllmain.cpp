@@ -498,7 +498,7 @@ static void CheckForPatch()
     // Untold, Frozenheim, Loopmancer, Blacktail, The Lord of the Rings: Gollum, Mandragora: Whispers of the Witch Tree,
     // INDIKA, The Lord of the Rings: Return to Moria, VLADiK BRUTAL, Hell Pie, Deliver Us Mars, Postal 4: No Regerts,
     // SPRAWL, Echo Point Nova, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, Sherlock Holmes: The Awakened, Tony
-    // Hawk's Pro Skater 3 + 4, Of Ash and Steel (Demo), Voidtrain, Alone in the Dark 2024
+    // Hawk's Pro Skater 3 + 4, Of Ash and Steel, Voidtrain, Alone in the Dark 2024
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) || CHECK_UE(oregon) ||
              CHECK_UE(ghostrunner2) || CHECK_UE(deadlink) || CHECK_UE(dh) || CHECK_UE(supralandsiu) || CHECK_UE(fsd) ||
              CHECK_UE(witchfire) || exeName == "hogwartslegacy.exe" || CHECK_UE(achilles) || CHECK_UE(frozenheim) ||
@@ -506,7 +506,7 @@ static void CheckForPatch()
              CHECK_UE(moria) || CHECK_UE(vladik_brutal) || CHECK_UE(hellpie) || CHECK_UE(deliverusmars) ||
              CHECK_UE(postal4) || CHECK_UE(sprawl) || CHECK_UE(greylock) || CHECK_UE(wayofthehunter) ||
              exeName == "mk12.exe" || CHECK_UE(adinfinitum) || exeName == "shta.exe" || exeName == "thps34.exe" ||
-             CHECK_UE(ofashandsteeldata) || CHECK_UE(voidtrain) || CHECK_UE(aloneinthedark))
+             CHECK_UE(ofashandsteelgame) || CHECK_UE(voidtrain) || CHECK_UE(aloneinthedark))
     {
         std::string_view pattern("48 89 45 ? 48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);

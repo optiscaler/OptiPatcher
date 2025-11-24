@@ -91,7 +91,7 @@ TEMPLATE FOR NEW ENTRIES
 | Necromunda: Hired Gun | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
 | Nobody Wants to Die | ✔️ | N/A |  |
-| Of Ash and Steel (Demo) | ✔️ | N/A |  |
+| Of Ash and Steel | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | N/A |  |
