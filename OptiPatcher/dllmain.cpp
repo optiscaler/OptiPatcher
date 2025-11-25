@@ -444,7 +444,7 @@ static void CheckForPatch()
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C6 8B 34 30 E8 ? ? ? ? 84 C0 75");
 
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 32);
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
 
         if (patchAddress != nullptr)
         {
