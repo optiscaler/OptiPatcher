@@ -94,7 +94,7 @@ TEMPLATE FOR NEW ENTRIES
 | Of Ash and Steel | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
-| Palworld | ✔️ | N/A |  |
+| Palworld | ✔️ | N/A | _Also required for disabling Dilated MV_ |
 | Postal 4: No Regerts | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Ranch Simulator | ✔️ | N/A |  |
