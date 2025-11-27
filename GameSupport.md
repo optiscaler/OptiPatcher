@@ -75,6 +75,7 @@ TEMPLATE FOR NEW ENTRIES
 | Land of the Vikings | ✔️ | N/A |  |
 | Layers of Fear (2023) | ✔️ | ✅ |  |
 | Lies of P | ✔️ | N/A |  |
+| Like a Dragon: Ishin! | ✔️ | N/A |  |
 | Little Nightmares III | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Lords of the Fallen 2023 | ✔️ | ✅ | _To enable DLSS Frame Generation, add `-DLSSFG` as a launch command - [PCGW](https://www.pcgamingwiki.com/wiki/Lords_of_the_Fallen_(2023)#Video)_ |
 | Loopmancer | ✔️ | ⛔ | _SL1_ |
