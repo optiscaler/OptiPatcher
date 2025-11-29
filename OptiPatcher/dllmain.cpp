@@ -530,6 +530,35 @@ static void CheckForPatch()
             _patchResult = true;
         }
     }
+    
+    // Icarus
+    else if (CHECK_UE(icarus))
+    {
+        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 0C");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+
+        // DLSSG
+        std::string_view patternFG("80 3D ? ? ? ? 00 75 ? E8 ? ? ? ? 84 C0");
+        uintptr_t start = 0;
+        void* patchAddressFG = nullptr;
+        do
+        {
+            patchAddressFG = (void*) scanner::GetAddress(exeModule, patternFG, 14, start);
+            if (patchAddressFG != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddressFG, &patch);
+                start = (uintptr_t) patchAddressFG + 2;
+            }
+        } while (patchAddressFG != nullptr);
+    }
 
     // RoboCop: Rogue City
     else if (CHECK_UE(robocop))
