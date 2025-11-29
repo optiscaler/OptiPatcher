@@ -67,6 +67,7 @@ TEMPLATE FOR NEW ENTRIES
 | Hi-Fi RUSH | ✔️ | N/A |  |
 | High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
+| Icarus | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
 | INDUSTRIA 2 Demo | ✔️ | ✅ |  |
