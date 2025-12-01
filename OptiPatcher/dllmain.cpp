@@ -498,7 +498,7 @@ static void CheckForPatch()
     // Untold, Frozenheim, Loopmancer, Blacktail, The Lord of the Rings: Gollum, Mandragora: Whispers of the Witch Tree,
     // INDIKA, The Lord of the Rings: Return to Moria, VLADiK BRUTAL, Hell Pie, Deliver Us Mars, Postal 4: No Regerts,
     // SPRAWL, Echo Point Nova, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, Sherlock Holmes: The Awakened, Tony
-    // Hawk's Pro Skater 3 + 4, Of Ash and Steel, Voidtrain, Alone in the Dark 2024, Like a Dragon: Ishin!
+    // Hawk's Pro Skater 3 + 4, Of Ash and Steel, Voidtrain, Alone in the Dark 2024, Like a Dragon: Ishin!, Icarus
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) || CHECK_UE(oregon) ||
              CHECK_UE(ghostrunner2) || CHECK_UE(deadlink) || CHECK_UE(dh) || CHECK_UE(supralandsiu) || CHECK_UE(fsd) ||
              CHECK_UE(witchfire) || exeName == "hogwartslegacy.exe" || CHECK_UE(achilles) || CHECK_UE(frozenheim) ||
@@ -507,7 +507,7 @@ static void CheckForPatch()
              CHECK_UE(postal4) || CHECK_UE(sprawl) || CHECK_UE(greylock) || CHECK_UE(wayofthehunter) ||
              exeName == "mk12.exe" || CHECK_UE(adinfinitum) || exeName == "shta.exe" || exeName == "thps34.exe" ||
              CHECK_UE(ofashandsteelgame) || CHECK_UE(voidtrain) || CHECK_UE(aloneinthedark) ||
-             CHECK_UE(likeadragonishin))
+             CHECK_UE(likeadragonishin) || CHECK_UE(icarus))
     {
         std::string_view pattern("48 89 45 ? 48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -530,35 +530,6 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
-    }
-    
-    // Icarus
-    else if (CHECK_UE(icarus))
-    {
-        std::string_view pattern("48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75 0C");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-
-        // DLSSG
-        std::string_view patternFG("80 3D ? ? ? ? 00 75 ? E8 ? ? ? ? 84 C0");
-        uintptr_t start = 0;
-        void* patchAddressFG = nullptr;
-        do
-        {
-            patchAddressFG = (void*) scanner::GetAddress(exeModule, patternFG, 14, start);
-            if (patchAddressFG != nullptr)
-            {
-                std::vector<BYTE> patch = { 0x0C, 0x01 };
-                patcher::PatchAddress(patchAddressFG, &patch);
-                start = (uintptr_t) patchAddressFG + 2;
-            }
-        } while (patchAddressFG != nullptr);
     }
 
     // RoboCop: Rogue City
@@ -1266,6 +1237,20 @@ static void CheckForPatch()
     {
         std::string_view pattern2(
             "80 3D ? ? ? ? ? 74 09 80 3D ? ? ? ? ? 74 2D 80 3D ? ? ? ? ? 75 24 E8 ? ? ? ? 84 C0 74");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 32);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
+    // DLSSG, Icarus
+    else if (CHECK_UE(icarus))
+    {
+        std::string_view pattern2(
+            "80 3D ? ? ? ? ? 74 09 80 3D ? ? ? ? ? 74 24 80 3D ? ? ? ? ? 75 1B E8 ? ? ? ? 84 C0 74");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 32);
 
         if (patchAddress2 != nullptr)
