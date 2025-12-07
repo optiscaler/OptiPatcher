@@ -895,6 +895,20 @@ static void CheckForPatch()
         }
     }
 
+    // Kena: Bridge of Spirits
+    else if (CHECK_UE(kena))
+    {
+        std::string_view pattern("48 8B 4D 40 48 85 C9 74 06 E8 ? ? ? ? 90 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")

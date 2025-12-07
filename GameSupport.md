@@ -64,7 +64,7 @@ TEMPLATE FOR NEW ENTRIES
 | Grand Theft Auto: Vice City – The Definitive Edition | ✔️ | N/A |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
 | Hell Pie | ✔️ | N/A |  |
-| Hi-Fi RUSH | ✔️ | N/A |  |
+| Hi-Fi RUSH | ✔️ | N/A | _Latest update replaced Denuvo with VMProtect which blocks Patcher_ |
 | High On Life | ✔️ | N/A |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | Icarus | ✔️ | ✅ |  |
@@ -73,6 +73,7 @@ TEMPLATE FOR NEW ENTRIES
 | INDUSTRIA 2 Demo | ✔️ | ✅ |  |
 | Jusant | ✔️ | ✅ |  |
 | Keeper | ✔️ | ✅ | _WinGDK exe supported also_ |
+| Kena: Bridge of Spirits | ✔️ | N/A |  |
 | Land of the Vikings | ✔️ | N/A |  |
 | Layers of Fear (2023) | ✔️ | ✅ |  |
 | Lies of P | ✔️ | N/A |  |
