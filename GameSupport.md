@@ -97,9 +97,10 @@ TEMPLATE FOR NEW ENTRIES
 | Of Ash and Steel | ✔️ | N/A |  |
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
-| Palworld | ✔️ | N/A | _Also required for disabling Dilated MV_ |
+| Palworld | ✔️ | ✅ |  |
 | Postal 4: No Regerts | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
+| Quarantine Zone: The Last Check | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | REANIMAL Demo | ✔️ | ✅ | _For future use_ |
@@ -192,3 +193,4 @@ TEMPLATE FOR NEW ENTRIES
 > * **Metal Eden** - `%LOCALAPPDATA%\MetalEden\Saved\Config\Windows\`  
 > * **Daemon X Machina: Titanic Scion** - `%LOCALAPPDATA%\DXMTS\Saved\Config\Windows` 
 > * **VOID/BREAKER** - `%LOCALAPPDATA%\VOIDBREAKER\Saved\Config\Windows` 
+> * **Quarantine Zone: The Last Check** - `%LOCALAPPDATA%\QZSim\Saved\Config\Windows`

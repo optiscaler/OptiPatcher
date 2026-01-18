@@ -740,8 +740,8 @@ static void CheckForPatch()
         }
     }
 
-    // Deadzone Rogue
-    else if (exeName == "deadzonesteam.exe")
+    // Deadzone Rogue, Quarantine Zone: The Last Check
+    else if (exeName == "deadzonesteam.exe" || CHECK_UE(qzsim))
     {
         std::string_view pattern("45 33 FF 41 8B F7 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -1014,7 +1014,7 @@ static void CheckForPatch()
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
     // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum, Fort
     // Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2 Demo, REANIMAL Demo, The Casting of Frank Stone,
-    // Echoes of the End: Enhanced Edition
+    // Echoes of the End: Enhanced Edition, Palworld, Quarantine Zone: The Last Check
     if (CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) || CHECK_UE(talos1) ||
         CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(tq2) ||
         CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1028,7 +1028,7 @@ static void CheckForPatch()
         CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
         CHECK_UE(bates) || CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) ||
         CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" ||
-        CHECK_UE(castingfrankstone) || CHECK_UE(thedarken))
+        CHECK_UE(castingfrankstone) || CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim))
 
     // 10 lines of games per pattern should be enough before it gets messy, keep adding to the new section below
 
@@ -1374,16 +1374,6 @@ static void CheckForPatch()
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
-        }
-
-        // XeFG check
-        std::string_view pattern3("FF 90 98 00 00 00 84 C0 0F 84 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84");
-        auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 19);
-
-        if (patchAddress3 != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress3, &patch);
         }
     }
 
