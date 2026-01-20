@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+          fetch-depth: 0
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
@@ -37,20 +38,43 @@ jobs:
           $ts = Get-Date -Format "yyyyMMdd_HHmm"
           echo "timestamp=$ts" >> $env:GITHUB_OUTPUT
 
-      - name: Rename artifact for release
-        shell: pwsh
-        run: |
-          $src = "${{ github.workspace }}\x64\Release\OptiPatcher.asi"
-          $dst = "${{ github.workspace }}\x64\Release\OptiPatcher-${{ steps.buildtime.outputs.timestamp }}.asi"
-          Copy-Item $src $dst
-
-      # Upload Actions Artifact (kept per-run)
       - name: Upload Actions Artifact
         uses: actions/upload-artifact@v4
         with:
           name: OptiPatcher-${{ steps.buildtime.outputs.timestamp }}
           path: ${{ github.workspace }}/x64/Release/OptiPatcher.asi
           if-no-files-found: error
+
+      - name: Generate Rolling Release notes
+        shell: pwsh
+        run: |
+          git fetch --tags
+
+          $base = git describe --tags --abbrev=0 --match "v*" 2>$null
+          if ($base) {
+            $range = "$base..HEAD"
+          } else {
+            $range = "HEAD"
+          }
+
+          $commits = git log $range --pretty=format:"- %s (%h)" | Out-String
+          $commits = $commits.Trim()
+
+          if (-not $commits) {
+            $commits = "- No changes since last release"
+          }
+
+          @"
+          ## Rolling Release
+
+          **Base version:** $base  
+          **Build commit:** `${{ github.sha }}`  
+          **Build date:** $(Get-Date -Format "yyyy-MM-dd HH:mm")
+
+          ### Changes since last release
+
+          $commits
+          "@ | Out-File release-notes.md -Encoding utf8
 
       - name: Publish Rolling Release
         uses: ncipollo/release-action@v1
@@ -61,4 +85,5 @@ jobs:
           makeLatest: true
           replacesArtifacts: true
           artifacts: ${{ github.workspace }}/x64/Release/OptiPatcher.asi
+          bodyFile: release-notes.md
           token: ${{ secrets.GITHUB_TOKEN }}
