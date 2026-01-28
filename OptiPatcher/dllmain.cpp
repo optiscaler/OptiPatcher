@@ -937,6 +937,20 @@ static void CheckForPatch()
         }
     }
 
+    // Styx: Blades of Greed (Demo)
+    else if (CHECK_UE(styx3))
+    {
+        std::string_view pattern("33 F6 42 8B 34 3E E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1051,9 +1065,9 @@ static void CheckForPatch()
     // DLSSG
     //
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker,
-    // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide
+    // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (Demo)
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
-             CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost))
+             CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

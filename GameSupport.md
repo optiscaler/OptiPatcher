@@ -128,6 +128,7 @@ TEMPLATE FOR NEW ENTRIES
 | Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Stygian: Outer Gods | ✔️ | ✅ |  |
+| Styx: Blades of Greed | ✔️ | ✅ | _Demo_ |
 | Suicide Squad: Kill the Justice League | ✔️ | N/A | _Useable only in **Offline mode** with **EAC disabled**_ |
 | Supraland | ✔️ | N/A |  |
 | Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
