@@ -439,6 +439,21 @@ static void CheckForPatch()
         }
     }
 
+    // CODE VEIN II
+    // inline patch
+    else if (CHECK_UE(codevein2))
+    {
+        std::string_view pattern("49 8B C4 81 3D ? ? ? ? ? ? ? ? 44 8B 04 30 74");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 3);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {

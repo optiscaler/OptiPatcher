@@ -31,6 +31,7 @@ TEMPLATE FOR NEW ENTRIES
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
 | Chorus | ✔️ | N/A |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
+| CODE VEIN II | ✔️ | N/A |  |
 | Commandos: Origins | ✔️ | N/A |  |
 | Crisol: Theater of Idols Demo | ✔️ | ✅ |  |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
