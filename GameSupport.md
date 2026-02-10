@@ -33,7 +33,7 @@ TEMPLATE FOR NEW ENTRIES
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | CODE VEIN II | ✔️ | N/A |  |
 | Commandos: Origins | ✔️ | N/A |  |
-| Crisol: Theater of Idols Demo | ✔️ | ✅ |  |
+| Crisol: Theater of Idols | ✔️ | ✅ | _Demo should also be supported_ |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |

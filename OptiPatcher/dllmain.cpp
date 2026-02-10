@@ -573,7 +573,7 @@ static void CheckForPatch()
 
     // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
     // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
-    // MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
+    // MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
     // Alien: Rogue Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis,
     // Spirit of the North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL Demo, Keeper (+WinGDK
     // PaganIdol exe), Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the
@@ -1040,10 +1040,10 @@ static void CheckForPatch()
     // 2, Metal Eden (+ Demo), Enotria: The Last Song, Bloom&Rage, The Alters, Ready or Not, VOID/BREAKER, SILENT HILL 2
     // Remake, NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Soul Aside, Cronos: The
     // New Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
-    // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols Demo, Frostpunk 2, Senua’s Saga: Hellblade II, Celestial
-    // Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum, Fort
-    // Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2 Demo, REANIMAL Demo, The Casting of Frank Stone,
-    // Echoes of the End: Enhanced Edition, Palworld, Quarantine Zone: The Last Check
+    // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Senua’s Saga: Hellblade II,
+    // Celestial Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum,
+    // Fort Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2 Demo, REANIMAL Demo, The Casting of Frank
+    // Stone, Echoes of the End: Enhanced Edition, Palworld, Quarantine Zone: The Last Check
     if (CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) || CHECK_UE(talos1) ||
         CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(tq2) ||
         CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
