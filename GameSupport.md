@@ -112,6 +112,7 @@ TEMPLATE FOR NEW ENTRIES
 | Riven (2024) | ✔️ | N/A |  |
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
+| ROMEO IS A DEAD MAN | ✔️ | ✅ |  |
 | RV There Yet? | ✔️ | N/A |  |
 | Senua’s Saga: Hellblade II | ✔️ | ✅ |  |
 | Severed Steel | ✔️ | N/A |  |

@@ -577,7 +577,7 @@ static void CheckForPatch()
     // Alien: Rogue Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis,
     // Spirit of the North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL Demo, Keeper (+WinGDK
     // PaganIdol exe), Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the
-    // Tide, Echoes of the End: Enhanced Edition, Supraworld
+    // Tide, Echoes of the End: Enhanced Edition, Supraworld, ROMEO IS A DEAD MAN
     else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
              exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
@@ -587,7 +587,7 @@ static void CheckForPatch()
              CHECK_UE(sycamore) || CHECK_UE(sotn2) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(industria_2) ||
              exeName == "reanimal.exe" || CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(stygian) ||
              CHECK_UE(tormentedsouls2) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(thedarken) ||
-             CHECK_UE(supraworld))
+             CHECK_UE(supraworld) || CHECK_UE(sevgame))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -1080,9 +1080,9 @@ static void CheckForPatch()
     // DLSSG
     //
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker,
-    // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (Demo)
+    // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (Demo), ROMEO IS A DEAD MAN
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
-             CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3))
+             CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
