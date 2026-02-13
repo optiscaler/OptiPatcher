@@ -67,6 +67,7 @@ TEMPLATE FOR NEW ENTRIES
 | Hell Pie | ✔️ | N/A |  |
 | Hi-Fi RUSH | ✔️ | N/A | _Latest update replaced Denuvo with VMProtect which blocks Patcher_ |
 | High On Life | ✔️ | N/A |  |
+| High On Life 2 | ✔️ | ✅ |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | Icarus | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
