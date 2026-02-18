@@ -102,10 +102,10 @@ TEMPLATE FOR NEW ENTRIES
 | Palworld | ✔️ | ✅ |  |
 | Postal 4: No Regerts | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
-| Quarantine Zone: The Last Check | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
+| Quarantine Zone: The Last Check | ✔️ | ✅ | _SL checks patched for future use_ |
 | Ranch Simulator | ✔️ | N/A |  |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
-| REANIMAL Demo | ✔️ | ✅ | _For future use_ |
+| REANIMAL | ✔️ | ✅ | _For future use_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |
 | Redfall | ✔️ | ✅ |  |
 | REMNANT II | ✔️ | ✅ |  |
@@ -131,7 +131,7 @@ TEMPLATE FOR NEW ENTRIES
 | Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Stygian: Outer Gods | ✔️ | ✅ |  |
-| Styx: Blades of Greed | ✔️ | ✅ | _Demo_ |
+| Styx: Blades of Greed | ✔️ | ✅ | _Demo should also be supported_ |
 | Suicide Squad: Kill the Justice League | ✔️ | N/A | _Useable only in **Offline mode** with **EAC disabled**_ |
 | Supraland | ✔️ | N/A |  |
 | Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
