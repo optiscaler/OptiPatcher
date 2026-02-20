@@ -725,6 +725,30 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // For 2.0 update - inline patch
+        else
+        {
+            std::string_view pattern2("31 C0 81 3D ? ? ? ? ? ? ? ? 74");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 2);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            std::string_view pattern3("34 01 0F B6 C0 81 3D ? ? ? ? ? ? ? ? 75");
+            auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 5);
+
+            if (patchAddress3 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress3, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr && patchAddress3 != nullptr;
+        }
     }
 
     // Land of the Vikings
@@ -1052,7 +1076,7 @@ static void CheckForPatch()
     // REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme Racer/Shutokou Battle, Titan Quest II, 171,
     // Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen Feathers, RoboCop: Unfinished Business, Forgive me Father
     // 2, Metal Eden (+ Demo), Enotria: The Last Song, Bloom&Rage, The Alters, Ready or Not, VOID/BREAKER, SILENT HILL 2
-    // Remake, NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, Avowed, Eternal Strands, Lost Soul Aside, Cronos: The
+    // Remake, NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, , Eternal Strands, Lost Soul Aside, Cronos: The
     // New Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Senua’s Saga: Hellblade II,
     // Celestial Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum,
@@ -1065,13 +1089,13 @@ static void CheckForPatch()
         CHECK_UE(fmf2) || CHECK_UE(metaleden) || CHECK_UE(enotria) || CHECK_UE(thealters) ||
         exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe" ||
         CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) || CHECK_UE(saltpeter) ||
-        CHECK_UE(avowed) || CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) || CHECK_UE(cronos) ||
-        CHECK_UE(game) || exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) ||
-        CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
-        CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
-        CHECK_UE(bates) || CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) ||
-        CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" ||
-        CHECK_UE(castingfrankstone) || CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim))
+        CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) || CHECK_UE(cronos) || CHECK_UE(game) ||
+        exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2) ||
+        CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) || CHECK_UE(frostpunk2) ||
+        CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) || CHECK_UE(bates) ||
+        CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) || CHECK_UE(postal4) ||
+        CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(castingfrankstone) ||
+        CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim))
 
     // 10 lines of games per pattern should be enough before it gets messy, keep adding to the new section below
 
@@ -1419,6 +1443,42 @@ static void CheckForPatch()
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
+        }
+    }
+
+    // DLSSG, Avowed
+    else if (CHECK_UE(avowed))
+    {
+        std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // For 2.0 update - inline patch
+        if (patchAddress == nullptr)
+        {
+            std::string_view pattern2("80 3D ? ? ? ? ? 0F 85 ? ? ? ? B8 02 00 00 00 81 3D ? ? ? ? ? ? ? ? 0F 85");
+            uintptr_t start = 0;
+            void* patchAddress2 = nullptr;
+            do
+            {
+                patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 18, start);
+                if (patchAddress2 != nullptr)
+                {
+                    std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                    patcher::PatchAddress(patchAddress2, &patch);
+                    start = (uintptr_t) patchAddress2 + 30;
+                }
+            } while (patchAddress2 != nullptr);
         }
     }
 
