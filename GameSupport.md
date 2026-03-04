@@ -50,6 +50,7 @@ TEMPLATE FOR NEW ENTRIES
 | EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
 | F1 Manager 2024 | ✔️ | N/A |  |
+| Far Far West | ✔️ | ✅ | _Demo_ |
 | FINAL FANTASY VII REBIRTH | ✔️ | ✅ |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
@@ -114,6 +115,7 @@ TEMPLATE FOR NEW ENTRIES
 | Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
 | ROMEO IS A DEAD MAN | ✔️ | ✅ |  |
+| ROUTINE | ✔️ | N/A |  |
 | RV There Yet? | ✔️ | N/A |  |
 | Senua’s Saga: Hellblade II | ✔️ | ✅ |  |
 | Severed Steel | ✔️ | N/A |  |
