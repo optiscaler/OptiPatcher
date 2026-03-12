@@ -990,38 +990,10 @@ static void CheckForPatch()
         }
     }
 
-    // High On Life 2
-    else if (CHECK_UE(highonlife2))
+    // High On Life 2 (+ WinGDK), Far Far West (Demo), ROUTINE
+    else if (CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(routine))
     {
-        std::string_view pattern("E8 ? ? ? ? 44 8B ? ? ? ? ? BA EC 11 00 00 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 17);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Far Far West (Demo)
-    else if (CHECK_UE(farfarwest))
-    {
-        std::string_view pattern("44 8B ? ? ? ? ? BA 44 17 00 00 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x0C, 0x01 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // ROUTINE
-    else if (CHECK_UE(routine))
-    {
-        std::string_view pattern("44 8B ? ? ? ? ? BA 74 11 00 00 84 C0 75");
+        std::string_view pattern("44 8B ? ? ? ? ? BA ? ? 00 00 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
 
         if (patchAddress != nullptr)
