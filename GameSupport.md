@@ -124,6 +124,7 @@ TEMPLATE FOR NEW ENTRIES
 | Sifu | ✔️ | N/A |  |
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
 | SILENT HILL f | ✔️ | N/A |  |
+| Solasta II | ✔️ | ✅ |  |
 | South of Midnight | ✔️ | N/A |  |
 | Spirit of the North 2 | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | SpongeBob SquarePants: Titans of the Tide | ✔️ | ✅ |  |
