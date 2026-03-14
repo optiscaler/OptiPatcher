@@ -571,15 +571,14 @@ static void CheckForPatch()
         _patchResult = patchAddressDLSSCheck != nullptr;
     }
 
-    // RoboCop: Unfinished Business, Ready or Not, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two
-    // Sons Remake, Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins,
-    // MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire,
-    // Alien: Rogue Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis,
-    // Spirit of the North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL (+ Demo), Keeper (+WinGDK
-    // PaganIdol exe), Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the
-    // Tide, Echoes of the End: Enhanced Edition, Supraworld, ROMEO IS A DEAD MAN, Solasta II
-    else if (CHECK_UE(robocopunfinishedbusiness) || exeName == "readyornotsteam-win64-shipping.exe" ||
-             exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
+    // RoboCop: Unfinished Business, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two Sons Remake,
+    // Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins, MindsEye, Crisol:
+    // Theater of Idols (+ Demo), Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire, Alien: Rogue
+    // Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis, Spirit of the
+    // North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL (+ Demo), Keeper (+WinGDK PaganIdol exe),
+    // Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Echoes of
+    // the End: Enhanced Edition, Supraworld, ROMEO IS A DEAD MAN, Solasta II
+    else if (CHECK_UE(robocopunfinishedbusiness) || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
              CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06) ||
@@ -987,6 +986,35 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
+        }
+    }
+
+    // Ready or Not
+    else if (exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe")
+    {
+        std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+
+        // For 1.4 update
+        else
+        {
+            std::string_view pattern2("4C 89 B4 24 38 02 00 00 E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 13);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
         }
     }
 
