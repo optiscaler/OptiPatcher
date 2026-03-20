@@ -26,6 +26,7 @@ TEMPLATE FOR NEW ENTRIES
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Bright Memory Infinite | ✔️ | ⛔ | _SL1_ |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |
+| Carmageddon: Rogue Shift | ✔️ | N/A |  |
 | Celestial Empire | ✔️ | ✅ |  |
 | Chernobylite Enhanced Edition | ✔️ | N/A | _DX12 mode recommended, but should work for DX11 too_ |
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |

@@ -577,7 +577,7 @@ static void CheckForPatch()
     // Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis, Spirit of the
     // North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL (+ Demo), Keeper (+WinGDK PaganIdol exe),
     // Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Echoes of
-    // the End: Enhanced Edition, Supraworld, ROMEO IS A DEAD MAN, Solasta II
+    // the End: Enhanced Edition, Supraworld, ROMEO IS A DEAD MAN, Solasta II, Carmageddon: Rogue Shift
     else if (CHECK_UE(robocopunfinishedbusiness) || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
@@ -586,7 +586,7 @@ static void CheckForPatch()
              CHECK_UE(sycamore) || CHECK_UE(sotn2) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(industria_2) ||
              exeName == "reanimal.exe" || CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(stygian) ||
              CHECK_UE(tormentedsouls2) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(thedarken) ||
-             CHECK_UE(supraworld) || CHECK_UE(sevgame) || CHECK_UE(brimstone))
+             CHECK_UE(supraworld) || CHECK_UE(sevgame) || CHECK_UE(brimstone) || CHECK_UE(carma))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
