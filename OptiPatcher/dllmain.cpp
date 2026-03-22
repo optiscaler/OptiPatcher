@@ -1528,6 +1528,72 @@ static void CheckForPatch()
             }
         } while (patchAddress != nullptr);
     }
+
+    // Crimson Desert (Pearl Abyss engine, not Unreal)
+    else if (exeName == "crimsondesert.exe")
+    {
+        // Local Streamline vendor state - force the enum passed into the feature path without touching the real vendor
+        // ID.
+        std::string_view patternLocalVendorState("E8 ? ? ? ? 0F 10 00 0F 11 44 24 38 F2 0F 10 40 10 F2 0F 11 44 24 30 "
+                                                 "8B 45 74 89 47 20 44 0F B6 BD F8 00 00 00 "
+                                                 "EB 16");
+        auto patchAddrLocalVendorState = (void*) scanner::GetAddress(exeModule, patternLocalVendorState, 30);
+
+        if (patchAddrLocalVendorState != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x41, 0xBF, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddrLocalVendorState, &patch);
+        }
+
+        // Support setup result
+        std::string_view patternSupportResult("48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 B0 02 00 00");
+        auto patchAddrSupportResult = (void*) scanner::GetAddress(exeModule, patternSupportResult, 9);
+
+        if (patchAddrSupportResult != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x31, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddrSupportResult, &patch);
+        }
+
+        // DLSS
+        std::string_view patternDLSSSupport("48 8D 95 98 00 00 00 33 C9 FF 15 ? ? ? ? 85 C0 75 ? FF 87 9C 00 00 00 48 "
+                                            "8D 95 98 00 00 00 B9 03 00 00 00");
+        auto patchAddrDLSSSupport = (void*) scanner::GetAddress(exeModule, patternDLSSSupport, 17);
+
+        if (patchAddrDLSSSupport != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90 };
+            patcher::PatchAddress(patchAddrDLSSSupport, &patch);
+        }
+
+        // DLSSG
+        std::string_view patternDLSSGSupport("48 8D 55 A0 B9 E8 03 00 00 0F 10 45 80 0F 11 45 A8 85 C0 75 ? FF 15 ? ? "
+                                             "? ? 83 87 9C 00 00 00 20 E9 ? ? ? ? "
+                                             "FF 15 ? ? ? ? 8B 45 C0 C1 E8 04 33 C9 A8 01 74 ?");
+        auto patchAddrDLSSGSupport = (void*) scanner::GetAddress(exeModule, patternDLSSGSupport, 19);
+
+        if (patchAddrDLSSGSupport != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90 };
+            patcher::PatchAddress(patchAddrDLSSGSupport, &patch);
+        }
+
+        // DLSS Ray Reconstruction 
+        std::string_view patternDLSSRRSupport("48 8D 95 98 00 00 00 B9 E9 03 00 00 FF 15 ? ? ? ? 85 C0 75 ? 83 87 9C "
+                                              "00 00 00 40 E9 ? ? ? ? C7 45 80 97 40 "
+                                              "71 66");
+        auto patchAddrDLSSRRSupport = (void*) scanner::GetAddress(exeModule, patternDLSSRRSupport, 20);
+
+        if (patchAddrDLSSRRSupport != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90 };
+            patcher::PatchAddress(patchAddrDLSSRRSupport, &patch);
+        }
+
+        _patchResult = patchAddrLocalVendorState != nullptr && patchAddrSupportResult != nullptr &&
+                       patchAddrDLSSSupport != nullptr && patchAddrDLSSGSupport != nullptr &&
+                       patchAddrDLSSRRSupport != nullptr;
+    }
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
