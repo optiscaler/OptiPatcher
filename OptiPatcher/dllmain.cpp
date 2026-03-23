@@ -1534,19 +1534,20 @@ static void CheckForPatch()
     {
         // Local Streamline vendor state - force the enum passed into the feature path without touching the real vendor
         // ID.
-        std::string_view patternLocalVendorState("E8 ? ? ? ? 0F 10 00 0F 11 44 24 38 F2 0F 10 40 10 F2 0F 11 44 24 30 "
-                                                 "8B 45 74 89 47 20 44 0F B6 BD F8 00 00 00 "
-                                                 "EB 16");
-        auto patchAddrLocalVendorState = (void*) scanner::GetAddress(exeModule, patternLocalVendorState, 30);
+        std::string_view patternLocalVendorState(
+            "4D 85 F6 75 ? 4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? "
+            "90 48 8B 4C 24 40");
+        auto patchAddrLocalVendorState = (void*) scanner::GetAddress(exeModule, patternLocalVendorState, 12);
 
         if (patchAddrLocalVendorState != nullptr)
         {
-            std::vector<BYTE> patch = { 0x41, 0xBF, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
+            std::vector<BYTE> patch = { 0xBA, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
             patcher::PatchAddress(patchAddrLocalVendorState, &patch);
         }
 
         // Support setup result
-        std::string_view patternSupportResult("48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 B0 02 00 00");
+        std::string_view patternSupportResult(
+            "48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 90 02 00 00 48 C7 85 A0 02 00 00 00 00 00 00");
         auto patchAddrSupportResult = (void*) scanner::GetAddress(exeModule, patternSupportResult, 9);
 
         if (patchAddrSupportResult != nullptr)
@@ -1578,7 +1579,7 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddrDLSSGSupport, &patch);
         }
 
-        // DLSS Ray Reconstruction 
+        // DLSS Ray Reconstruction
         std::string_view patternDLSSRRSupport("48 8D 95 98 00 00 00 B9 E9 03 00 00 FF 15 ? ? ? ? 85 C0 75 ? 83 87 9C "
                                               "00 00 00 40 E9 ? ? ? ? C7 45 80 97 40 "
                                               "71 66");
