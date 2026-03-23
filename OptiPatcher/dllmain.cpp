@@ -1534,26 +1534,56 @@ static void CheckForPatch()
     {
         // Local Streamline vendor state - force the enum passed into the feature path without touching the real vendor
         // ID.
-        std::string_view patternLocalVendorState(
-            "4D 85 F6 75 ? 4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? "
-            "90 48 8B 4C 24 40");
-        auto patchAddrLocalVendorState = (void*) scanner::GetAddress(exeModule, patternLocalVendorState, 12);
+        std::string_view patternLocalVendorState("E8 ? ? ? ? 0F 10 00 0F 11 44 24 38 F2 0F 10 40 10 F2 0F 11 44 24 30 "
+                                                 "8B 45 74 89 47 20 44 0F B6 BD F8 00 00 00 "
+                                                 "EB 16");
+        auto patchAddrLocalVendorState = (void*) scanner::GetAddress(exeModule, patternLocalVendorState, 30);
 
         if (patchAddrLocalVendorState != nullptr)
         {
-            std::vector<BYTE> patch = { 0xBA, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
+            std::vector<BYTE> patch = { 0x41, 0xBF, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
             patcher::PatchAddress(patchAddrLocalVendorState, &patch);
         }
 
+        // Xbox Store version
+        else
+        {
+            std::string_view patternLocalVendorState2(
+                "4D 85 F6 75 ? 4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? "
+                "90 48 8B 4C 24 40");
+            auto patchAddrLocalVendorState2 = (void*) scanner::GetAddress(exeModule, patternLocalVendorState2, 12);
+
+            if (patchAddrLocalVendorState2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xBA, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddrLocalVendorState2, &patch);
+                patchAddrLocalVendorState = patchAddrLocalVendorState2;
+            }
+        }
+
         // Support setup result
-        std::string_view patternSupportResult(
-            "48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 90 02 00 00 48 C7 85 A0 02 00 00 00 00 00 00");
+        std::string_view patternSupportResult("48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 B0 02 00 00");
         auto patchAddrSupportResult = (void*) scanner::GetAddress(exeModule, patternSupportResult, 9);
 
         if (patchAddrSupportResult != nullptr)
         {
             std::vector<BYTE> patch = { 0x31, 0xC0, 0x90 };
             patcher::PatchAddress(patchAddrSupportResult, &patch);
+        }
+
+        // Xbox Store version
+        else
+        {
+            std::string_view patternSupportResult2(
+                "48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 90 02 00 00 48 C7 85 A0 02 00 00 00 00 00 00");
+            auto patchAddrSupportResult2 = (void*) scanner::GetAddress(exeModule, patternSupportResult2, 9);
+
+            if (patchAddrSupportResult2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x31, 0xC0, 0x90 };
+                patcher::PatchAddress(patchAddrSupportResult2, &patch);
+                patchAddrSupportResult = patchAddrSupportResult2;
+            }
         }
 
         // DLSS
