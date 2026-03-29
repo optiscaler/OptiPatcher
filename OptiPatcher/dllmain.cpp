@@ -102,8 +102,8 @@ static void CheckForPatch()
         }
     }
 
-    // The Talos Principle 2
-    else if (CHECK_UE(talos2))
+    // The Talos Principle 2, Bellwright
+    else if (CHECK_UE(talos2) || CHECK_UE(bellwrightgame))
     {
         std::string_view pattern("42 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
@@ -1397,6 +1397,38 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+    }
+
+    // DLSSG, Bellwright
+    else if (CHECK_UE(bellwrightgame))
+    {
+        std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        bool patched = false;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+                patched = true;
+            }
+        } while (patchAddress != nullptr);
+
+        std::string_view pattern2(
+            "8B 02 83 F8 01 0F 84 ? ? ? ? 83 F8 02 75 0F 48 8B 09 48 8B 89 E0 03 00 00 E9 ? ? ? ? B0 01 C3");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+
+        _patchResult = patched || patchAddress2 != nullptr;
     }
 
     // DLSSG, METAL GEAR SOLID Δ: SNAKE EATER

@@ -22,6 +22,7 @@ TEMPLATE FOR NEW ENTRIES
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
 | Banishers: Ghosts of New Eden | ✔️ | ✅ |  |
+| Bellwright | ✔️ | ✅ |  |
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
 | Bright Memory Infinite | ✔️ | ⛔ | _SL1_ |
