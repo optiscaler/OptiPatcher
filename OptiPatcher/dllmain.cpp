@@ -1529,101 +1529,54 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // Crimson Desert (Pearl Abyss engine, not Unreal)
+    // Crimson Desert
     else if (exeName == "crimsondesert.exe")
     {
-        // Local Streamline vendor state - force the enum passed into the feature path without touching the real vendor
-        // ID.
-        std::string_view patternLocalVendorState("E8 ? ? ? ? 0F 10 00 0F 11 44 24 38 F2 0F 10 40 10 F2 0F 11 44 24 30 "
-                                                 "8B 45 74 89 47 20 44 0F B6 BD F8 00 00 00 "
-                                                 "EB 16");
-        auto patchAddrLocalVendorState = (void*) scanner::GetAddress(exeModule, patternLocalVendorState, 30);
+        // Emulate only the tiny post-helper state for the DLSS path.
+        std::string patternCodeCave;
 
-        if (patchAddrLocalVendorState != nullptr)
+        for (int i = 0; i < 512; i++)
         {
-            std::vector<BYTE> patch = { 0x41, 0xBF, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddrLocalVendorState, &patch);
+            if (i != 0)
+                patternCodeCave += ' ';
+
+            patternCodeCave += "CC";
         }
 
-        // Xbox Store version
-        else
-        {
-            std::string_view patternLocalVendorState2(
-                "4D 85 F6 75 ? 4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? "
-                "90 48 8B 4C 24 40");
-            auto patchAddrLocalVendorState2 = (void*) scanner::GetAddress(exeModule, patternLocalVendorState2, 12);
+        auto patchAddrCodeCave = (void*) scanner::GetAddress(exeModule, patternCodeCave, 0);
 
-            if (patchAddrLocalVendorState2 != nullptr)
-            {
-                std::vector<BYTE> patch = { 0xBA, 0x01, 0x00, 0x00, 0x00, 0x90, 0x90 };
-                patcher::PatchAddress(patchAddrLocalVendorState2, &patch);
-                patchAddrLocalVendorState = patchAddrLocalVendorState2;
-            }
+        std::string_view patternLocalVendorStateCall(
+            "4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? 90 48 8B 4C 24 40");
+        auto patchAddrLocalVendorStateCall = (void*) scanner::GetAddress(exeModule, patternLocalVendorStateCall, 17);
+
+        if (patchAddrCodeCave != nullptr && patchAddrLocalVendorStateCall != nullptr)
+        {
+            std::vector<BYTE> cavePatch = {
+                0xC6, 0x41, 0x10, 0x01, 0x48, 0x8B, 0x41, 0x08, 0xC6, 0x40, 0x59, 0x01, 0xC3
+            };
+            patcher::PatchAddress(patchAddrCodeCave, &cavePatch);
+
+            intptr_t relativeCall = (intptr_t) patchAddrCodeCave - ((intptr_t) patchAddrLocalVendorStateCall + 5);
+            std::vector<BYTE> callPatch = { 0xE8, (BYTE) (relativeCall & 0xFF), (BYTE) ((relativeCall >> 8) & 0xFF),
+                                            (BYTE) ((relativeCall >> 16) & 0xFF),
+                                            (BYTE) ((relativeCall >> 24) & 0xFF) };
+            patcher::PatchAddress(patchAddrLocalVendorStateCall, &callPatch);
         }
 
-        // Support setup result
-        std::string_view patternSupportResult("48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 B0 02 00 00");
-        auto patchAddrSupportResult = (void*) scanner::GetAddress(exeModule, patternSupportResult, 9);
+        // Vendor-class gate bypass 
+        std::string_view patternStreamlineVendorGate("45 38 6E 1C 0F 84 ? ? ? ? 80 3D ? ? ? ? 01 75 78 41 C6 46 1C 01");
+        auto patchAddrStreamlineVendorGate = (void*) scanner::GetAddress(exeModule, patternStreamlineVendorGate, 0);
 
-        if (patchAddrSupportResult != nullptr)
+        if (patchAddrStreamlineVendorGate != nullptr)
         {
-            std::vector<BYTE> patch = { 0x31, 0xC0, 0x90 };
-            patcher::PatchAddress(patchAddrSupportResult, &patch);
+            std::vector<BYTE> patch6 = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress((void*) ((uintptr_t) patchAddrStreamlineVendorGate + 4), &patch6);
+            std::vector<BYTE> patch2 = { 0x90, 0x90 };
+            patcher::PatchAddress((void*) ((uintptr_t) patchAddrStreamlineVendorGate + 17), &patch2);
         }
 
-        // Xbox Store version
-        else
-        {
-            std::string_view patternSupportResult2(
-                "48 3B C8 0F 93 C0 0F B6 C0 83 F0 01 89 85 90 02 00 00 48 C7 85 A0 02 00 00 00 00 00 00");
-            auto patchAddrSupportResult2 = (void*) scanner::GetAddress(exeModule, patternSupportResult2, 9);
-
-            if (patchAddrSupportResult2 != nullptr)
-            {
-                std::vector<BYTE> patch = { 0x31, 0xC0, 0x90 };
-                patcher::PatchAddress(patchAddrSupportResult2, &patch);
-                patchAddrSupportResult = patchAddrSupportResult2;
-            }
-        }
-
-        // DLSS
-        std::string_view patternDLSSSupport("48 8D 95 98 00 00 00 33 C9 FF 15 ? ? ? ? 85 C0 75 ? FF 87 9C 00 00 00 48 "
-                                            "8D 95 98 00 00 00 B9 03 00 00 00");
-        auto patchAddrDLSSSupport = (void*) scanner::GetAddress(exeModule, patternDLSSSupport, 17);
-
-        if (patchAddrDLSSSupport != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x90, 0x90 };
-            patcher::PatchAddress(patchAddrDLSSSupport, &patch);
-        }
-
-        // DLSSG
-        std::string_view patternDLSSGSupport("48 8D 55 A0 B9 E8 03 00 00 0F 10 45 80 0F 11 45 A8 85 C0 75 ? FF 15 ? ? "
-                                             "? ? 83 87 9C 00 00 00 20 E9 ? ? ? ? "
-                                             "FF 15 ? ? ? ? 8B 45 C0 C1 E8 04 33 C9 A8 01 74 ?");
-        auto patchAddrDLSSGSupport = (void*) scanner::GetAddress(exeModule, patternDLSSGSupport, 19);
-
-        if (patchAddrDLSSGSupport != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x90, 0x90 };
-            patcher::PatchAddress(patchAddrDLSSGSupport, &patch);
-        }
-
-        // DLSS Ray Reconstruction
-        std::string_view patternDLSSRRSupport("48 8D 95 98 00 00 00 B9 E9 03 00 00 FF 15 ? ? ? ? 85 C0 75 ? 83 87 9C "
-                                              "00 00 00 40 E9 ? ? ? ? C7 45 80 97 40 "
-                                              "71 66");
-        auto patchAddrDLSSRRSupport = (void*) scanner::GetAddress(exeModule, patternDLSSRRSupport, 20);
-
-        if (patchAddrDLSSRRSupport != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x90, 0x90 };
-            patcher::PatchAddress(patchAddrDLSSRRSupport, &patch);
-        }
-
-        _patchResult = patchAddrLocalVendorState != nullptr && patchAddrSupportResult != nullptr &&
-                       patchAddrDLSSSupport != nullptr && patchAddrDLSSGSupport != nullptr &&
-                       patchAddrDLSSRRSupport != nullptr;
+        _patchResult = patchAddrCodeCave != nullptr && patchAddrLocalVendorStateCall != nullptr &&
+                       patchAddrStreamlineVendorGate != nullptr;
     }
 }
 
