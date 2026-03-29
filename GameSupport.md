@@ -66,6 +66,7 @@ TEMPLATE FOR NEW ENTRIES
 | Grand Theft Auto III – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: San Andreas – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: Vice City – The Definitive Edition | ✔️ | N/A |  |
+| Half Sword | ✔️ | ✅ |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
 | Hell Pie | ✔️ | N/A |  |
 | Hi-Fi RUSH | ✔️ | N/A | _Latest update replaced Denuvo with VMProtect which blocks Patcher_ |
