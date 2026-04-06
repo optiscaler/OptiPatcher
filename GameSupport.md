@@ -74,6 +74,7 @@ TEMPLATE FOR NEW ENTRIES
 | High On Life | ✔️ | N/A |  |
 | High On Life 2 | ✔️ | ✅ |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
+| I Am Jesus Christ | ✔️ | ✅ |  |
 | Icarus | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
