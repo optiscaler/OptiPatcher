@@ -1564,55 +1564,56 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // Crimson Desert
-    else if (exeName == "crimsondesert.exe")
-    {
-        // Emulate only the tiny post-helper state for the DLSS path.
-        std::string patternCodeCave;
+    //// Crimson Desert
+    // else if (exeName == "crimsondesert.exe")
+    //{
+    //     // Emulate only the tiny post-helper state for the DLSS path.
+    //     std::string patternCodeCave;
 
-        for (int i = 0; i < 512; i++)
-        {
-            if (i != 0)
-                patternCodeCave += ' ';
+    //    for (int i = 0; i < 512; i++)
+    //    {
+    //        if (i != 0)
+    //            patternCodeCave += ' ';
 
-            patternCodeCave += "CC";
-        }
+    //        patternCodeCave += "CC";
+    //    }
 
-        auto patchAddrCodeCave = (void*) scanner::GetAddress(exeModule, patternCodeCave, 0);
+    //    auto patchAddrCodeCave = (void*) scanner::GetAddress(exeModule, patternCodeCave, 0);
 
-        std::string_view patternLocalVendorStateCall(
-            "4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? 90 48 8B 4C 24 40");
-        auto patchAddrLocalVendorStateCall = (void*) scanner::GetAddress(exeModule, patternLocalVendorStateCall, 17);
+    //    std::string_view patternLocalVendorStateCall(
+    //        "4C 8B BD 20 09 00 00 0F B6 95 30 09 00 00 49 8B CF E8 ? ? ? ? 90 48 8B 4C 24 40");
+    //    auto patchAddrLocalVendorStateCall = (void*) scanner::GetAddress(exeModule, patternLocalVendorStateCall, 17);
 
-        if (patchAddrCodeCave != nullptr && patchAddrLocalVendorStateCall != nullptr)
-        {
-            std::vector<BYTE> cavePatch = {
-                0xC6, 0x41, 0x10, 0x01, 0x48, 0x8B, 0x41, 0x08, 0xC6, 0x40, 0x59, 0x01, 0xC3
-            };
-            patcher::PatchAddress(patchAddrCodeCave, &cavePatch);
+    //    if (patchAddrCodeCave != nullptr && patchAddrLocalVendorStateCall != nullptr)
+    //    {
+    //        std::vector<BYTE> cavePatch = {
+    //            0xC6, 0x41, 0x10, 0x01, 0x48, 0x8B, 0x41, 0x08, 0xC6, 0x40, 0x59, 0x01, 0xC3
+    //        };
+    //        patcher::PatchAddress(patchAddrCodeCave, &cavePatch);
 
-            intptr_t relativeCall = (intptr_t) patchAddrCodeCave - ((intptr_t) patchAddrLocalVendorStateCall + 5);
-            std::vector<BYTE> callPatch = { 0xE8, (BYTE) (relativeCall & 0xFF), (BYTE) ((relativeCall >> 8) & 0xFF),
-                                            (BYTE) ((relativeCall >> 16) & 0xFF),
-                                            (BYTE) ((relativeCall >> 24) & 0xFF) };
-            patcher::PatchAddress(patchAddrLocalVendorStateCall, &callPatch);
-        }
+    //        intptr_t relativeCall = (intptr_t) patchAddrCodeCave - ((intptr_t) patchAddrLocalVendorStateCall + 5);
+    //        std::vector<BYTE> callPatch = { 0xE8, (BYTE) (relativeCall & 0xFF), (BYTE) ((relativeCall >> 8) & 0xFF),
+    //                                        (BYTE) ((relativeCall >> 16) & 0xFF),
+    //                                        (BYTE) ((relativeCall >> 24) & 0xFF) };
+    //        patcher::PatchAddress(patchAddrLocalVendorStateCall, &callPatch);
+    //    }
 
-        // Vendor-class gate bypass
-        std::string_view patternStreamlineVendorGate("45 38 6E 1C 0F 84 ? ? ? ? 80 3D ? ? ? ? 01 75 78 41 C6 46 1C 01");
-        auto patchAddrStreamlineVendorGate = (void*) scanner::GetAddress(exeModule, patternStreamlineVendorGate, 0);
+    //    // Vendor-class gate bypass
+    //    std::string_view patternStreamlineVendorGate("45 38 6E 1C 0F 84 ? ? ? ? 80 3D ? ? ? ? 01 75 78 41 C6 46 1C
+    //    01"); auto patchAddrStreamlineVendorGate = (void*) scanner::GetAddress(exeModule, patternStreamlineVendorGate,
+    //    0);
 
-        if (patchAddrStreamlineVendorGate != nullptr)
-        {
-            std::vector<BYTE> patch6 = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress((void*) ((uintptr_t) patchAddrStreamlineVendorGate + 4), &patch6);
-            std::vector<BYTE> patch2 = { 0x90, 0x90 };
-            patcher::PatchAddress((void*) ((uintptr_t) patchAddrStreamlineVendorGate + 17), &patch2);
-        }
+    //    if (patchAddrStreamlineVendorGate != nullptr)
+    //    {
+    //        std::vector<BYTE> patch6 = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+    //        patcher::PatchAddress((void*) ((uintptr_t) patchAddrStreamlineVendorGate + 4), &patch6);
+    //        std::vector<BYTE> patch2 = { 0x90, 0x90 };
+    //        patcher::PatchAddress((void*) ((uintptr_t) patchAddrStreamlineVendorGate + 17), &patch2);
+    //    }
 
-        _patchResult = patchAddrCodeCave != nullptr && patchAddrLocalVendorStateCall != nullptr &&
-                       patchAddrStreamlineVendorGate != nullptr;
-    }
+    //    _patchResult = patchAddrCodeCave != nullptr && patchAddrLocalVendorStateCall != nullptr &&
+    //                   patchAddrStreamlineVendorGate != nullptr;
+    //}
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
