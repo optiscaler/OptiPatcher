@@ -573,22 +573,20 @@ static void CheckForPatch()
 
     // RoboCop: Unfinished Business, NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two Sons Remake,
     // Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins, MindsEye, Crisol:
-    // Theater of Idols (+ Demo), Frostpunk 2, Enotria: The Last Song, VOID/BREAKER, Celestial Empire, Alien: Rogue
-    // Incursion Evolved Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis, Spirit of the
-    // North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL (+ Demo), Keeper (+WinGDK PaganIdol exe),
-    // Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Echoes of
-    // the End: Enhanced Edition, Supraworld, ROMEO IS A DEAD MAN, Solasta II, Carmageddon: Rogue Shift, Half Sword, I
-    // Am Jesus Christ
+    // Theater of Idols (+ Demo), Frostpunk 2, Enotria: The Last Song, Celestial Empire, Alien: Rogue Incursion Evolved
+    // Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis, Spirit of the North 2, Tokyo Xtreme
+    // Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL (+ Demo), Keeper (+WinGDK PaganIdol exe), Stygian: Outer Gods,
+    // Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Echoes of the End: Enhanced
+    // Edition, Supraworld, ROMEO IS A DEAD MAN, Solasta II, Carmageddon: Rogue Shift, Half Sword, I Am Jesus Christ
     else if (CHECK_UE(robocopunfinishedbusiness) || CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) ||
              CHECK_UE(brothers) || CHECK_UE(otherskin) || CHECK_UE(thesinkingcityremastered) ||
              CHECK_UE(chernobylite2) || CHECK_UE(commandos) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) ||
-             CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(voidbreaker) || CHECK_UE(china_builder_06) ||
-             CHECK_UE(midnight) || CHECK_UE(manorlords) || CHECK_UE(detnoir) || CHECK_UE(minotaur) ||
-             CHECK_UE(sycamore) || CHECK_UE(sotn2) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(industria_2) ||
-             exeName == "reanimal.exe" || CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(stygian) ||
-             CHECK_UE(tormentedsouls2) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(thedarken) ||
-             CHECK_UE(supraworld) || CHECK_UE(sevgame) || CHECK_UE(brimstone) || CHECK_UE(carma) ||
-             CHECK_UE(halfswordue5) || CHECK_UE(imjch))
+             CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) ||
+             CHECK_UE(manorlords) || CHECK_UE(detnoir) || CHECK_UE(minotaur) || CHECK_UE(sycamore) || CHECK_UE(sotn2) ||
+             CHECK_UE(tokyoxtremeracer) || CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(keeper) ||
+             CHECK_UE(paganidol) || CHECK_UE(stygian) || CHECK_UE(tormentedsouls2) || exeName == "acr.exe" ||
+             CHECK_UE(ghost) || CHECK_UE(thedarken) || CHECK_UE(supraworld) || CHECK_UE(sevgame) ||
+             CHECK_UE(brimstone) || CHECK_UE(carma) || CHECK_UE(halfswordue5) || CHECK_UE(imjch))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -1020,8 +1018,9 @@ static void CheckForPatch()
         }
     }
 
-    // High On Life 2 (+ WinGDK), Far Far West (Demo), ROUTINE
-    else if (CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(routine))
+    // High On Life 2 (+ WinGDK), Far Far West (Demo), ROUTINE, Samson, VOID/BREAKER
+    else if (CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(routine) || CHECK_UE(cjsteam) ||
+             CHECK_UE(voidbreaker))
     {
         std::string_view pattern("44 8B ? ? ? ? ? BA ? ? 00 00 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
@@ -1149,10 +1148,11 @@ static void CheckForPatch()
     //
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker,
     // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (+ Demo), ROMEO IS A DEAD
-    // MAN, High On Life 2, Far Far West (Demo), Solasta II, I Am Jesus Christ
+    // MAN, High On Life 2, Far Far West (Demo), Solasta II, I Am Jesus Christ, Samson
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
              CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame) ||
-             CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(brimstone) || CHECK_UE(imjch))
+             CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(brimstone) || CHECK_UE(imjch) ||
+             CHECK_UE(cjsteam))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

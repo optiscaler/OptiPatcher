@@ -122,6 +122,7 @@ TEMPLATE FOR NEW ENTRIES
 | ROMEO IS A DEAD MAN | ✔️ | ✅ |  |
 | ROUTINE | ✔️ | N/A |  |
 | RV There Yet? | ✔️ | N/A |  |
+| Samson | ✔️ | ✅ |  |
 | Senua’s Saga: Hellblade II | ✔️ | ✅ |  |
 | Severed Steel | ✔️ | N/A |  |
 | Shadow Warrior 3: Definitive Edition | ✔️ | N/A | _Add Fakenvapi if framerate locked to very low numbers (might force Reflex on unsupported GPUs)_ |
