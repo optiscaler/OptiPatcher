@@ -131,11 +131,13 @@ TEMPLATE FOR NEW ENTRIES
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
 | SILENT HILL f | ✔️ | N/A |  |
 | Solasta II | ✔️ | ✅ |  |
+| Soulstice | ✔️ | N/A |  |
 | South of Midnight | ✔️ | N/A |  |
 | Spirit of the North 2 | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | SpongeBob SquarePants: Titans of the Tide | ✔️ | ✅ |  |
 | SPRAWL | ✔️ | N/A |  |
 | S.T.A.L.K.E.R. 2: Heart of Chornobyl | ✔️ | ✅ |  |
+| Star Trek: Voyager - Across the Unknown | ✔️ | ✅ |  |
 | STAR WARS Jedi: Survivor | ✔️ | ✅ |  |
 | Stellar Blade | ✔️ | ✅ |  |
 | Still Wakes the Deep | ✔️ | ✅ |  |
