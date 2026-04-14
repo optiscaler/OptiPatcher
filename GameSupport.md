@@ -144,6 +144,7 @@ TEMPLATE FOR NEW ENTRIES
 | Stygian: Outer Gods | ✔️ | ✅ |  |
 | Styx: Blades of Greed | ✔️ | ✅ | _Demo should also be supported_ |
 | Suicide Squad: Kill the Justice League | ✔️ | N/A | _Useable only in **Offline mode** with **EAC disabled**_ |
+| Super Meat Boy 3D | ✔️ | ✅ | _Check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/Super-Meat-Boy-3D) for more info_ |
 | Supraland | ✔️ | N/A |  |
 | Supraland Six Inches Under | ✔️ | N/A | _Requires using `Testing` beta branch on Steam due to a slider game bug where DLSS isn't selectable_ |
 | Supraworld | ✔️ | ✅ |  |
