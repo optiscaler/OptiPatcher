@@ -179,6 +179,7 @@ TEMPLATE FOR NEW ENTRIES
 | Voidtrain | ✔️ | N/A |  |
 | Way of the Hunter | ✔️ | N/A | _Requires a restart after switching to DLSS inputs if not working_ |
 | Witchfire | ✔️ | ✅ |  |
+| Windrose | ✔️ | ✅ |  |
 | WUCHANG: Fallen Feathers | ✔️ | ✅ |  |
 
 ---

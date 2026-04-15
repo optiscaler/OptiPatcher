@@ -922,8 +922,8 @@ static void CheckForPatch()
         }
     }
 
-    // RV There Yet?
-    else if (CHECK_UE(ride))
+    // RV There Yet?, Windrose
+    else if (CHECK_UE(ride) || CHECK_UE(windrose))
     {
         std::string_view pattern("84 C0 75 05 49 8B F7 EB 02 33 F6 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
@@ -1230,9 +1230,9 @@ static void CheckForPatch()
 
     // DLSSG
     //
-    // Witchfire, Ghostrunner 2, Deliver Us Mars, Layers of Fear (2023), The Thaumaturge, The Midnight Walk
+    // Witchfire, Ghostrunner 2, Deliver Us Mars, Layers of Fear (2023), The Thaumaturge, The Midnight Walk, Windrose
     else if (CHECK_UE(witchfire) || CHECK_UE(ghostrunner2) || CHECK_UE(deliverusmars) || CHECK_UE(layersoffear) ||
-             CHECK_UE(thethaumaturge) || CHECK_UE(themidnightwalk))
+             CHECK_UE(thethaumaturge) || CHECK_UE(themidnightwalk) || CHECK_UE(windrose))
     {
         std::string_view pattern(
             "80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 75");
