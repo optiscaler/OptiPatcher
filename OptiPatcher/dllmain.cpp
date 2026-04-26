@@ -437,6 +437,21 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // Pre-1.7 update
+        else
+        {
+            std::string_view pattern2("49 8B C6 8B 34 30 89 75 90 E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 14);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
+        }
     }
 
     // CODE VEIN II
@@ -698,10 +713,9 @@ static void CheckForPatch()
         }
     }
 
-    // Lords of the Fallen 2023, TEKKEN 8, Layers of Fear (2023), The Thaumaturge, Palworld, The Casting of Frank Stone,
-    // WUCHANG: Fallen Feathers
+    // Lords of the Fallen 2023, TEKKEN 8, Layers of Fear (2023), The Thaumaturge, Palworld, The Casting of Frank Stone
     else if (CHECK_UE(lotf2) || CHECK_UE(polaris) || CHECK_UE(layersoffear) || CHECK_UE(thethaumaturge) ||
-             CHECK_UE(palworld) || CHECK_UE(castingfrankstone) || CHECK_UE(project_plague))
+             CHECK_UE(palworld) || CHECK_UE(castingfrankstone))
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -711,6 +725,37 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
+        }
+    }
+
+    // WUCHANG: Fallen Feathers
+    else if (CHECK_UE(project_plague) || exeName == "project_plague-deck-shipping.exe")
+    {
+        std::string_view pattern(
+            "75 0C E8 ? ? ? ? 84 C0 49 8B C7 74 03 49 8B C6 8B 34 30 89 75 80 E8 ? ? ? ? 84 C0 75");
+
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 28);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+
+        // For Update 1.7
+        else
+        {
+            std::string_view pattern2("74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 14);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
         }
     }
 
@@ -960,6 +1005,21 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
+        }
+
+        // Pre-1.5 update
+        else
+        {
+            std::string_view pattern2("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 19);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
         }
     }
 
@@ -1509,6 +1569,24 @@ static void CheckForPatch()
                 start = (uintptr_t) patchAddress;
             }
         } while (patchAddress != nullptr);
+
+        // Pre-1.7 update
+        if (patchAddress == nullptr)
+        {
+            std::string_view pattern2("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+            uintptr_t start = 0;
+            void* patchAddress2 = nullptr;
+            do
+            {
+                patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0, start);
+                if (patchAddress2 != nullptr)
+                {
+                    std::vector<BYTE> patch = { 0xEB };
+                    patcher::PatchAddress(patchAddress2, &patch);
+                    start = (uintptr_t) patchAddress2;
+                }
+            } while (patchAddress2 != nullptr);
+        }
     }
 
     // DLSSG, Clair Obscur: Expedition 33 (+ GOG)
