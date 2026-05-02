@@ -53,7 +53,7 @@ TEMPLATE FOR NEW ENTRIES
 | EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
 | F1 Manager 2024 | ✔️ | N/A |  |
-| Far Far West | ✔️ | ✅ | _Demo_ |
+| Far Far West | ✔️ | ✅ |  |
 | FINAL FANTASY VII REBIRTH | ✔️ | ✅ |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
@@ -78,7 +78,7 @@ TEMPLATE FOR NEW ENTRIES
 | Icarus | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
-| INDUSTRIA 2 Demo | ✔️ | ✅ |  |
+| INDUSTRIA 2 | ✔️ | ✅ |  |
 | Jusant | ✔️ | ✅ |  |
 | Keeper | ✔️ | ✅ | _WinGDK exe supported also_ |
 | Kena: Bridge of Spirits | ✔️ | N/A |  |

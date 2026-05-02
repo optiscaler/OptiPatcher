@@ -591,7 +591,7 @@ static void CheckForPatch()
     // Otherskin, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Commandos: Origins, MindsEye, Crisol:
     // Theater of Idols (+ Demo), Frostpunk 2, Enotria: The Last Song, Celestial Empire, Alien: Rogue Incursion Evolved
     // Edition, Manor Lords, Nobody Wants to Die, Valor Mortis playtest, Fort Solis, Spirit of the North 2, Tokyo Xtreme
-    // Racer/Shutokou Battle, INDUSTRIA 2 Demo, REANIMAL (+ Demo), Keeper (+WinGDK PaganIdol exe), Stygian: Outer Gods,
+    // Racer/Shutokou Battle, INDUSTRIA 2, REANIMAL (+ Demo), Keeper (+WinGDK PaganIdol exe), Stygian: Outer Gods,
     // Tormented Souls 2, Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Echoes of the End: Enhanced
     // Edition, Supraworld, Solasta II, Carmageddon: Rogue Shift, Half Sword, I Am Jesus Christ, Star Trek: Voyager -
     // Across the Unknown
@@ -1108,7 +1108,7 @@ static void CheckForPatch()
         }
     }
 
-    // High On Life 2 (+ WinGDK), Far Far West (Demo), ROUTINE, Samson, VOID/BREAKER
+    // High On Life 2 (+ WinGDK), Far Far West, ROUTINE, Samson, VOID/BREAKER
     else if (CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(routine) || CHECK_UE(cjsteam) ||
              CHECK_UE(voidbreaker))
     {
@@ -1199,7 +1199,7 @@ static void CheckForPatch()
     // New Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Senua’s Saga: Hellblade II,
     // Celestial Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum,
-    // Fort Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2 Demo, REANIMAL (+ Demo), The Casting of
+    // Fort Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2, REANIMAL (+ Demo), The Casting of
     // Frank Stone, Echoes of the End: Enhanced Edition, Palworld, Quarantine Zone: The Last Check, Half Sword
     if (CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) || CHECK_UE(talos1) ||
         CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(tq2) ||
@@ -1238,7 +1238,7 @@ static void CheckForPatch()
     //
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker,
     // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (+ Demo), ROMEO IS A DEAD
-    // MAN, High On Life 2, Far Far West (Demo), Solasta II, I Am Jesus Christ, Samson, Star Trek: Voyager - Across the
+    // MAN, High On Life 2, Far Far West, Solasta II, I Am Jesus Christ, Samson, Star Trek: Voyager - Across the
     // Unknown, Super Meat Boy 3D
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
              CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame) ||
