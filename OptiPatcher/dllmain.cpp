@@ -1123,6 +1123,57 @@ static void CheckForPatch()
         }
     }
 
+    // InZOI
+    else if (CHECK_UE(inzoi))
+    {
+        // To prevent it disabling features on other vendors, mainly needed for Streamline/DLSS to work
+        std::string_view pattern("48 81 EC ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 33 C9");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xC3 }; // return
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // Unlock all upscalers in the game options
+        std::string_view pattern2(
+            "48 89 5C 24 ? 55 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B D9 48 8D 15 ? ? ? ? 48 8D 4D ? 41 B0");
+        start = 0;
+        patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern2, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 }; // return true
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // Regular DLSS check
+        std::string_view pattern3("E8 ? ? ? ? 84 C0 75 ? C6 47 ? ? E9");
+        start = 0;
+        patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern3, 7, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+                _patchResult = true;
+            }
+        } while (patchAddress != nullptr);
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1200,7 +1251,7 @@ static void CheckForPatch()
     // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Senua’s Saga: Hellblade II,
     // Celestial Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Valor Mortis playtest, Immortals of Aveum,
     // Fort Solis, Postal 4: No Regerts, Spirit of the North 2, INDUSTRIA 2, REANIMAL (+ Demo), The Casting of
-    // Frank Stone, Echoes of the End: Enhanced Edition, Palworld, Quarantine Zone: The Last Check, Half Sword
+    // Frank Stone, Echoes of the End: Enhanced Edition, Palworld, Quarantine Zone: The Last Check, Half Sword, InZOI
     if (CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) || CHECK_UE(talos1) ||
         CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(tq2) ||
         CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
@@ -1214,7 +1265,7 @@ static void CheckForPatch()
         CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) || CHECK_UE(bates) ||
         CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) || CHECK_UE(postal4) ||
         CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(castingfrankstone) ||
-        CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim) || CHECK_UE(halfswordue5))
+        CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim) || CHECK_UE(halfswordue5) || CHECK_UE(inzoi))
 
     // 10 lines of games per pattern should be enough before it gets messy, keep adding to the new section below
 
