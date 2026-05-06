@@ -41,6 +41,7 @@ TEMPLATE FOR NEW ENTRIES
 | Daemon X Machina: Titanic Scion | ✔️ | ✅ | _SL checks patched, but DLSSG is hidden atm, requires manual activation. Check [special notes](#special-notes) <br> To make AL2/XeLL work properly, might require **Reflex - Force Enable** option through Fakenvapi_ |
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deadzone Rogue | ✔️ | ✅ | _Steam exe_ |
+| Dead as Disco | ✔️ | ✅ | _Steam exe_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | Deliver Us Mars | ✔️ | ✅ |  |
 | Deliver Us The Moon | ✔️ | N/A |  |
@@ -79,6 +80,7 @@ TEMPLATE FOR NEW ENTRIES
 | Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
 | INDUSTRIA 2 | ✔️ | ✅ |  |
+| InZOI | ✔️ | ✅ |  |
 | Jusant | ✔️ | ✅ |  |
 | Keeper | ✔️ | ✅ | _WinGDK exe supported also_ |
 | Kena: Bridge of Spirits | ✔️ | N/A |  |
