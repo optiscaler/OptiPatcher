@@ -566,6 +566,7 @@ static void CheckForPatch()
     // RoboCop: Rogue City
     else if (CHECK_UE(robocop))
     {
+        // DLSS classic check
         std::string_view patternDLSSCheck("74 03 49 8B C5 46 8B 3C 38 E8 ? ? ? ? 84 C0 75");
         auto patchAddressDLSSCheck = (void*) scanner::GetAddress(exeModule, patternDLSSCheck, 14);
 
@@ -575,6 +576,17 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddressDLSSCheck, &patch);
         }
 
+        // Show DLSS in game options
+        std::string_view patternOptions("E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 84 C0 75 ? 32 C0");
+        auto patchAddressOptions = (void*) scanner::GetAddress(exeModule, patternOptions, 0);
+
+        if (patchAddressOptions != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressOptions, &patch);
+        }
+
+        // XeFG check
         std::string_view patternXeFGCheck("83 F8 03 0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84");
         auto patchAddressXeFGCheck = (void*) scanner::GetAddress(exeModule, patternXeFGCheck, 14);
 
@@ -584,7 +596,7 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddressXeFGCheck, &patch);
         }
 
-        _patchResult = patchAddressDLSSCheck != nullptr;
+        _patchResult = patchAddressDLSSCheck != nullptr && patchAddressOptions != nullptr;
     }
 
     // NINJA GAIDEN 2 Black, Hell is Us (+ Demo), Brothers: A Tale of Two Sons Remake,
@@ -621,21 +633,24 @@ static void CheckForPatch()
         // Usual DLSS pattern
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+
         if (patchAddress != nullptr)
         {
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
         }
 
         // Show DLSS in game options
         std::string_view pattern2("E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 84 C0 75 ? 32 C0");
         auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+
         if (patchAddress2 != nullptr)
         {
             std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+
+        _patchResult = patchAddress != nullptr && patchAddress2 != nullptr;
     }
 
     // The Talos Principle: Reawakened

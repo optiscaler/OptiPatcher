@@ -119,8 +119,8 @@ TEMPLATE FOR NEW ENTRIES
 | REMNANT II | ✔️ | ✅ |  |
 | Revenge of the Savage Planet | ✔️ | N/A |  |
 | Riven (2024) | ✔️ | N/A |  |
-| Robocop Rogue City | ✔️ | ✅ | _XeFG and DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
-| Robocop Unfinished Business | ✔️ | ✅ | _DLSS/DLSS-FG check patched, but check [special notes](#special-notes)_ |
+| Robocop Rogue City | ✔️ | ✅ |  |
+| Robocop Unfinished Business | ✔️ | ✅ |  |
 | ROMEO IS A DEAD MAN | ✔️ | ✅ |  |
 | ROUTINE | ✔️ | N/A |  |
 | RV There Yet? | ✔️ | N/A |  |
@@ -188,10 +188,6 @@ TEMPLATE FOR NEW ENTRIES
 
 > [!NOTE]
 > ### Special notes
-> * **Robocop Rogue City and Unfinished Business** DLSS plugin is patched, but due to extra checks when not spoofing, to expose DLSS/DLSS-FG properly, requires setting `UpscalingMethod=2` in **GameUserSettings.ini** in `AppData\Local\RoboCop\Saved\Config\Windows` (also maybe `NvidiaReflexLowLatency=1` if it isn't exposed already)    
->   * For **Robocop Unfinished Business** - `AppData\Local\RoboCopUnfinishedBusiness\Saved\Config\Windows`
-> * To get XeFG 2.1 for non-Intel GPUs, just replace the XeSS files in `Robocop Rogue City\Engine\Plugins\Runtime\Intel\XeSS\Binaries\ThirdParty\Win64` 
-> --- 
 > * To fix weird transparencies in **METAL GEAR SOLID Δ: SNAKE EATER**, add this to **Engine.ini**  
 >	* Engine.ini location - `%LOCALAPPDATA%\MGSDelta\Saved\Config\Windows\`  
 > ```ini
