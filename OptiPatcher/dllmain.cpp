@@ -469,6 +469,21 @@ static void CheckForPatch()
         }
     }
 
+    // Directive 8020
+    // inline patch
+    else if (CHECK_UE(directive8020))
+    {
+        std::string_view pattern("41 8B DC 81 3D ? ? ? ? ? ? ? ? 41 8B 1C 1E 74");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 3);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {
@@ -1565,6 +1580,26 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+    }
+
+    // DLSSG, Directive 8020
+    // inline patch
+    else if (CHECK_UE(directive8020))
+    {
+        std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? 81 "
+                                 "3D ? ? ? ? ? ? ? ? 74");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 35, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress + 46;
+            }
+        } while (patchAddress != nullptr);
     }
 
     // DLSSG, STAR WARS Jedi: Survivor

@@ -46,6 +46,7 @@ TEMPLATE FOR NEW ENTRIES
 | Deliver Us Mars | ✔️ | ✅ |  |
 | Deliver Us The Moon | ✔️ | N/A |  |
 | Destroy All Humans! 2 - Reprobed | ✔️ | ⛔ | _SL1_ |
+| Directive 8020 | ✔️ | ✅ |  |
 | DOOM Eternal (+ Sandbox) | ✔️ | N/A | _Sandbox exe also supported, RT working_ |
 | Echo Point Nova | ✔️ | N/A |  |
 | Echoes of the End: Enhanced Edition | ✔️ | ✅ |  |
