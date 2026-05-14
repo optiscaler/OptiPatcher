@@ -1019,8 +1019,8 @@ static void CheckForPatch()
         }
     }
 
-    // RV There Yet?, Windrose
-    else if (CHECK_UE(ride) || CHECK_UE(windrose))
+    // RV There Yet?, Windrose, Subnautica 2
+    else if (CHECK_UE(ride) || CHECK_UE(windrose) || CHECK_UE(subnautica2))
     {
         std::string_view pattern("84 C0 75 05 49 8B F7 EB 02 33 F6 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
@@ -1376,6 +1376,60 @@ static void CheckForPatch()
                 start = (uintptr_t) patchAddress;
             }
         } while (patchAddress != nullptr);
+    }
+
+    // DLSSG, Subnautica 2
+    else if (CHECK_UE(subnautica2))
+    {
+        // Regular SL patch
+        std::string_view pattern1("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern1, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // Skip over isAMD inside SL plugin, likely related to usage of an old plugin
+        std::string_view pattern2("E8 ? ? ? ? 84 C0 74 ? 80 3D ? ? ? ? ? 0F 82 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? "
+                                  "? E8 ? ? ? ? E9 ? ? ? ? 48 89 9C 24");
+        start = 0;
+        patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern2, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // Always show FG in the game settings, for Intel because the game only checks for Nvidia and AMD
+        std::string_view pattern3("40 53 48 83 EC ? 48 8B 89 ? ? ? ? E8 ? ? ? ? 3C");
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern3, 0);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB0, 0x00, 0xC3 }; // return false
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        std::string_view pattern4("8B DD 65 48 8B 04 25");
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern4, 0);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
     }
 
     // DLSSG
