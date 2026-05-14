@@ -81,7 +81,7 @@ TEMPLATE FOR NEW ENTRIES
 | Immortals of Aveum | ✔️ | ✅ |  |
 | INDIKA | ✔️ | N/A |  |
 | INDUSTRIA 2 | ✔️ | ✅ |  |
-| InZOI | ✔️ | ✅ |  |
+| InZOI | ✔️ | ✅ | _Built-in FSR FG is broken when using patcher, stick to DLSSG_ |
 | Jusant | ✔️ | ✅ |  |
 | Keeper | ✔️ | ✅ | _WinGDK exe supported also_ |
 | Kena: Bridge of Spirits | ✔️ | N/A |  |
@@ -146,6 +146,7 @@ TEMPLATE FOR NEW ENTRIES
 | Still Wakes the Deep | ✔️ | ✅ |  |
 | Stygian: Outer Gods | ✔️ | ✅ |  |
 | Styx: Blades of Greed | ✔️ | ✅ | _Demo should also be supported_ |
+| Subnautica 2 | ✔️ | ✅ | _FG will always be visible in the game options_ |
 | Suicide Squad: Kill the Justice League | ✔️ | N/A | _Useable only in **Offline mode** with **EAC disabled**_ |
 | Super Meat Boy 3D | ✔️ | ✅ | _Check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/Super-Meat-Boy-3D) for more info_ |
 | Supraland | ✔️ | N/A |  |
