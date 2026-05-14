@@ -1019,8 +1019,8 @@ static void CheckForPatch()
         }
     }
 
-    // RV There Yet?, Windrose, Subnautica 2
-    else if (CHECK_UE(ride) || CHECK_UE(windrose) || CHECK_UE(subnautica2))
+    // RV There Yet?, Windrose, Subnautica 2, Conan Exiles Enhanced
+    else if (CHECK_UE(ride) || CHECK_UE(windrose) || CHECK_UE(subnautica2) || CHECK_UE(conansandbox))
     {
         std::string_view pattern("84 C0 75 05 49 8B F7 EB 02 33 F6 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 20);
@@ -1357,11 +1357,12 @@ static void CheckForPatch()
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker,
     // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (+ Demo), ROMEO IS A DEAD
     // MAN, High On Life 2, Far Far West, Solasta II, I Am Jesus Christ, Samson, Star Trek: Voyager - Across the
-    // Unknown, Super Meat Boy 3D, Dead as Disco
+    // Unknown, Super Meat Boy 3D, Dead as Disco, Conan Exiles Enhanced
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
              CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame) ||
              CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(brimstone) || CHECK_UE(imjch) ||
-             CHECK_UE(cjsteam) || CHECK_UE(stvoyagersteam) || CHECK_UE(smb) || CHECK_UE(pagodasteam))
+             CHECK_UE(cjsteam) || CHECK_UE(stvoyagersteam) || CHECK_UE(smb) || CHECK_UE(pagodasteam) ||
+             CHECK_UE(conansandbox))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

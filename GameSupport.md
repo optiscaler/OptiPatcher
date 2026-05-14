@@ -35,6 +35,7 @@ TEMPLATE FOR NEW ENTRIES
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
 | CODE VEIN II | ✔️ | N/A |  |
 | Commandos: Origins | ✔️ | N/A |  |
+| Conan Exiles Enhanced | ✔️ | ✅ | _Requires **disabling BattlEye** under Game - More in Funcom Launcher, or launching the game directly through `ConanSandbox-Win64-Shipping.exe`_ |
 | Crisol: Theater of Idols | ✔️ | ✅ | _Demo should also be supported_ |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Crimson Desert | ❌ | ⛔ | Disabled for now ~~_Steam and Xbox, ignore driver version warning_~~ |
@@ -197,7 +198,7 @@ TEMPLATE FOR NEW ENTRIES
 > r.Streamline.ClearSceneColorAlpha=false
 > ```
 > ---
-> * To enable **"hidden" DLSS-FG** (e.g. Metal Eden, Daemon X Machina: Titanic Scion), you have to add these commands to **Engine.ini** (locations below)
+> * To enable **"hidden" DLSS-FG** (e.g. Daemon X Machina: Titanic Scion), you have to add these commands to **Engine.ini** (locations below)
 >	* If no **Engine.ini present**, then create one and make it **read-only** to avoid being deleted (same goes if the game deletes it on launch in general)
 > ```ini
 > [SystemSettings]
@@ -207,7 +208,6 @@ TEMPLATE FOR NEW ENTRIES
 > r.Streamline.ClearSceneColorAlpha=false
 > r.NGX.DLSS.DilateMotionVectors=0
 > ``` 
-> * **Metal Eden** - `%LOCALAPPDATA%\MetalEden\Saved\Config\Windows\`  
 > * **Daemon X Machina: Titanic Scion** - `%LOCALAPPDATA%\DXMTS\Saved\Config\Windows` 
 > * **VOID/BREAKER** - `%LOCALAPPDATA%\VOIDBREAKER\Saved\Config\Windows` 
 > * **Quarantine Zone: The Last Check** - `%LOCALAPPDATA%\QZSim\Saved\Config\Windows`
