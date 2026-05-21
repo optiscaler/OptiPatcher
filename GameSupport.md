@@ -96,6 +96,7 @@ TEMPLATE FOR NEW ENTRIES
 | Loopmancer | ✔️ | ⛔ | _SL1_ |
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Lost Soul Aside | ✔️ | ✅ | _Steam exe_ |
+| Luna Abyss | ✔️ | N/A |  |
 | Mafia: The Old Country | ✔️ | ✅ |  |
 | Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
 | Manor Lords | ✔️ | N/A |  |
