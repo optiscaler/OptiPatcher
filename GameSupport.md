@@ -44,6 +44,7 @@ TEMPLATE FOR NEW ENTRIES
 | Deadzone Rogue | ✔️ | ✅ | _Steam exe_ |
 | Dead as Disco | ✔️ | ✅ | _Steam exe_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
+| Deep Rock Galactic: Rogue Core | ✔️ | ✅ |  |
 | Deliver Us Mars | ✔️ | ✅ |  |
 | Deliver Us The Moon | ✔️ | N/A |  |
 | Destroy All Humans! 2 - Reprobed | ✔️ | ⛔ | _SL1_ |
