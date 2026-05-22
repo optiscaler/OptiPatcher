@@ -89,6 +89,7 @@ TEMPLATE FOR NEW ENTRIES
 | Kena: Bridge of Spirits | ✔️ | N/A |  |
 | Land of the Vikings | ✔️ | N/A |  |
 | Layers of Fear (2023) | ✔️ | ✅ |  |
+| LEGO Batman: Legacy of the Dark Knight | ✔️ | ✅ |  |
 | Lies of P | ✔️ | N/A |  |
 | Like a Dragon: Ishin! | ✔️ | N/A |  |
 | Little Nightmares III | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |

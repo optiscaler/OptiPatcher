@@ -484,6 +484,21 @@ static void CheckForPatch()
         }
     }
 
+    // LEGO Batman: Legacy of the Dark Knight
+    // inline patch
+    else if (CHECK_UE(legobatmanlotdk))
+    {
+        std::string_view pattern("E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 41 BC 7C 01 00 00 0F");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {
@@ -1681,6 +1696,25 @@ static void CheckForPatch()
                 std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
                 patcher::PatchAddress(patchAddress, &patch);
                 start = (uintptr_t) patchAddress + 46;
+            }
+        } while (patchAddress != nullptr);
+    }
+
+    // LEGO Batman: Legacy of the Dark Knight
+    // inline patch
+    else if (CHECK_UE(legobatmanlotdk))
+    {
+        std::string_view pattern("0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 6, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
             }
         } while (patchAddress != nullptr);
     }
