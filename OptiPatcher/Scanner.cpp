@@ -66,6 +66,40 @@ uintptr_t FindPattern(uintptr_t startAddress, uintptr_t maxSize, const char* mas
     return std::distance(dataStart, sig) + startAddress;
 }
 
+uintptr_t scanner::GetAddressFromWholeModule(HMODULE module, const std::string_view pattern, ptrdiff_t offset,
+                                             uintptr_t startAddress)
+{
+    const static uintptr_t moduleBase = reinterpret_cast<uintptr_t>(module);
+    const static uintptr_t moduleEnd = [&]()
+    {
+        auto ntHeaders = reinterpret_cast<PIMAGE_NT_HEADERS64>(
+            moduleBase + reinterpret_cast<PIMAGE_DOS_HEADER>(moduleBase)->e_lfanew);
+        return static_cast<uintptr_t>(moduleBase + ntHeaders->OptionalHeader.SizeOfImage);
+    }();
+
+    uintptr_t address = NULL;
+
+    if (startAddress != 0)
+    {
+        if (startAddress < moduleBase || startAddress > moduleEnd)
+            return NULL;
+        address = FindPattern(startAddress, moduleEnd - startAddress, pattern.data());
+    }
+    else
+    {
+        address = FindPattern(moduleBase, moduleEnd - moduleBase, pattern.data());
+    }
+
+    if (address != NULL)
+    {
+        return (address + offset);
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
 uintptr_t scanner::GetAddress(const std::wstring_view moduleName, const std::string_view pattern, ptrdiff_t offset,
                               uintptr_t startAddress)
 {

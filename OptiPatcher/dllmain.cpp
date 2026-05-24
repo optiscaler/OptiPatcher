@@ -1322,6 +1322,27 @@ static void CheckForPatch()
         }
     }
 
+    // Lego Builder's Journey
+    // Patching Nvidia name to enable DLSS on Turkish locale
+    else if (exeName == "builder's journey.exe")
+    {
+        auto unityPlayerModule = GetModuleHandleA("UnityPlayer.dll");
+        if (unityPlayerModule != nullptr)
+        {
+            std::string_view pattern("41 54 49 00 4E 56 49 44 49 41");
+            auto patchAddress = (void*) scanner::GetAddressFromWholeModule(unityPlayerModule, pattern, 5);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x76, 0x69, 0x64, 0x69, 0x61 };
+                patcher::PatchAddress(patchAddress, &patch);
+
+                // Don't set patch result to true since this is only a workaround for Turkish locale
+                // not an actual DLSS check patch
+                _patchResult = false;
+            }
+        }
+    }
+
     // Red Dead Redemption 2
     // Thanks to 0x-FADED
     // https://github.com/0x-FADED/RDR2-NVNGX-Loader

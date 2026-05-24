@@ -12,5 +12,7 @@ namespace scanner
 uintptr_t GetAddress(const std::wstring_view moduleName, const std::string_view pattern, ptrdiff_t offset = 0,
                      uintptr_t startAddress = 0);
 uintptr_t GetAddress(HMODULE module, const std::string_view pattern, ptrdiff_t offset = 0, uintptr_t startAddress = 0);
+uintptr_t GetAddressFromWholeModule(HMODULE module, const std::string_view pattern, ptrdiff_t offset,
+                                    uintptr_t startAddress = 0);
 uintptr_t GetOffsetFromInstruction(HMODULE module, const std::string_view pattern, ptrdiff_t offset);
 } // namespace scanner
