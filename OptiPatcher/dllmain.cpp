@@ -635,7 +635,7 @@ static void CheckForPatch()
     // playtest, Fort Solis, Spirit of the North 2, Tokyo Xtreme Racer/Shutokou Battle, INDUSTRIA 2, REANIMAL (+ Demo),
     // Keeper (+WinGDK PaganIdol exe), Stygian: Outer Gods, Tormented Souls 2, Assetto Corsa Rally, SpongeBob
     // SquarePants: Titans of the Tide, Echoes of the End: Enhanced Edition, Supraworld, Solasta II, Carmageddon: Rogue
-    // Shift, Half Sword, I Am Jesus Christ, Star Trek: Voyager - Across the Unknown
+    // Shift, Half Sword, I Am Jesus Christ, Star Trek: Voyager - Across the Unknown, Grounded 2
     else if (CHECK_UE(ninjagaiden2black) || CHECK_UE(hellisus) || CHECK_UE(brothers) || CHECK_UE(otherskin) ||
              CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2) || CHECK_UE(commandos) ||
              CHECK_UE(mindseye) || CHECK_UE(frostpunk2) || CHECK_UE(enotria) || CHECK_UE(china_builder_06) ||
@@ -644,7 +644,7 @@ static void CheckForPatch()
              exeName == "reanimal.exe" || CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(stygian) ||
              CHECK_UE(tormentedsouls2) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(thedarken) ||
              CHECK_UE(supraworld) || CHECK_UE(brimstone) || CHECK_UE(carma) || CHECK_UE(halfswordue5) ||
-             CHECK_UE(imjch) || CHECK_UE(stvoyagersteam))
+             CHECK_UE(imjch) || CHECK_UE(stvoyagersteam) || CHECK_UE(grounded2steam))
     {
         std::string_view pattern("84 C0 49 8B C7 74 03 49 8B C5 46 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -1421,12 +1421,12 @@ static void CheckForPatch()
     // Keeper (+WinGDK PaganIdol exe), Vampire: The Masquerade - Bloodlines 2, Stygian: Outer Gods, The Last Caretaker,
     // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (+ Demo), ROMEO IS A DEAD
     // MAN, High On Life 2, Far Far West, Solasta II, I Am Jesus Christ, Samson, Star Trek: Voyager - Across the
-    // Unknown, Super Meat Boy 3D, Dead as Disco, Conan Exiles Enhanced, Deep Rock Galactic: Rogue Core
+    // Unknown, Super Meat Boy 3D, Dead as Disco, Conan Exiles Enhanced, Deep Rock Galactic: Rogue Core, Grounded 2
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
              CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame) ||
              CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(brimstone) || CHECK_UE(imjch) ||
              CHECK_UE(cjsteam) || CHECK_UE(stvoyagersteam) || CHECK_UE(smb) || CHECK_UE(pagodasteam) ||
-             CHECK_UE(conansandbox) || CHECK_UE(roguecore))
+             CHECK_UE(conansandbox) || CHECK_UE(roguecore) || CHECK_UE(grounded2steam))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
