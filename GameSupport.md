@@ -58,6 +58,7 @@ TEMPLATE FOR NEW ENTRIES
 | Evil West | ✔️ | N/A |  |
 | F1 Manager 2024 | ✔️ | N/A |  |
 | Far Far West | ✔️ | ✅ |  |
+| Fatekeeper | ✔️ | ✅ |  |
 | FINAL FANTASY VII REBIRTH | ✔️ | ✅ |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
