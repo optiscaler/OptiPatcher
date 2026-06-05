@@ -69,6 +69,7 @@ TEMPLATE FOR NEW ENTRIES
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
 | Gotham Knights | ✔️ | N/A |  |
+| Gothic 1 Remake | ✔️ | ✅ |  |
 | Grand Theft Auto III – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: San Andreas – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: Vice City – The Definitive Edition | ✔️ | N/A |  |
