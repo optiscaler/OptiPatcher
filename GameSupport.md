@@ -108,6 +108,7 @@ TEMPLATE FOR NEW ENTRIES
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | MindsEye | ✔️ | ✅ |  |
 | Mortal Kombat 1 | ✔️ | N/A |  |
+| Mortal Shell 2 | ✔️ | ✅ | Demo supported. Might need updating for full release |
 | Myst (2021) | ✔️ | N/A |  |
 | Necromunda: Hired Gun | ✔️ | N/A |  |
 | NINJA GAIDEN 2 Black | ✔️ | ✅ |  |
