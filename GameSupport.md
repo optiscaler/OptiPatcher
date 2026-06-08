@@ -175,6 +175,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Outer Worlds 2 | ✔️ | ✅ |  |
 | The Persistence | ✔️ | N/A |  |
 | The Sinking City Remastered | ✔️ | ✅ |  |
+| The Sinking City 2 Demo | ✔️ | ✅ |  |
 | The Talos Principle 2 | ✔️ | ✅ |  |
 | The Talos Principle: Reawakened | ✔️ | ✅ |  |
 | The Thaumaturge | ✔️ | ✅ |  |
