@@ -102,10 +102,24 @@ static void CheckForPatch()
         }
     }
 
-    // The Talos Principle 2, Bellwright, Super Meat Boy 3D
-    else if (CHECK_UE(talos2) || CHECK_UE(bellwrightgame) || CHECK_UE(smb))
+    // The Talos Principle 2, Super Meat Boy 3D
+    else if (CHECK_UE(talos2) || CHECK_UE(smb))
     {
         std::string_view pattern("42 8B 34 36 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Bellwright
+    else if (CHECK_UE(bellwrightgame))
+    {
+        std::string_view pattern("41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
 
         if (patchAddress != nullptr)
