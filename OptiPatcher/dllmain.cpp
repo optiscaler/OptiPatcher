@@ -116,8 +116,8 @@ static void CheckForPatch()
         }
     }
 
-    // Bellwright
-    else if (CHECK_UE(bellwrightgame))
+    // Bellwright, Deadzone Rogue
+    else if (CHECK_UE(bellwrightgame) || CHECK_UE(deadzonesteam))
     {
         std::string_view pattern("41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
@@ -906,8 +906,8 @@ static void CheckForPatch()
         }
     }
 
-    // Deadzone Rogue, Quarantine Zone: The Last Check
-    else if (exeName == "deadzonesteam.exe" || CHECK_UE(qzsim))
+    // Quarantine Zone: The Last Check
+    else if (CHECK_UE(qzsim))
     {
         std::string_view pattern("45 33 FF 41 8B F7 41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 15);
@@ -1433,12 +1433,12 @@ static void CheckForPatch()
         exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe" ||
         CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) || CHECK_UE(saltpeter) ||
         CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) || CHECK_UE(cronos) || CHECK_UE(game) ||
-        exeName == "deadzonesteam.exe" || CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2) ||
-        CHECK_UE(tempest) || CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) || CHECK_UE(frostpunk2) ||
-        CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) || CHECK_UE(midnight) || CHECK_UE(bates) ||
-        CHECK_UE(minotaur) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) || CHECK_UE(postal4) ||
-        CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(castingfrankstone) ||
-        CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim) || CHECK_UE(halfswordue5) || CHECK_UE(inzoi))
+        CHECK_UE(deadzonesteam) || CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2) || CHECK_UE(tempest) ||
+        CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) || CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) ||
+        CHECK_UE(china_builder_06) || CHECK_UE(midnight) || CHECK_UE(bates) || CHECK_UE(minotaur) ||
+        CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) || CHECK_UE(postal4) || CHECK_UE(sotn2) ||
+        CHECK_UE(industria_2) || exeName == "reanimal.exe" || CHECK_UE(castingfrankstone) || CHECK_UE(thedarken) ||
+        CHECK_UE(palworld) || CHECK_UE(qzsim) || CHECK_UE(halfswordue5) || CHECK_UE(inzoi))
 
     // 10 lines of games per pattern should be enough before it gets messy, keep adding to the new section below
 
