@@ -60,6 +60,7 @@ TEMPLATE FOR NEW ENTRIES
 | Far Far West | ✔️ | ✅ |  |
 | Fatekeeper | ✔️ | ✅ |  |
 | FINAL FANTASY VII REBIRTH | ✔️ | ✅ |  |
+| Five Nights at Freddy's: Security Breach | ✔️ | N/A |  |
 | Flintlock: The Siege of Dawn | ✔️ | ✅ |  |
 | Forgive Me Father 2 | ✔️ | ✅ |  |
 | Fort Solis | ✔️ | ✅ |  |

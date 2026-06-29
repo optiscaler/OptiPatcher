@@ -1326,6 +1326,20 @@ static void CheckForPatch()
         }
     }
 
+    // Five Nights at Freddy's: Security Breach
+    else if (CHECK_UE(fnaf9))
+    {
+        std::string_view pattern("48 89 45 F8 48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
