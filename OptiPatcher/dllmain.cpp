@@ -1412,6 +1412,32 @@ static void CheckForPatch()
         }
     }
 
+    // The Mound: Omen of Cthulhu
+    else if (CHECK_UE(themound))
+    {
+        // Regular DLSS check
+        std::string_view pattern("BA 74 19 00 00 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        // DLSS menu string check
+        std::string_view pattern2("0F 8F ? ? ? ? 48 89 5C 24 30 E8 ? ? ? ? 84 C0 0F");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 16);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
+
+        _patchResult = patchAddress != nullptr && patchAddress2 != nullptr;
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1576,13 +1602,15 @@ static void CheckForPatch()
     // Assetto Corsa Rally, SpongeBob SquarePants: Titans of the Tide, Styx: Blades of Greed (+ Demo), ROMEO IS A DEAD
     // MAN, High On Life 2, Far Far West, Solasta II, I Am Jesus Christ, Samson, Star Trek: Voyager - Across the
     // Unknown, Super Meat Boy 3D, Dead as Disco, Conan Exiles Enhanced, Deep Rock Galactic: Rogue Core, Grounded 2,
-    // Fatekeeper, Gothic 1 Remake, Mortal Shell 2, The Sinking City 2 Demo, DragonSword : Awakening
+    // Fatekeeper, Gothic 1 Remake, Mortal Shell 2, The Sinking City 2 Demo, DragonSword : Awakening, The Mound: Omen of
+    // Cthulhu
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
              CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame) ||
              CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(brimstone) || CHECK_UE(imjch) ||
              CHECK_UE(cjsteam) || CHECK_UE(stvoyagersteam) || CHECK_UE(smb) || CHECK_UE(pagodasteam) ||
              CHECK_UE(conansandbox) || CHECK_UE(roguecore) || CHECK_UE(grounded2steam) || CHECK_UE(slasher) ||
-             CHECK_UE(g1r) || CHECK_UE(mortalshell2) || exeName == "thesinkingcity2demo.exe" || CHECK_UE(dsclient))
+             CHECK_UE(g1r) || CHECK_UE(mortalshell2) || exeName == "thesinkingcity2demo.exe" || CHECK_UE(dsclient) ||
+             CHECK_UE(themound))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;

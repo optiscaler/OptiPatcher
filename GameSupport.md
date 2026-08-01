@@ -177,6 +177,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG_ |
+| The Mound: Omen of Cthulhu | ✔️ | ✅ |  |
 | The Outer Worlds 2 | ✔️ | ✅ |  |
 | The Persistence | ✔️ | N/A |  |
 | The Sinking City Remastered | ✔️ | ✅ |  |
