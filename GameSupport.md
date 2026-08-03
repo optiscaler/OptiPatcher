@@ -22,6 +22,7 @@ TEMPLATE FOR NEW ENTRIES
 | Automation - The Car Company Tycoon Game | ✔️ | N/A |  |
 | Avowed | ✔️ | ✅ |  |
 | Banishers: Ghosts of New Eden | ✔️ | ✅ |  |
+| Beast of Reincarnation | ✔️ | N/A |  |
 | Bellwright | ✔️ | ✅ | _DLSS and DLSSG are coupled; requires selecting DLSS as the upscaler for DLSSG inputs to work_ |
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
