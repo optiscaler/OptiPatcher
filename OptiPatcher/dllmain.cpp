@@ -2167,6 +2167,93 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
+    // DLSSG, Sackboy
+    else if (CHECK_UE(sackboy))
+    {
+        // DLSSG Streamline checks
+        std::string_view pattern("0F 84 ? ? ? ? 48 8B 5D ? 45 33 F6");
+        uintptr_t start = 0;
+        void* patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = {
+                0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+            };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        std::string_view pattern2("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 41 80 7F ? ? 0F 85");
+        start = 0;
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern2, 0, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = {
+                0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+                0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+            };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        std::string_view pattern3("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 40 38 6E ? 0F 85");
+        start = 0;
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern3, 0, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = {
+                0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+                0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+            };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        std::string_view pattern4("48 83 EC ? 65 48 8B 04 25 ? ? ? ? 8B 0D ? ? ? ? BA ? ? ? ? 48 8B 0C C8 8B 04 0A 39 "
+                                  "05 ? ? ? ? 7F ? 80 3D ? ? ? ? ? 74 ? 80 3D ? ? ? ? ? 74 ? 80 3D ? ? ? ? ? 75 ? E8");
+        start = 0;
+        patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern4, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xB0, 0x01, 0xC3 }; // return true
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        std::string_view pattern5("0F 84 ? ? ? ? 33 D2 66 C7 44 24 ? ? ? 41 B8 ? ? ? ? 48 8D 4C 24 ? E8");
+        start = 0;
+        patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern5, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = {
+                    0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+                };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        std::string_view pattern6("0F 84 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? E8");
+        start = 0;
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern6, 0, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = {
+                0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+            };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     //// Crimson Desert
     // else if (exeName == "NOT-crimsondesert.exe")
     //{
