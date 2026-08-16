@@ -1450,6 +1450,21 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // For 1.0.8 update
+        else
+        {
+            std::string_view pattern2("BA 60 10 00 00 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 5);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
+        }
     }
 
     // DOOM Eternal
