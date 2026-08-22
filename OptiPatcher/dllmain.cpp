@@ -1494,6 +1494,22 @@ static void CheckForPatch()
         }
     }
 
+    // A Plague Tale: Requiem
+    // Streamline check patch (DLSS, DLSSG, Reflex)
+    else if (exeName == "aplaguetalerequiem_x64.exe")
+    {
+        std::string_view pattern("80 3D ? ? ? ? ? 0F 84 ? ? ? ? 45 33 C0 48 8D 15");
+        uintptr_t start = 0;
+        void* patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")

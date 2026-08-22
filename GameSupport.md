@@ -15,6 +15,7 @@ TEMPLATE FOR NEW ENTRIES
 | Alien: Rogue Incursion Evolved Edition | ✔️ | ✅ |  |
 | Alone in the Dark 2024 | ✔️ | N/A |  |
 | Amid Evil | ✔️ | N/A |  |
+| A Plague Tale: Requiem | ✔️ | ✅ | _SL1, no HUDless_ |
 | ARK: Survival Ascended | ✔️ | ✅ | _Needs testing_ |
 | Assetto Corsa Competizione | ✔️ | N/A |  |
 | Assetto Corsa Rally | ✔️ | ✅ |  |
