@@ -1469,7 +1469,7 @@ static void CheckForPatch()
     // The Sinking City 2
     else if (exeName == "thesinkingcity2.exe")
     {
-        std::string_view pattern("BA E4 1A 00 00 84 C0 75");
+        std::string_view pattern("? E4 1A 00 00 84 C0 75 09");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
 
         if (patchAddress != nullptr)
