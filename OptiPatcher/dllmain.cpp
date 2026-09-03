@@ -513,6 +513,21 @@ static void CheckForPatch()
         }
     }
 
+    // The Blood of Dawnwalker
+    // inline patch
+    else if (exeName == "dawnwalker.exe")
+    {
+        std::string_view pattern("33 D2 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 7);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {
@@ -2253,6 +2268,26 @@ static void CheckForPatch()
             if (patchAddress != nullptr)
             {
                 std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+    }
+
+    // DLSSG, The Blood of Dawnwalker
+    // inline patch
+    else if (exeName == "dawnwalker.exe")
+    {
+        std::string_view pattern(
+            "44 38 ? ? ? ? ? 0F 85 ? ? ? ? 44 38 ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 26, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
                 patcher::PatchAddress(patchAddress, &patch);
                 start = (uintptr_t) patchAddress;
             }

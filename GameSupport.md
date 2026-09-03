@@ -177,6 +177,7 @@ TEMPLATE FOR NEW ENTRIES
 | Tempest Rising | ✔️ | ✅ |  |
 | The Alters | ✔️ | ✅ |  |
 | The Ascent | ✔️ | N/A |  |
+| The Blood of Dawnwalker | ✔️ | ✅ |  |
 | The Casting of Frank Stone | ✔️ | ✅ |  |
 | The Elder Scrolls IV: Oblivion Remastered | ✔️ | ✅ |  |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
