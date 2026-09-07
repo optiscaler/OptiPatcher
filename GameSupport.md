@@ -41,6 +41,7 @@ TEMPLATE FOR NEW ENTRIES
 | CODE VEIN II | ✔️ | N/A |  |
 | Commandos: Origins | ✔️ | N/A |  |
 | Conan Exiles Enhanced | ✔️ | ✅ | _Requires **disabling BattlEye** under Game - More in Funcom Launcher, or launching the game directly through `ConanSandbox-Win64-Shipping.exe`_ |
+| Crimson Moon | ✔️ | ✅ |  |
 | Crisol: Theater of Idols | ✔️ | ✅ | _Demo should also be supported_ |
 | Cronos: The New Dawn | ✔️ | ✅ |  |
 | Crimson Desert | ❌ | ⛔ | Disabled for now ~~_Steam and Xbox, ignore driver version warning_~~ |
