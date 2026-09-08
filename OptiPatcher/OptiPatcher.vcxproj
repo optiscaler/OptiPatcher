@@ -148,12 +148,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="CapcomAntiDebugWatcher.h" />
     <ClInclude Include="Patcher.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scanner.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CapcomAntiDebugWatcher.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Patcher.cpp" />
     <ClCompile Include="pch.cpp">

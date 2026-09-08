@@ -4,11 +4,12 @@
 #include "Util.h"
 #include "Patcher.h"
 #include "Scanner.h"
+#include "CapcomAntiDebugWatcher.h"
 
 static bool _patchResult = false;
 
 extern "C" __declspec(dllexport) bool PatchResult() { return _patchResult; }
-extern "C" __declspec(dllexport) void InitializeASI() { return; }
+extern "C" __declspec(dllexport) void InitializeASI() { capcom_antidebug::Initialize(); }
 
 #define CHECK_UE(name) exeName == (#name "-win64-shipping.exe") || exeName == (#name "-wingdk-shipping.exe")
 
