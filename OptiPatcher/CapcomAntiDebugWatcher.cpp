@@ -297,7 +297,7 @@ bool RestoreEntry(const HookInfo& hook)
     }
 
     MEMORY_BASIC_INFORMATION information{};
-    if (!QueryRange(g_dbgUiRemoteBreakin, hook.length, false, information) ||
+    if (!QueryRange(g_dbgUiRemoteBreakin, g_baseline.size(), false, information) ||
         !IsExecutableProtection(information.Protect))
     {
         Log("[CapcomAntiDebug] failed to validate DbgUiRemoteBreakin before restore");
@@ -305,7 +305,7 @@ bool RestoreEntry(const HookInfo& hook)
     }
 
     DWORD oldProtection = 0;
-    if (!VirtualProtect(g_dbgUiRemoteBreakin, hook.length, PAGE_EXECUTE_READWRITE, &oldProtection))
+    if (!VirtualProtect(g_dbgUiRemoteBreakin, g_baseline.size(), PAGE_EXECUTE_READWRITE, &oldProtection))
     {
         Log("[CapcomAntiDebug] failed to change DbgUiRemoteBreakin protection");
         return false;
@@ -314,7 +314,7 @@ bool RestoreEntry(const HookInfo& hook)
     bool wrote = true;
     __try
     {
-        std::memcpy(g_dbgUiRemoteBreakin, g_baseline.data(), hook.length);
+        std::memcpy(g_dbgUiRemoteBreakin, g_baseline.data(), g_baseline.size());
     }
     __except (EXCEPTION_EXECUTE_HANDLER)
     {
@@ -322,8 +322,9 @@ bool RestoreEntry(const HookInfo& hook)
     }
 
     DWORD ignoredProtection = 0;
-    const bool restoredProtection = VirtualProtect(g_dbgUiRemoteBreakin, hook.length, oldProtection, &ignoredProtection) != FALSE;
-    const bool flushed = FlushInstructionCache(GetCurrentProcess(), g_dbgUiRemoteBreakin, hook.length) != FALSE;
+    const bool restoredProtection =
+        VirtualProtect(g_dbgUiRemoteBreakin, g_baseline.size(), oldProtection, &ignoredProtection) != FALSE;
+    const bool flushed = FlushInstructionCache(GetCurrentProcess(), g_dbgUiRemoteBreakin, g_baseline.size()) != FALSE;
 
     if (!wrote || !restoredProtection || !flushed)
     {
@@ -349,19 +350,22 @@ void CheckDbgUiRemoteBreakin()
         return;
     }
 
-    if (g_haveLastObserved && std::memcmp(current.data(), g_lastObserved.data(), current.size()) == 0)
+    const bool newlyObserved =
+        !g_haveLastObserved || std::memcmp(current.data(), g_lastObserved.data(), current.size()) != 0;
+    if (newlyObserved)
     {
-        return;
+        g_lastObserved = current;
+        g_haveLastObserved = true;
+        Log("[CapcomAntiDebug] DbgUiRemoteBreakin modification detected");
     }
-
-    g_lastObserved = current;
-    g_haveLastObserved = true;
-    Log("[CapcomAntiDebug] DbgUiRemoteBreakin modification detected");
 
     HookInfo hook;
     if (!ResolveHook(current, hook))
     {
-        Log("[CapcomAntiDebug] unsupported DbgUiRemoteBreakin hook form");
+        if (newlyObserved)
+        {
+            Log("[CapcomAntiDebug] unsupported DbgUiRemoteBreakin hook form");
+        }
         return;
     }
 
@@ -370,19 +374,27 @@ void CheckDbgUiRemoteBreakin()
     MEMORY_BASIC_INFORMATION targetInformation{};
     if (!QueryPrivateExecutableTarget(hook.target, targetInformation))
     {
-        Log("[CapcomAntiDebug] refusing non-private or non-executable target");
+        if (newlyObserved)
+        {
+            Log("[CapcomAntiDebug] target is not ready or is not an executable MEM_PRIVATE region");
+        }
         return;
     }
 
-    Log("[CapcomAntiDebug] target region base=%p size=0x%zx type=MEM_PRIVATE protect=0x%08lx",
-        targetInformation.BaseAddress,
-        targetInformation.RegionSize,
-        targetInformation.Protect);
+    if (newlyObserved)
+    {
+        Log("[CapcomAntiDebug] target region base=%p size=0x%zx type=MEM_PRIVATE protect=0x%08lx",
+            targetInformation.BaseAddress,
+            targetInformation.RegionSize,
+            targetInformation.Protect);
+    }
 
     if (NeutralizePayload(targetInformation))
     {
-        RestoreEntry(hook);
-        g_haveLastObserved = false;
+        if (RestoreEntry(hook))
+        {
+            g_haveLastObserved = false;
+        }
     }
 }
 
