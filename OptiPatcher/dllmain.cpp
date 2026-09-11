@@ -513,9 +513,9 @@ static void CheckForPatch()
         }
     }
 
-    // The Blood of Dawnwalker
+    // The Blood of Dawnwalker (+ WinGDK)
     // inline patch
-    else if (exeName == "dawnwalker.exe")
+    else if (exeName == "dawnwalker.exe" || CHECK_UE(dawnwalker))
     {
         std::string_view pattern("33 D2 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 7);
@@ -2288,9 +2288,9 @@ static void CheckForPatch()
         } while (patchAddress != nullptr);
     }
 
-    // DLSSG, The Blood of Dawnwalker
+    // DLSSG, The Blood of Dawnwalker (+ WinGDK)
     // inline patch
-    else if (exeName == "dawnwalker.exe")
+    else if (exeName == "dawnwalker.exe" || CHECK_UE(dawnwalker))
     {
         std::string_view pattern(
             "44 38 ? ? ? ? ? 0F 85 ? ? ? ? 44 38 ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
