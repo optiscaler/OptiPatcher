@@ -2251,20 +2251,40 @@ static void CheckForPatch()
     else if (CHECK_UE(mortalshell2))
     {
         {
-            std::string_view pattern("80 3D ? ? ? ? ? 74 0D 80 3D ? ? ? ? ? 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? "
-                                     "? E8 ? ? ? ? 84 C0 75");
+            std::string_view pattern("E8 ? ? ? ? 84 C0 75 ? C7 05");
             uintptr_t start = 0;
             void* patchAddress = nullptr;
             do
             {
-                patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 40, start);
+                patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 7, start);
                 if (patchAddress != nullptr)
                 {
-                    std::vector<BYTE> patch = { 0x0C, 0x01 };
+                    std::vector<BYTE> patch = { 0xEB };
                     patcher::PatchAddress(patchAddress, &patch);
                     start = (uintptr_t) patchAddress;
                 }
             } while (patchAddress != nullptr);
+
+            // This game apparently has a check inside a script
+            // We can't patch the script itself BUT it calls a special function inside the exe to grab the GPU's name
+            // We replace the address of the global adapater name with a pointer to our "Nvidia"
+            std::string_view pattern2("48 63 3D ? ? ? ? 48 8B 35 ? ? ? ? 48 89 4C 24");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 0);
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = {
+                    0x6A, 0x07,                                     // push 7 (Length of Nvidia + null terminator)
+                    0x5F,                                           // pop rdi
+                    0x48, 0xBE,                                     // mov rsi, ...
+                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // To be filled with a pointer to the string
+                    0x90                                            // nop
+                };
+
+                static const wchar_t* nvidiaString = L"Nvidia";
+                memcpy(&patch[5], &nvidiaString, sizeof(void*));
+
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
         }
     }
 
