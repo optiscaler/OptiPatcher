@@ -154,6 +154,7 @@ TEMPLATE FOR NEW ENTRIES
 | Sifu | ✔️ | N/A |  |
 | SILENT HILL 2 Remake | ✔️ | ✅ |  |
 | SILENT HILL f | ✔️ | N/A |  |
+| SILENT HILL: Townfall | ✔️ | N/A |  |
 | Solasta II | ✔️ | ✅ |  |
 | Soulstice | ✔️ | N/A |  |
 | South of Midnight | ✔️ | N/A |  |

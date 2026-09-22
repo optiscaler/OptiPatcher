@@ -528,6 +528,21 @@ static void CheckForPatch()
         }
     }
 
+    // SILENT HILL: Townfall
+    // inline patch
+    else if (CHECK_UE(townfall))
+    {
+        std::string_view pattern("48 8D ? ? ? ? ? E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {
