@@ -532,15 +532,40 @@ static void CheckForPatch()
     // inline patch
     else if (CHECK_UE(townfall))
     {
-        std::string_view pattern("48 8D ? ? ? ? ? E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
-
-        if (patchAddress != nullptr)
+        struct PatchEntry
         {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
+            std::string_view pattern;
+            int offset;
+        };
+
+        static const PatchEntry patches[] = {
+            { "48 8D ? ? ? ? ? E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F", 12 },       // DLSS check
+            { "0F 84 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85 ? ? ? ? 40 38 79", 6 }, // Reflex check 1
+            { "0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85", 6 },                  // Reflex check 2
+            { "74 14 81 3D ? ? ? ? ? ? ? ? 75 08", 2 },                          // Reflex check 3
+            { "48 8B D9 81 3D ? ? ? ? ? ? ? ? 75", 3 },                          // Reflex check 4
+            { "74 16 81 3D ? ? ? ? ? ? ? ? 75", 2 },                             // Reflex check 5
+        };
+
+        static const std::vector<BYTE> patchBytes = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+
+        bool allPatched = true;
+
+        for (const auto& entry : patches)
+        {
+            auto patchAddress = (void*) scanner::GetAddress(exeModule, entry.pattern, entry.offset);
+
+            if (patchAddress != nullptr)
+            {
+                patcher::PatchAddress(patchAddress, &patchBytes);
+            }
+            else
+            {
+                allPatched = false;
+            }
         }
+
+        _patchResult = allPatched;
     }
 
     // The Alters
