@@ -665,8 +665,8 @@ static void CheckForPatch()
         }
     }
 
-    // Titan Quest II, METAL EDEN (+ Demo)
-    else if (CHECK_UE(tq2) || CHECK_UE(metaleden))
+    // METAL EDEN (+ Demo)
+    else if (CHECK_UE(metaleden))
     {
         std::string_view pattern("84 C0 49 8B C6 74 03 49 8B C4 8B 34 30 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 18);
@@ -1600,6 +1600,20 @@ static void CheckForPatch()
     {
         std::string_view pattern("BA 50 16 00 00 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Titan Quest II
+    else if (CHECK_UE(tq2))
+    {
+        std::string_view pattern("41 8B 34 36 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
 
         if (patchAddress != nullptr)
         {
