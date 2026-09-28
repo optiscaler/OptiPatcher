@@ -145,6 +145,7 @@ TEMPLATE FOR NEW ENTRIES
 | Robocop Unfinished Business | ✔️ | ✅ |  |
 | ROMEO IS A DEAD MAN | ✔️ | ✅ |  |
 | ROUTINE | ✔️ | N/A |  |
+| RuneScape: Dragonwilds | ✔️ | ✅ |  |
 | RV There Yet? | ✔️ | N/A |  |
 | Samson | ✔️ | ✅ |  |
 | Senua’s Saga: Hellblade II | ✔️ | ✅ |  |

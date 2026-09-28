@@ -116,8 +116,8 @@ static void CheckForPatch()
         }
     }
 
-    // Bellwright, Deadzone Rogue
-    else if (CHECK_UE(bellwrightgame) || CHECK_UE(deadzonesteam))
+    // Bellwright, Deadzone Rogue, RuneScape: Dragonwilds
+    else if (CHECK_UE(bellwrightgame) || CHECK_UE(deadzonesteam) || CHECK_UE(rsdragonwilds))
     {
         std::string_view pattern("41 8B 34 36 E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
@@ -1788,14 +1788,15 @@ static void CheckForPatch()
     // MAN, High On Life 2, Far Far West, Solasta II, I Am Jesus Christ, Samson, Star Trek: Voyager - Across the
     // Unknown, Super Meat Boy 3D, Dead as Disco, Conan Exiles Enhanced, Deep Rock Galactic: Rogue Core, Grounded 2,
     // Fatekeeper, Gothic 1 Remake, The Sinking City 2, DragonSword : Awakening, The Mound: Omen of Cthulhu, 1666:
-    // Amsterdam, Breathedge 2, Crimson Moon
+    // Amsterdam, Breathedge 2, Crimson Moon, RuneScape: Dragonwilds
     else if (CHECK_UE(keeper) || CHECK_UE(paganidol) || CHECK_UE(bloodlines2) || CHECK_UE(stygian) ||
              CHECK_UE(voyagesteam) || exeName == "acr.exe" || CHECK_UE(ghost) || CHECK_UE(styx3) || CHECK_UE(sevgame) ||
              CHECK_UE(highonlife2) || CHECK_UE(farfarwest) || CHECK_UE(brimstone) || CHECK_UE(imjch) ||
              CHECK_UE(cjsteam) || CHECK_UE(stvoyagersteam) || CHECK_UE(smb) || CHECK_UE(pagodasteam) ||
              CHECK_UE(conansandbox) || CHECK_UE(roguecore) || CHECK_UE(grounded2steam) || CHECK_UE(slasher) ||
              CHECK_UE(g1r) || exeName == "thesinkingcity2.exe" || CHECK_UE(dsclient) || CHECK_UE(themound) ||
-             exeName == "1666amsterdam.exe" || CHECK_UE(breathedge2) || CHECK_UE(crimsonmoonngsteam))
+             exeName == "1666amsterdam.exe" || CHECK_UE(breathedge2) || CHECK_UE(crimsonmoonngsteam) ||
+             CHECK_UE(rsdragonwilds))
     {
         std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
         uintptr_t start = 0;
