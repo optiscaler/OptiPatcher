@@ -2475,6 +2475,28 @@ static void CheckForPatch()
             }
         } while (patchAddress != nullptr);
 
+        std::string_view pattern7("81 BC 24 ? ? ? ? DE 10 00 00 48 8B 4C 24 ? 74");
+        start = 0;
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern7, 16, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        // D3D12 RHI creates the device via agsDriverExtensionsDX12_CreateDevice on AMD which bypasses sl.interposer
+        // skip the AMD check to use the regular D3D12CreateDevice path
+        std::string_view pattern8("E8 ? ? ? ? 4C 8D 35 ? ? ? ? 84 C0 0F 84 ? ? ? ? 48 8B 47 ? 4C 39 60");
+        start = 0;
+        patchAddress = (void*) scanner::GetAddress(exeModule, pattern8, 0, start);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x30, 0xC0, 0x90, 0x90, 0x90 }; // xor al, al
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
         std::string_view pattern6("0F 84 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? E8");
         start = 0;
         patchAddress = (void*) scanner::GetAddress(exeModule, pattern6, 0, start);
