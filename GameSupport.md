@@ -38,6 +38,7 @@ TEMPLATE FOR NEW ENTRIES
 | Chernobylite 2: Exclusion Zone | ✔️ | ✅ |  |
 | Chorus | ✔️ | N/A |  |
 | Clair Obscur: Expedition 33 | ✔️ | ✅ |  |
+| Clive Barker's Hellraiser: Revival | ✔️ | ✅ |  |
 | CODE VEIN II | ✔️ | N/A |  |
 | Commandos: Origins | ✔️ | N/A |  |
 | Conan Exiles Enhanced | ✔️ | ✅ | _Requires **disabling BattlEye** under Game - More in Funcom Launcher, or launching the game directly through `ConanSandbox-Win64-Shipping.exe`_ |
