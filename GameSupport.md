@@ -83,6 +83,7 @@ TEMPLATE FOR NEW ENTRIES
 | Grand Theft Auto: San Andreas – The Definitive Edition | ✔️ | N/A |  |
 | Grand Theft Auto: Vice City – The Definitive Edition | ✔️ | N/A |  |
 | Grounded 2 | ✔️ | N/A | _SL patterns patched for future usage_ |
+| Guns of Eschaton Demo | ✔️ | ✅ |  |
 | Half Sword | ✔️ | ✅ |  |
 | Halo: Campaign Evolved | ✔️ | ✅ |  |
 | Hell is Us | ✔️ | ✅ | _Demo should also be supported_ |
