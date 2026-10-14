@@ -74,6 +74,7 @@ TEMPLATE FOR NEW ENTRIES
 | Fort Solis | ✔️ | ✅ |  |
 | Frostpunk 2 | ✔️ | ✅ |  |
 | Frozenheim | ✔️ | N/A |  |
+| Gears of War: E-Day | ✔️ | ✅ |  |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |

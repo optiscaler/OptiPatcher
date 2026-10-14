@@ -568,6 +568,21 @@ static void CheckForPatch()
         _patchResult = allPatched;
     }
 
+    // Gears of War: E-Day
+    // inline patch
+    else if (exeName == "goweday-steam.exe")
+    {
+        std::string_view pattern("33 D2 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 7);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {
@@ -2151,6 +2166,46 @@ static void CheckForPatch()
                 start = (uintptr_t) patchAddress;
             }
         } while (patchAddress != nullptr);
+    }
+
+    // DLSSG, Gears of War: E-Day
+    // inline patch
+    else if (exeName == "goweday-steam.exe")
+    {
+        // SL checks
+        std::string_view pattern("75 1C 81 3D ? ? ? ? ? ? ? ? 74");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 2, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // IsNvidia check above 2nd L"FFXFrameInterpolation"
+        std::string_view pattern3("89 3C 8A EB 72 81 3D ? ? ? ? ? ? ? ? 75");
+        auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 5);
+
+        if (patchAddress3 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress3, &patch);
+        }
+
+        // Some IsNvidia check (redundant?)
+        std::string_view pattern2("44 38 ? ? ? ? ? 0F 85 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 13);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress2, &patch);
+        }
     }
 
     // DLSSG, STAR WARS Jedi: Survivor
