@@ -2507,6 +2507,16 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+
+        // Reflex Markers check?
+        std::string_view pattern3("E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
+        auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 5);
+
+        if (patchAddress3 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress3, &patch);
+        }
     }
 
     // DLSSG, Mafia: The Old Country
