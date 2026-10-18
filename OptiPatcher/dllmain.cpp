@@ -2206,6 +2206,16 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+
+        // New SL config check
+        std::string_view pattern4("4C 8B E9 75 10 81 3D ? ? ? ? ? ? ? ? 0F");
+        auto patchAddress4 = (void*) scanner::GetAddress(exeModule, pattern4, 5);
+
+        if (patchAddress4 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress4, &patch);
+        }
     }
 
     // DLSSG, STAR WARS Jedi: Survivor
