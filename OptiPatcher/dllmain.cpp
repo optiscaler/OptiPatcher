@@ -1710,6 +1710,69 @@ static void CheckForPatch()
         }
     }
 
+    // Marvel's Spider-Man 2 (Nixxes)
+    // NxUpscaler only asks Streamline for DLSS ("SL DLSS support") when GetGpuVendor() == 3 (NVIDIA).
+    // DLSS-G and Reflex are not vendor gated, they only depend on the Streamline feature checks.
+    else if (exeName == "spider-man2.exe")
+    {
+        // call [rdx+A8h] (GetGpuVendor); cmp eax, 3; jne ...; lea rcx, [r15+C0h]
+        std::string_view pattern("FF 92 A8 00 00 00 83 F8 03 0F 85 ? ? ? ? 49 8D 8F C0 00 00 00");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 6);
+
+        if (patchAddress != nullptr)
+        {
+            // cmp eax, 3 -> cmp eax, eax; nop
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // The Last of Us Part II Remastered (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "tlou-ii.exe" || exeName == "tlou-ii-l.exe")
+    {
+        std::string_view pattern("FF 92 A8 00 00 00 45 33 E4 83 F8 03");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Horizon Forbidden West Complete Edition (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "horizonforbiddenwest.exe")
+    {
+        std::string_view pattern("FF 90 98 00 00 00 83 F8 03 0F 85 ? ? ? ? 4C 89 BC 24 C0 01 00 00");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 6);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Ghost of Tsushima DIRECTOR'S CUT (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "ghostoftsushima.exe")
+    {
+        std::string_view pattern("FF 92 A0 00 00 00 45 33 F6 83 F8 03");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
@@ -1819,24 +1882,6 @@ static void CheckForPatch()
         }
 
         _patchResult = patchAddressGPU != nullptr && patchAddressSigCheck != nullptr;
-    }
-
-    // Marvel's Spider-Man 2 (Nixxes)
-    // NxUpscaler only asks Streamline for DLSS ("SL DLSS support") when GetGpuVendor() == 3 (NVIDIA).
-    // DLSS-G and Reflex are not vendor gated, they only depend on the Streamline feature checks.
-    else if (exeName == "spider-man2.exe")
-    {
-        // call [rdx+A8h] (GetGpuVendor); cmp eax, 3; jne ...; lea rcx, [r15+C0h]
-        std::string_view pattern("FF 92 A8 00 00 00 83 F8 03 0F 85 ? ? ? ? 49 8D 8F C0 00 00 00");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 6);
-
-        if (patchAddress != nullptr)
-        {
-            // cmp eax, 3 -> cmp eax, eax; nop
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
     }
 
     // DLSSG / Extra

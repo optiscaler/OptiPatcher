@@ -75,6 +75,7 @@ TEMPLATE FOR NEW ENTRIES
 | Frostpunk 2 | ✔️ | ✅ |  |
 | Frozenheim | ✔️ | N/A |  |
 | Gears of War: E-Day | ✔️ | ✅ | _Requires disabling EAC in order to use OptiScaler, as well as using Opti as `d3d12.dll` for Patcher to load_ |
+| Ghost of Tsushima DIRECTOR'S CUT | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
@@ -93,6 +94,7 @@ TEMPLATE FOR NEW ENTRIES
 | High On Life | ✔️ | N/A |  |
 | High On Life 2 | ✔️ | ✅ |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
+| Horizon Forbidden West Complete Edition | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | I Am Jesus Christ | ✔️ | ✅ |  |
 | Icarus | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
@@ -118,7 +120,7 @@ TEMPLATE FOR NEW ENTRIES
 | Mafia: The Old Country | ✔️ | ✅ |  |
 | Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
 | Manor Lords | ✔️ | N/A |  |
-| Marvel's Spider-Man 2 | ✔️ | N/A |  |
+| Marvel's Spider-Man 2 | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Metal Eden | ✔️ | ✅ | _Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | MindsEye | ✔️ | ✅ |  |
@@ -189,6 +191,7 @@ TEMPLATE FOR NEW ENTRIES
 | The Elder Scrolls IV: Oblivion Remastered | ✔️ | ✅ |  |
 | The First Berserker: Khazan | ✔️ | ✅ |  |
 | The Last Caretaker | ✔️ | ✅ |  |
+| The Last of Us Part II Remastered | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | The Lord of the Rings: Gollum™ | ✔️ | ⛔ | _SL1_ |
 | The Lord of the Rings: Return to Moria™ | ✔️ | N/A |  |
 | The Midnight Walk | ✔️ | ✅ | _Game doesn't respect settings, please check [Wiki entry](https://github.com/optiscaler/OptiScaler/wiki/The-Midnight-Walk) on how to fix upscalers and FG_ |
