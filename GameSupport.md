@@ -95,6 +95,7 @@ TEMPLATE FOR NEW ENTRIES
 | High On Life 2 | ✔️ | ✅ |  |
 | Hogwarts Legacy | ✔️ | ✅ |  |
 | Horizon Forbidden West Complete Edition | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
+| Horizon Zero Dawn Remastered | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | I Am Jesus Christ | ✔️ | ✅ |  |
 | Icarus | ✔️ | ✅ |  |
 | Immortals of Aveum | ✔️ | ✅ |  |
@@ -121,6 +122,7 @@ TEMPLATE FOR NEW ENTRIES
 | Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
 | Manor Lords | ✔️ | N/A |  |
 | Marvel's Spider-Man 2 | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
+| Marvel’s Spider-Man Remastered | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Metal Eden | ✔️ | ✅ | _Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |
 | MindsEye | ✔️ | ✅ |  |
@@ -139,6 +141,7 @@ TEMPLATE FOR NEW ENTRIES
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Quarantine Zone: The Last Check | ✔️ | ✅ | _SL checks patched for future use_ |
 | Ranch Simulator | ✔️ | N/A |  |
+| Ratchet & Clank: Rift Apart | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Ready or Not | ✔️ | ✅ | _Steam exe_ |
 | REANIMAL | ✔️ | ✅ | _For future use_ |
 | Red Dead Redemption 2 | ✔️ | N/A | _Check [link](https://github.com/optiscaler/OptiScaler/issues/388#issuecomment-3173010106) for install, thanks to 0x-FADED_ |

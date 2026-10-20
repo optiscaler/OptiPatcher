@@ -1773,6 +1773,51 @@ static void CheckForPatch()
         }
     }
 
+    // Ratchet & Clank: Rift Apart (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "riftapart.exe")
+    {
+        std::string_view pattern("FF 92 98 00 00 00 45 33 E4 83 F8 03");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Horizon Zero Dawn Remastered (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "horizonzerodawnremastered.exe")
+    {
+        std::string_view pattern("FF 90 A0 00 00 00 45 33 F6 83 F8 03");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // Marvel’s Spider-Man Remastered (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "spider-man.exe")
+    {
+        std::string_view pattern("FF 92 98 00 00 00 45 33 E4 83 F8 03");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")
