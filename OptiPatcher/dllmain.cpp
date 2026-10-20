@@ -1821,6 +1821,24 @@ static void CheckForPatch()
         _patchResult = patchAddressGPU != nullptr && patchAddressSigCheck != nullptr;
     }
 
+    // Marvel's Spider-Man 2 (Nixxes)
+    // NxUpscaler only asks Streamline for DLSS ("SL DLSS support") when GetGpuVendor() == 3 (NVIDIA).
+    // DLSS-G and Reflex are not vendor gated, they only depend on the Streamline feature checks.
+    else if (exeName == "spider-man2.exe")
+    {
+        // call [rdx+A8h] (GetGpuVendor); cmp eax, 3; jne ...; lea rcx, [r15+C0h]
+        std::string_view pattern("FF 92 A8 00 00 00 83 F8 03 0F 85 ? ? ? ? 49 8D 8F C0 00 00 00");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 6);
+
+        if (patchAddress != nullptr)
+        {
+            // cmp eax, 3 -> cmp eax, eax; nop
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DLSSG / Extra
 
     // DLSSG
