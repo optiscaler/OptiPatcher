@@ -436,6 +436,21 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // For Update 1.2.0.1
+        else
+        {
+            std::string_view pattern2("44 8B C0 E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 8);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
+        }
     }
 
     // S.T.A.L.K.E.R. 2: Heart of Chornobyl
@@ -2584,8 +2599,8 @@ static void CheckForPatch()
         }
 
         // Reflex Markers check?
-        std::string_view pattern3("E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 74");
-        auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 5);
+        std::string_view pattern3("48 83 EC ? E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? ?");
+        auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 9);
 
         if (patchAddress3 != nullptr)
         {
