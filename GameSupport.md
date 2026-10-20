@@ -74,7 +74,7 @@ TEMPLATE FOR NEW ENTRIES
 | Fort Solis | ✔️ | ✅ |  |
 | Frostpunk 2 | ✔️ | ✅ |  |
 | Frozenheim | ✔️ | N/A |  |
-| Gears of War: E-Day | ✔️ | ✅ | _Requires disabling EAC in order to use OptiScaler_ |
+| Gears of War: E-Day | ✔️ | ✅ | _Requires disabling EAC in order to use OptiScaler, as well as using Opti as `d3d12.dll` for Patcher to load_ |
 | Ghostrunner | ✔️ | N/A |  |
 | Ghostrunner 2 | ✔️ | ✅ | _Requires retoggling FG on every boot if not working_ |
 | Ghostwire: Tokyo | ✔️ | N/A |  |
