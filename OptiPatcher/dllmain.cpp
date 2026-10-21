@@ -1033,6 +1033,21 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // For Update 2.0.2.2586
+        else
+        {
+            std::string_view pattern2("41 8B 34 36 E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 9);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
+        }
     }
 
     // Assetto Corsa Competizione, Bright Memory Infinite
