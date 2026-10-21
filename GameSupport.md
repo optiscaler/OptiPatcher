@@ -50,6 +50,7 @@ TEMPLATE FOR NEW ENTRIES
 | Deadlink | ✔️ | N/A | _Only DX12, no XeSS mode_ |
 | Deadzone Rogue | ✔️ | ✅ | _Steam exe_ |
 | Dead as Disco | ✔️ | ✅ | _Steam exe_ |
+| DEATH STRANDING 2: ON THE BEACH | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Deep Rock Galactic | ✔️ | ✅ |  |
 | Deep Rock Galactic: Rogue Core | ✔️ | ✅ |  |
 | Deliver Us Mars | ✔️ | ✅ |  |
@@ -122,6 +123,7 @@ TEMPLATE FOR NEW ENTRIES
 | Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
 | Manor Lords | ✔️ | N/A |  |
 | Marvel's Spider-Man 2 | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
+| Marvel's Spider-Man: Miles Morales | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Marvel’s Spider-Man Remastered | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
 | Metal Eden | ✔️ | ✅ | _Demo should also be supported_ |
 | METAL GEAR SOLID Δ: SNAKE EATER | ✔️ | ✅ | _Requires OptiScaler **0.9 build** for DLSS-FG patch, **DLSSG SL** inputs <br> DLSS-FG won't be exposed in options, but FG Active should make Streamline state ON - [Screenshot](https://i.ibb.co/7xxcxj4z/METAL-GEAR-SOLID-SNAKE-EATER-2025-09-04-00-00.png) <br> To make AL2/XeLL work properly, requires **Reflex - Force Enable** option through Fakenvapi, since Reflex is hidden <br> To fix weird transparencies, check [special notes](#special-notes)_ |

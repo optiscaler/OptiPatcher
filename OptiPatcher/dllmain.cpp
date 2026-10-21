@@ -1803,11 +1803,26 @@ static void CheckForPatch()
         }
     }
 
-    // Marvel’s Spider-Man Remastered (Nixxes)
+    // Marvel’s Spider-Man Remastered, Marvel's Spider-Man: Miles Morales (Nixxes)
     // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
-    else if (exeName == "spider-man.exe")
+    else if (exeName == "spider-man.exe" || exeName == "milesmorales.exe")
     {
         std::string_view pattern("FF 92 98 00 00 00 45 33 E4 83 F8 03");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // DEATH STRANDING 2: ON THE BEACH (Nixxes)
+    // DLSS check is vendor locked, but DLSSG and Reflex already work with Streamline spoofing
+    else if (exeName == "ds2.exe")
+    {
+        std::string_view pattern("FF 90 A8 00 00 00 45 33 F6 83 F8 03");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
 
         if (patchAddress != nullptr)
