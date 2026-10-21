@@ -1919,29 +1919,49 @@ static void CheckForPatch()
     }
 
     // Red Dead Redemption 2
-    // Thanks to 0x-FADED
-    // https://github.com/0x-FADED/RDR2-NVNGX-Loader
     else if (exeName == "rdr2.exe")
     {
-        std::string_view patternGPUCheck("E8 ? ? ? ? 4C 8B CB 48 8D 54 24 60");
-        auto patchAddressGPU = (void*) scanner::GetAddress(exeModule, patternGPUCheck, -13);
+        // DLSS, vendor gate called before NGX init, cmp vendor, 2 -> cmp al, al
+        std::string_view patternDLSS("48 85 C0 74 0A 80 B8 D9 1C 00 00 02 0F 94 C3");
+        auto patchAddressDLSS = (void*) scanner::GetAddress(exeModule, patternDLSS, 5);
 
-        if (patchAddressGPU != nullptr)
+        if (patchAddressDLSS != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x38, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressDLSS, &patch);
+        }
+
+        // Reflex, vendor check in Reflex init (NvLowLatencyVk on Vulkan, NvAPI on DX12)
+        std::string_view patternReflex("80 B9 D9 1C 00 00 02 0F 85 ? ? ? ?");
+        auto patchAddressReflex = (void*) scanner::GetAddress(exeModule, patternReflex, 7);
+
+        if (patchAddressReflex != nullptr)
         {
             std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddressGPU, &patch);
+            patcher::PatchAddress(patchAddressReflex, &patch);
         }
 
-        std::string_view patternSigCheck("80 3D ? ? ? ? ? 75 ? 41 8B CF");
-        auto patchAddressSigCheck = (void*) scanner::GetAddress(exeModule, patternSigCheck, 6);
+        // NvAPI init, vendor id 0x10DE check, DX12 Reflex disables itself without NvAPI
+        std::string_view patternNvApi("81 B9 00 01 00 00 DE 10 00 00 48 8B D9 0F 85");
+        auto patchAddressNvApi = (void*) scanner::GetAddress(exeModule, patternNvApi, 13);
 
-        if (patchAddressSigCheck != nullptr)
+        if (patchAddressNvApi != nullptr)
         {
-            std::vector<BYTE> patch = { 0x01 };
-            patcher::PatchAddress(patchAddressSigCheck, &patch);
+            std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressNvApi, &patch);
         }
 
-        _patchResult = patchAddressGPU != nullptr && patchAddressSigCheck != nullptr;
+        // Settings menu "is NVIDIA" condition, cmp vendor, 2 -> cmp al, al
+        std::string_view patternMenu("33 C0 80 B8 D9 1C 00 00 02 0F 94 C0 48 83 C4 20 5B C3");
+        auto patchAddressMenu = (void*) scanner::GetAddress(exeModule, patternMenu, 2);
+
+        if (patchAddressMenu != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x38, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressMenu, &patch);
+        }
+        _patchResult = patchAddressDLSS != nullptr && patchAddressReflex != nullptr && patchAddressNvApi != nullptr &&
+                       patchAddressMenu != nullptr;
     }
 
     // DLSSG / Extra
