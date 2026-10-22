@@ -1247,6 +1247,21 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+
+        // For Update 6.0
+        else
+        {
+            std::string_view pattern2("BA 54 1B 00 00 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 5);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
+        }
     }
 
     // Fatekeeper
