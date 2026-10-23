@@ -165,7 +165,33 @@
     <ClCompile Include="Scanner.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OptiPatcher.rc" />
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <!-- Writes the short commit hash (with -dirty for uncommitted changes) to git_version.h for the version resource -->
+  <Target Name="GenerateGitVersion" BeforeTargets="ResourceCompile">
+    <Exec Command="git rev-parse --short HEAD" WorkingDirectory="$(MSBuildProjectDirectory)" ConsoleToMSBuild="true" EchoOff="true" StandardOutputImportance="low" ContinueOnError="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitShortHash" />
+      <Output TaskParameter="ExitCode" PropertyName="GitHashExitCode" />
+    </Exec>
+    <Exec Command="git status --porcelain --untracked-files=no" WorkingDirectory="$(MSBuildProjectDirectory)" ConsoleToMSBuild="true" EchoOff="true" StandardOutputImportance="low" ContinueOnError="true" Condition="'$(GitHashExitCode)' == '0'">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitStatusOutput" />
+    </Exec>
+    <PropertyGroup>
+      <GitVersionString Condition="'$(GitHashExitCode)' != '0'">unknown</GitVersionString>
+      <GitVersionString Condition="'$(GitHashExitCode)' == '0'">$(GitShortHash)</GitVersionString>
+      <GitVersionString Condition="'$(GitHashExitCode)' == '0' And '$(GitStatusOutput)' != ''">$(GitShortHash)-dirty</GitVersionString>
+    </PropertyGroup>
+    <MakeDir Directories="$(IntDir)" />
+    <WriteLinesToFile File="$(IntDir)git_version.h" Lines="#define OPTIPATCHER_VERSION_STR &quot;$(GitVersionString)&quot;" Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <Message Importance="high" Text="OptiPatcher version: $(GitVersionString)" />
+  </Target>
 </Project>
