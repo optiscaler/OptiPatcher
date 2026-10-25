@@ -1021,6 +1021,20 @@ static void CheckForPatch()
         }
     }
 
+    // MechWarrior 5: Mercenaries
+    else if (CHECK_UE(mechwarrior))
+    {
+        std::string_view pattern("4C 8B 6C 24 30 EB 4E E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 12);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Quarantine Zone: The Last Check
     else if (CHECK_UE(qzsim))
     {
