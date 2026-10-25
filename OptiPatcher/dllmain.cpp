@@ -1768,6 +1768,35 @@ static void CheckForPatch()
         }
     }
 
+    // FINAL FANTASY XIV Online
+    else if (exeName == "ffxiv_dx11.exe")
+    {
+        // cmp 0x10DE ; jnz <non-NVIDIA path>
+        // Matches the two vendor gates
+        std::string_view patterns[] = {
+            "81 BF C0 09 00 00 DE 10 00 00 0F 85", // rdi variant
+            "81 BB C0 09 00 00 DE 10 00 00 0F 85"  // rbx variant
+        };
+
+        // 6-byte NOP (66 0F 1F 44 00 00) replaces the 6-byte jnz (0F 85 rel32),
+        // so execution always falls through to the NVIDIA path.
+        std::vector<BYTE> patch = { 0x66, 0x0F, 0x1F, 0x44, 0x00, 0x00 };
+
+        int patched = 0;
+        for (auto pattern : patterns)
+        {
+            auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 10);
+
+            if (patchAddress != nullptr)
+            {
+                patcher::PatchAddress(patchAddress, &patch);
+                patched++;
+            }
+        }
+
+        _patchResult = (patched == 2);
+    }
+
     // Marvel's Spider-Man 2 (Nixxes)
     // NxUpscaler only asks Streamline for DLSS ("SL DLSS support") when GetGpuVendor() == 3 (NVIDIA).
     // DLSS-G and Reflex are not vendor gated, they only depend on the Streamline feature checks.
