@@ -151,6 +151,7 @@ TEMPLATE FOR NEW ENTRIES
 | REMNANT II | ✔️ | ✅ |  |
 | Resonance: A Plague Tale Legacy | ✔️ | ✅ |  |
 | Revenge of the Savage Planet | ✔️ | N/A |  |
+| Rivage | ✔️ | ✅ |  |
 | Riven (2024) | ✔️ | N/A |  |
 | Robocop Rogue City | ✔️ | ✅ |  |
 | Robocop Unfinished Business | ✔️ | ✅ |  |

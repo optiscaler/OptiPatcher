@@ -1740,6 +1740,20 @@ static void CheckForPatch()
         }
     }
 
+    // Rivage
+    else if (CHECK_UE(rivage))
+    {
+        std::string_view pattern("BA B4 13 00 00 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // Marvel's Spider-Man 2 (Nixxes)
     // NxUpscaler only asks Streamline for DLSS ("SL DLSS support") when GetGpuVendor() == 3 (NVIDIA).
     // DLSS-G and Reflex are not vendor gated, they only depend on the Streamline feature checks.
@@ -2779,6 +2793,34 @@ static void CheckForPatch()
         {
             std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             patcher::PatchAddress(patchAddress3, &patch);
+        }
+    }
+
+    // DLSSG, Rivage
+    else if (CHECK_UE(rivage))
+    {
+        std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // Another SL check
+        std::string_view pattern2("75 29 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 7);
+
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress2, &patch);
         }
     }
 
