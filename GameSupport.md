@@ -29,6 +29,7 @@ TEMPLATE FOR NEW ENTRIES
 | Bellwright | ✔️ | ✅ | _DLSS and DLSSG are coupled; requires selecting DLSS as the upscaler for DLSSG inputs to work_ |
 | Blacktail | ✔️ | N/A |  |
 | Black Myth: Wukong | ✔️ | ✅ |  |
+| Borderlands 4 | ✔️ | ✅ |  |
 | Breathedge 2 | ✔️ | ✅ |  |
 | Bright Memory Infinite | ✔️ | ⛔ | _SL1_ |
 | Brothers: A Tale of Two Sons Remake | ✔️ | N/A |  |

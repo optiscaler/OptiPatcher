@@ -613,6 +613,21 @@ static void CheckForPatch()
         }
     }
 
+    // Borderlands 4
+    // inline patch
+    else if (exeName == "borderlands4.exe")
+    {
+        std::string_view pattern("0F B6 C0 81 3D ? ? ? ? ? ? ? ? 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 3);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // The Alters
     else if (CHECK_UE(thealters))
     {
@@ -2865,6 +2880,25 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
+    }
+
+    // DLSSG, Borderlands 4
+    // SL checks are CALLs/xrefs to the 2nd isNvidia CMP below the DLSS CMP check
+    else if (exeName == "borderlands4.exe")
+    {
+        std::string_view pattern("0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? B8");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
     }
 
     // DLSSG, Mafia: The Old Country
