@@ -455,6 +455,7 @@ static void CheckForPatch()
 
     // S.T.A.L.K.E.R. 2: Heart of Chornobyl
     // inline patch
+    // Both DLSS and SL checks are xrefs to the general isNvidia CMP
     else if (CHECK_UE(stalker2))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 85 FF 7E");
@@ -2633,6 +2634,7 @@ static void CheckForPatch()
 
     // DLSSG, S.T.A.L.K.E.R. 2: Heart of Chornobyl
     // inline patch
+    // Both DLSS and SL checks are xrefs to the general isNvidia CMP
     else if (CHECK_UE(stalker2))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? F6 05");

@@ -121,7 +121,7 @@ TEMPLATE FOR NEW ENTRIES
 | Lost Records: Bloom & Rage | ✔️ | ✅ |  |
 | Lost Soul Aside | ✔️ | ✅ | _Steam exe_ |
 | Luna Abyss | ✔️ | N/A |  |
-| Mafia: The Old Country | ✔️ | ✅ |  |
+| Mafia: The Old Country | ✔️ | ✅ | _Man of Honor DLC Update added antitamper DRM (VMProtect?) which now blocks Patcher from working_ |
 | Mandragora: Whispers of the Witch Tree | ✔️ | N/A |  |
 | Manor Lords | ✔️ | N/A |  |
 | Marvel's Spider-Man 2 | ✔️ | ✅ | _DLSS is only vendor locked, DLSSG and Reflex are available already through Streamline spoofing_ |
