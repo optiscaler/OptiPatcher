@@ -100,6 +100,47 @@ uintptr_t scanner::GetAddressFromWholeModule(HMODULE module, const std::string_v
     }
 }
 
+uintptr_t scanner::GetAddressSafe(HMODULE module, const std::string_view pattern, ptrdiff_t offset)
+{
+    if (module == nullptr)
+        return NULL;
+
+    const uintptr_t moduleBase = reinterpret_cast<uintptr_t>(module);
+    auto ntHeaders =
+        reinterpret_cast<PIMAGE_NT_HEADERS64>(moduleBase + reinterpret_cast<PIMAGE_DOS_HEADER>(moduleBase)->e_lfanew);
+    const uintptr_t moduleEnd = moduleBase + ntHeaders->OptionalHeader.SizeOfImage;
+
+    uintptr_t current = moduleBase;
+    while (current < moduleEnd)
+    {
+        MEMORY_BASIC_INFORMATION mbi {};
+        if (VirtualQuery(reinterpret_cast<LPCVOID>(current), &mbi, sizeof(mbi)) == 0)
+            break;
+
+        uintptr_t regionStart = reinterpret_cast<uintptr_t>(mbi.BaseAddress);
+        uintptr_t regionEnd = std::min<uintptr_t>(regionStart + mbi.RegionSize, moduleEnd);
+
+        const DWORD readable = PAGE_READONLY | PAGE_READWRITE | PAGE_WRITECOPY | PAGE_EXECUTE_READ |
+                               PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY;
+
+        if (mbi.State == MEM_COMMIT && (mbi.Protect & readable) != 0 &&
+            (mbi.Protect & (PAGE_GUARD | PAGE_NOACCESS)) == 0 && regionEnd > regionStart + 1)
+        {
+            uintptr_t address = FindPattern(regionStart, regionEnd - regionStart - 1, pattern.data());
+
+            if (address != NULL)
+                return address + offset;
+        }
+
+        if (regionEnd <= current)
+            break;
+
+        current = regionEnd;
+    }
+
+    return NULL;
+}
+
 uintptr_t scanner::GetAddress(const std::wstring_view moduleName, const std::string_view pattern, ptrdiff_t offset,
                               uintptr_t startAddress)
 {
