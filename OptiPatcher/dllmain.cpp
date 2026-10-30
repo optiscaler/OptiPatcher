@@ -12,6 +12,57 @@ extern "C" __declspec(dllexport) void InitializeASI() { return; }
 
 #define CHECK_UE(name) exeName == (#name "-win64-shipping.exe") || exeName == (#name "-wingdk-shipping.exe")
 
+// Call of Duty: Black Ops Cold War
+static DWORD WINAPI ColdWarPatchThread(LPVOID)
+{
+    auto exeModule = GetModuleHandle(nullptr);
+    bool nvApiInitDone = false;
+    bool dlssGateDone = false;
+
+    // Vendor id -> enum function (NVIDIA = 0, AMD = 1, Intel = 2). The NVIDIA branch runs NvAPI init, which sets the
+    // "NvAPI OK" flag the DLSS init path needs. Skipping `test ebx, ebx / jne <non-NVIDIA path>` makes it run on
+    // other GPUs while the vendor enum stays untouched (no spoofing, no texture corruption).
+    std::string_view patternNvApiInit("3D 02 10 00 00 74 ? 8B DF 3D DE 10 00 00 74 ? 3D 86 80 00 00 0F 95 C3 83 C3 02 "
+                                      "89 1D ? ? ? ? 8B F7 44 8B FF 8B EF 85 DB 0F 85 ? ? ? ?");
+
+    // Vendor gate in front of the only call to the DLSS/NVIDIA init (NvAPI, NGX, Reflex), `test eax, eax / jne` on the
+    // vendor enum, 0 = NVIDIA. NOP the jne so non-NVIDIA GPUs run it as well.
+    std::string_view patternDLSSGate("85 C0 75 ? 48 8B 0D ? ? ? ? 48 8D 54 24 30 E8 ? ? ? ? 8B 05 ? ? ? ? 85 C0 74 ? "
+                                     "83 F8 01 74 ?");
+
+    for (int attempt = 0; attempt < 240 && !(nvApiInitDone && dlssGateDone); attempt++)
+    {
+        if (!nvApiInitDone)
+        {
+            auto patchAddress = (void*) scanner::GetAddressSafe(exeModule, patternNvApiInit, 42);
+
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                nvApiInitDone = true;
+            }
+        }
+
+        if (!dlssGateDone)
+        {
+            auto patchAddress = (void*) scanner::GetAddressSafe(exeModule, patternDLSSGate, 2);
+
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x90, 0x90 };
+                patcher::PatchAddress(patchAddress, &patch);
+                dlssGateDone = true;
+            }
+        }
+
+        if (!(nvApiInitDone && dlssGateDone))
+            Sleep(250);
+    }
+
+    return 0;
+}
+
 static void CheckForPatch()
 {
     auto exeName = Util::ExePath().filename().string();
@@ -454,7 +505,6 @@ static void CheckForPatch()
 
     // S.T.A.L.K.E.R. 2: Heart of Chornobyl
     // inline patch
-    // Both DLSS and SL checks are xrefs to the general isNvidia CMP
     else if (CHECK_UE(stalker2))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 85 FF 7E");
@@ -604,21 +654,6 @@ static void CheckForPatch()
     {
         std::string_view pattern("33 D2 E8 ? ? ? ? 81 3D ? ? ? ? DE 10 00 00 41 BF ? ? ? ? 74");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 7);
-
-        if (patchAddress != nullptr)
-        {
-            std::vector<BYTE> patch = { 0x39, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            patcher::PatchAddress(patchAddress, &patch);
-            _patchResult = true;
-        }
-    }
-
-    // Borderlands 4
-    // inline patch
-    else if (exeName == "borderlands4.exe")
-    {
-        std::string_view pattern("0F B6 C0 81 3D ? ? ? ? ? ? ? ? 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 3);
 
         if (patchAddress != nullptr)
         {
@@ -2079,6 +2114,21 @@ static void CheckForPatch()
         }
     }
 
+    // Call of Duty: Black Ops Cold War
+    else if (exeName == "blackopscoldwar.exe")
+    {
+        // The exe is protected, patch from a thread that waits until the code can be found and read.
+        // The result is reported as success up front since the thread outlives DllMain.
+        _patchResult = true;
+
+        HANDLE thread = CreateThread(nullptr, 0, ColdWarPatchThread, nullptr, 0, nullptr);
+
+        if (thread != nullptr)
+            CloseHandle(thread);
+        else
+            _patchResult = false;
+    }
+
     // Red Dead Redemption 2
     else if (exeName == "rdr2.exe")
     {
@@ -2692,7 +2742,6 @@ static void CheckForPatch()
 
     // DLSSG, S.T.A.L.K.E.R. 2: Heart of Chornobyl
     // inline patch
-    // Both DLSS and SL checks are xrefs to the general isNvidia CMP
     else if (CHECK_UE(stalker2))
     {
         std::string_view pattern("E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 80 3D ? ? ? ? ? 0F 85 ? ? ? ? F6 05");
@@ -2940,25 +2989,6 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress2, &patch);
         }
-    }
-
-    // DLSSG, Borderlands 4
-    // SL checks are CALLs/xrefs to the 2nd isNvidia CMP below the DLSS CMP check
-    else if (exeName == "borderlands4.exe")
-    {
-        std::string_view pattern("0F 85 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? B8");
-        uintptr_t start = 0;
-        void* patchAddress = nullptr;
-        do
-        {
-            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11, start);
-            if (patchAddress != nullptr)
-            {
-                std::vector<BYTE> patch = { 0x0C, 0x01 };
-                patcher::PatchAddress(patchAddress, &patch);
-                start = (uintptr_t) patchAddress;
-            }
-        } while (patchAddress != nullptr);
     }
 
     // DLSSG, Mafia: The Old Country
