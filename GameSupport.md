@@ -142,6 +142,7 @@ TEMPLATE FOR NEW ENTRIES
 | Otherskin | ✔️ | N/A |  |
 | Pacific Drive | ✔️ | N/A |  |
 | Palworld | ✔️ | ✅ |  |
+| Phantom Blade Zero | ✔️ | ✅ |  |
 | Postal 4: No Regerts | ✔️ | ✅ | _Game doesn't send a HUDless resource_ |
 | Project Borealis: Prologue | ✔️ | ✅ | _Requires retoggling DLSS on every game boot if not working_ |
 | Quarantine Zone: The Last Check | ✔️ | ✅ | _SL checks patched for future use_ |

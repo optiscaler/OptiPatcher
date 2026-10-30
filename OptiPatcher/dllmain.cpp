@@ -313,9 +313,8 @@ static void CheckForPatch()
     else if (CHECK_UE(sb))
     {
         // DLSS
-        std::string_view patternDLSSCheck1(
-            "84 C0 0F B6 DB B8 00 00 00 00 0F 45 D8 EB B8 48 8B C8 81 3D ? ? ? ? ? ? ? ? 45 8B 04 8E 74 09");
-        auto patchAddressDLSSCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck1, 18);
+        std::string_view patternDLSSCheck1("48 8B C8 81 3D ? ? ? ? ? ? ? ? 45");
+        auto patchAddressDLSSCheck1 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck1, 3);
 
         if (patchAddressDLSSCheck1 != nullptr)
         {
@@ -324,8 +323,8 @@ static void CheckForPatch()
         }
 
         // DLSS UI menu string check
-        std::string_view patternDLSSCheck2("48 8B 4D BF 48 85 C9 74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F 85");
-        auto patchAddressDLSSCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck2, 14);
+        std::string_view patternDLSSCheck2("74 05 E8 ? ? ? ? 81 3D ? ? ? ? ? ? ? ? 0F");
+        auto patchAddressDLSSCheck2 = (void*) scanner::GetAddress(exeModule, patternDLSSCheck2, 7);
 
         if (patchAddressDLSSCheck2 != nullptr)
         {
@@ -1782,6 +1781,65 @@ static void CheckForPatch()
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
+    }
+
+    // Phantom Blade Zero
+    else if (exeName == "pbz.exe")
+    {
+        static const std::string_view patterns[] = {
+            // DLSS initialization
+            "E8 ? ? ? ? 84 C0 75 ? 80 3D ? ? ? ? 05 72 ? 48 8D 15 "
+            "? ? ? ? 48 8D 0D ? ? ? ? E8 ? ? ? ? C6 47 40 02",
+            // DLSS menu support
+            "E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 48 8B 5C 24 20",
+            // Streamline/NGX initialization
+            "E8 ? ? ? ? 84 C0 0F 85 ? ? ? ? 48 8B 0D ? ? ? ? 48 89 5C 24 20",
+            // DLSSG support
+            "E8 ? ? ? ? 84 C0 75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 "
+            "00 C6 05 ? ? ? ? 01 48 83 C4 28 C3 E8 ? ? ? ? 84 C0 0F 84 ? "
+            "? ? ? 48 89 7C 24 20 E8 ? ? ? ? 48 8B F8 48 8B 08 48 8B 51 40",
+            // Reflex support
+            "E8 ? ? ? ? 84 C0 75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 "
+            "00 C6 05 ? ? ? ? 01 48 83 C4 28 C3 E8 ? ? ? ? 84 C0 0F 84 ? "
+            "? ? ? 48 89 7C 24 20 E8 ? ? ? ? 48 8B F8 48 8B 08 48 8B 51 50",
+            // FG startup eligibility
+            "E8 ? ? ? ? 84 C0 74 ? 45 84 F6 74 ? 39 7D DF 75 ? 41 B7 01 EB ?",
+            // FG startup classification
+            "E8 ? ? ? ? 84 C0 74 ? 45 84 F6 74 ? 8B 4D DF 83 E9 03 74 ? 83 E9 01",
+            // FG startup fallback
+            "E8 ? ? ? ? 84 C0 74 ? 45 84 F6 74 ? 40 84 F6 75 ? B3 01 EB ? 32 DB",
+            // FG menu support
+            "E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 48 8D 4C 24 20",
+            // Applying the FG mode
+            "E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 84 C0 74 ? 48 8D 4C 24 20 E8 ? ? ? ?",
+
+        };
+
+        const std::vector<BYTE> patch = { 0x0C, 0x01 };
+        bool allPatched = true;
+        for (const auto& pattern : patterns)
+        {
+            auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 5);
+            if (patchAddress != nullptr)
+            {
+                patcher::PatchAddress(patchAddress, &patch);
+            }
+            else
+            {
+                allPatched = false;
+            }
+        }
+
+        // DLSS vendor lock CMP
+        std::string_view pattern("81 3D ? ? ? ? DE 10 00 00 75 ? B2 01 B1 03 E8 ? ? ? ? 84 C0 74 ?");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 10);
+        if (patchAddress != nullptr)
+        {
+            const std::vector<BYTE> patch = { 0x90, 0x90 };
+            patcher::PatchAddress(patchAddress, &patch);
+        }
+
+        _patchResult = allPatched && patchAddress != nullptr;
     }
 
     // FINAL FANTASY XIV Online
