@@ -698,22 +698,21 @@ static void CheckForPatch()
     }
 
     // Severed Steel (+ Demo), System Shock (2023), Trepang2, High On Life, Ghostrunner 2, Deadlink, Destroy All Humans!
-    // 2 - Reprobed, Supraland Six Inches Under, Deep Rock Galactic, Witchfire, Hogwarts Legacy, Achilles: Legends
-    // Untold, Frozenheim, Loopmancer, Blacktail, The Lord of the Rings: Gollum, Mandragora: Whispers of the Witch Tree,
-    // INDIKA, The Lord of the Rings: Return to Moria, VLADiK BRUTAL, Hell Pie, Deliver Us Mars, Postal 4: No Regerts,
-    // SPRAWL, Echo Point Nova, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, Sherlock Holmes: The Awakened, Tony
-    // Hawk's Pro Skater 3 + 4, Of Ash and Steel, Voidtrain, Alone in the Dark 2024, Like a Dragon: Ishin!, Icarus,
-    // Soulstice, Luna Abyss, Aliens: Fireteam Elite 2
+    // 2 - Reprobed, Supraland Six Inches Under, Deep Rock Galactic, Witchfire, Achilles: Legends Untold, Frozenheim,
+    // Loopmancer, Blacktail, The Lord of the Rings: Gollum, Mandragora: Whispers of the Witch Tree, INDIKA, The Lord of
+    // the Rings: Return to Moria, VLADiK BRUTAL, Hell Pie, Deliver Us Mars, Postal 4: No Regerts, SPRAWL, Echo Point
+    // Nova, Way of the Hunter, Mortal Kombat 1, Ad Infinitum, Sherlock Holmes: The Awakened, Tony Hawk's Pro Skater 3 +
+    // 4, Of Ash and Steel, Voidtrain, Alone in the Dark 2024, Like a Dragon: Ishin!, Icarus, Soulstice, Luna Abyss,
+    // Aliens: Fireteam Elite 2
     else if (CHECK_UE(thankyouverycool) || CHECK_UE(systemreshock) || CHECK_UE(cppfps) || CHECK_UE(oregon) ||
              CHECK_UE(ghostrunner2) || CHECK_UE(deadlink) || CHECK_UE(dh) || CHECK_UE(supralandsiu) || CHECK_UE(fsd) ||
-             CHECK_UE(witchfire) || exeName == "hogwartslegacy.exe" || CHECK_UE(achilles) || CHECK_UE(frozenheim) ||
-             CHECK_UE(loopmancer) || CHECK_UE(blacktail) || CHECK_UE(tom) || CHECK_UE(man) || CHECK_UE(indika) ||
-             CHECK_UE(moria) || CHECK_UE(vladik_brutal) || CHECK_UE(hellpie) || CHECK_UE(deliverusmars) ||
-             CHECK_UE(postal4) || CHECK_UE(sprawl) || CHECK_UE(greylock) || CHECK_UE(wayofthehunter) ||
-             exeName == "mk12.exe" || CHECK_UE(adinfinitum) || exeName == "shta.exe" || exeName == "thps34.exe" ||
-             CHECK_UE(ofashandsteelgame) || CHECK_UE(voidtrain) || CHECK_UE(aloneinthedark) ||
-             CHECK_UE(likeadragonishin) || CHECK_UE(icarus) || exeName == "soulstice.exe" || CHECK_UE(lunaabyss) ||
-             CHECK_UE(afe2))
+             CHECK_UE(witchfire) || CHECK_UE(achilles) || CHECK_UE(frozenheim) || CHECK_UE(loopmancer) ||
+             CHECK_UE(blacktail) || CHECK_UE(tom) || CHECK_UE(man) || CHECK_UE(indika) || CHECK_UE(moria) ||
+             CHECK_UE(vladik_brutal) || CHECK_UE(hellpie) || CHECK_UE(deliverusmars) || CHECK_UE(postal4) ||
+             CHECK_UE(sprawl) || CHECK_UE(greylock) || CHECK_UE(wayofthehunter) || exeName == "mk12.exe" ||
+             CHECK_UE(adinfinitum) || exeName == "shta.exe" || exeName == "thps34.exe" || CHECK_UE(ofashandsteelgame) ||
+             CHECK_UE(voidtrain) || CHECK_UE(aloneinthedark) || CHECK_UE(likeadragonishin) || CHECK_UE(icarus) ||
+             exeName == "soulstice.exe" || CHECK_UE(lunaabyss) || CHECK_UE(afe2))
     {
         std::string_view pattern("48 89 45 ? 48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
         auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 19);
@@ -722,6 +721,34 @@ static void CheckForPatch()
             std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
+        }
+    }
+
+    // Hogwarts Legacy
+    else if (exeName == "hogwartslegacy.exe")
+    {
+        std::string_view pattern("45 8B 3C 8F E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+
+        // Pre-DLSS5 update
+        else
+        {
+            std::string_view pattern2("48 89 45 ? 48 85 C9 74 05 E8 ? ? ? ? E8 ? ? ? ? 84 C0 75");
+            auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 19);
+
+            if (patchAddress2 != nullptr)
+            {
+                std::vector<BYTE> patch = { 0x0C, 0x01 };
+                patcher::PatchAddress(patchAddress2, &patch);
+            }
+
+            _patchResult = patchAddress2 != nullptr;
         }
     }
 
@@ -2131,28 +2158,28 @@ static void CheckForPatch()
     //
     // The Talos Principle 2, Hell is Us (+ Demo), Robocop: Rogue City, Supraworld, The Talos Principle Reawakened,
     // REMNANT II , The Elder Scrolls IV: Oblivion Remastered, Tokyo Xtreme Racer/Shutokou Battle, Titan Quest II, 171,
-    // Hogwarts Legacy, Still Wakes the Deep, WUCHANG: Fallen Feathers, RoboCop: Unfinished Business, Forgive me Father
-    // 2, Metal Eden (+ Demo), Enotria: The Last Song, Bloom&Rage, The Alters, Ready or Not, VOID/BREAKER, SILENT HILL 2
-    // Remake, NINJA GAIDEN 2 Black, Flintlock: The Siege of Dawn, , Eternal Strands, Lost Soul Aside, Cronos: The
-    // New Dawn, Daemon X Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion
-    // Zone, Tempest Rising, MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Senua’s Saga: Hellblade II,
-    // Celestial Empire, Alien: Rogue Incursion Evolved Edition, Until Dawn, Immortals of Aveum, Fort Solis, Postal 4:
-    // No Regerts, Spirit of the North 2, INDUSTRIA 2, REANIMAL (+ Demo), The Casting of Frank Stone, Echoes of the End:
-    // Enhanced Edition, Palworld, Quarantine Zone: The Last Check, Half Sword, InZOI
+    // Still Wakes the Deep, WUCHANG: Fallen Feathers, RoboCop: Unfinished Business, Forgive me Father 2, Metal Eden (+
+    // Demo), Enotria: The Last Song, Bloom&Rage, The Alters, Ready or Not, VOID/BREAKER, SILENT HILL 2 Remake, NINJA
+    // GAIDEN 2 Black, Flintlock: The Siege of Dawn, , Eternal Strands, Lost Soul Aside, Cronos: The New Dawn, Daemon X
+    // Machina: Titanic Scion, Deadzone Rogue, The Sinking City Remastered, Chernobylite 2: Exclusion Zone, Tempest
+    // Rising, MindsEye, Crisol: Theater of Idols (+ Demo), Frostpunk 2, Senua’s Saga: Hellblade II, Celestial Empire,
+    // Alien: Rogue Incursion Evolved Edition, Until Dawn, Immortals of Aveum, Fort Solis, Postal 4: No Regerts, Spirit
+    // of the North 2, INDUSTRIA 2, REANIMAL (+ Demo), The Casting of Frank Stone, Echoes of the End: Enhanced Edition,
+    // Palworld, Quarantine Zone: The Last Check, Half Sword, InZOI
     if (CHECK_UE(talos2) || CHECK_UE(hellisus) || CHECK_UE(robocop) || CHECK_UE(supraworld) || CHECK_UE(talos1) ||
         CHECK_UE(remnant2) || CHECK_UE(oblivionremastered) || CHECK_UE(tokyoxtremeracer) || CHECK_UE(tq2) ||
-        CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || exeName == "hogwartslegacy.exe" ||
-        CHECK_UE(project_plague) || CHECK_UE(robocopunfinishedbusiness) || exeName == "bloom&rage.exe" ||
-        CHECK_UE(fmf2) || CHECK_UE(metaleden) || CHECK_UE(enotria) || CHECK_UE(thealters) ||
-        exeName == "readyornotsteam-win64-shipping.exe" || exeName == "readyornot-wingdk-shipping.exe" ||
-        CHECK_UE(voidbreaker) || CHECK_UE(shproto) || CHECK_UE(ninjagaiden2black) || CHECK_UE(saltpeter) ||
-        CHECK_UE(eternalstrandssteam) || CHECK_UE(projectlsasteam) || CHECK_UE(cronos) || CHECK_UE(game) ||
-        CHECK_UE(deadzonesteam) || CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2) || CHECK_UE(tempest) ||
-        CHECK_UE(mindseye) || CHECK_UE(crtoiprototype) || CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) ||
-        CHECK_UE(china_builder_06) || CHECK_UE(midnight) || CHECK_UE(bates) || CHECK_UE(immortalsofaveum) ||
-        CHECK_UE(sycamore) || CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) ||
-        exeName == "reanimal.exe" || CHECK_UE(castingfrankstone) || CHECK_UE(thedarken) || CHECK_UE(palworld) ||
-        CHECK_UE(qzsim) || CHECK_UE(halfswordue5) || CHECK_UE(inzoi))
+        CHECK_UE(bgg) || exeName == "stillwakesthedeep.exe" || CHECK_UE(project_plague) ||
+        CHECK_UE(robocopunfinishedbusiness) || exeName == "bloom&rage.exe" || CHECK_UE(fmf2) || CHECK_UE(metaleden) ||
+        CHECK_UE(enotria) || CHECK_UE(thealters) || exeName == "readyornotsteam-win64-shipping.exe" ||
+        exeName == "readyornot-wingdk-shipping.exe" || CHECK_UE(voidbreaker) || CHECK_UE(shproto) ||
+        CHECK_UE(ninjagaiden2black) || CHECK_UE(saltpeter) || CHECK_UE(eternalstrandssteam) ||
+        CHECK_UE(projectlsasteam) || CHECK_UE(cronos) || CHECK_UE(game) || CHECK_UE(deadzonesteam) ||
+        CHECK_UE(thesinkingcityremastered) || CHECK_UE(chernobylite2) || CHECK_UE(tempest) || CHECK_UE(mindseye) ||
+        CHECK_UE(crtoiprototype) || CHECK_UE(frostpunk2) || CHECK_UE(hellblade2) || CHECK_UE(china_builder_06) ||
+        CHECK_UE(midnight) || CHECK_UE(bates) || CHECK_UE(immortalsofaveum) || CHECK_UE(sycamore) ||
+        CHECK_UE(postal4) || CHECK_UE(sotn2) || CHECK_UE(industria_2) || exeName == "reanimal.exe" ||
+        CHECK_UE(castingfrankstone) || CHECK_UE(thedarken) || CHECK_UE(palworld) || CHECK_UE(qzsim) ||
+        CHECK_UE(halfswordue5) || CHECK_UE(inzoi))
 
     // 10 lines of games per pattern should be enough before it gets messy, keep adding to the new section below
 
@@ -2959,6 +2986,43 @@ static void CheckForPatch()
                 start = (uintptr_t) patchAddress;
             }
         } while (patchAddress != nullptr);
+    }
+
+    // DLSSG, Hogwarts Legacy
+    else if (exeName == "hogwartslegacy.exe")
+    {
+        // SL checks
+        std::string_view pattern("75 ? C7 05 ? ? ? ? 02 00 00 00 B8 02 00 00 00");
+        uintptr_t start = 0;
+        void* patchAddress = nullptr;
+        do
+        {
+            patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 0, start);
+            if (patchAddress != nullptr)
+            {
+                std::vector<BYTE> patch = { 0xEB };
+                patcher::PatchAddress(patchAddress, &patch);
+                start = (uintptr_t) patchAddress;
+            }
+        } while (patchAddress != nullptr);
+
+        // SL init plugin
+        std::string_view pattern2("E8 ? ? ? ? 84 C0 75 49 E8");
+        auto patchAddress2 = (void*) scanner::GetAddress(exeModule, pattern2, 5);
+        if (patchAddress2 != nullptr)
+        {
+            std::vector<BYTE> patch2 = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress2, &patch2);
+        }
+
+        // Another SL string - DeepDVC
+        std::string_view pattern3("75 29 E8 ? ? ? ? 84 C0 75 17 B8");
+        auto patchAddress3 = (void*) scanner::GetAddress(exeModule, pattern3, 7);
+        if (patchAddress3 != nullptr)
+        {
+            std::vector<BYTE> patch3 = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress3, &patch3);
+        }
     }
 
     // DLSSG, Mafia: The Old Country
