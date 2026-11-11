@@ -308,6 +308,34 @@ static void CheckForPatch()
         }
     }
 
+    // FINAL FANTASY XVI
+    // inline patch
+    else if (exeName == "ffxvi.exe")
+    {
+        // Bypass Streamline's NVIDIA vendor check during initialization
+        std::string_view patternStreamlineGate("48 8B F9 81 FA DE 10 00 00 0F 85 ? ? ? ? 45 84 C9");
+        auto patchAddressStreamlineGate = (void*) scanner::GetAddress(exeModule, patternStreamlineGate, 3);
+
+        if (patchAddressStreamlineGate != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x39, 0xD2, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressStreamlineGate, &patch);
+        }
+
+        // Spoof the NVIDIA vendor id (0x10DE) in the device struct for subsequent vendor checks
+        std::string_view patternVendorStore("89 8F 5C 10 00 00 81 F9 DE 10 00 00 0F 85");
+        auto patchAddressVendorStore = (void*) scanner::GetAddress(exeModule, patternVendorStore, 0);
+
+        if (patchAddressVendorStore != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xB9, 0xDE, 0x10, 0x00, 0x00, 0x89, 0x8F, 0x5C, 0x10,
+                                        0x00, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            patcher::PatchAddress(patchAddressVendorStore, &patch);
+        }
+
+        _patchResult = patchAddressStreamlineGate != nullptr && patchAddressVendorStore != nullptr;
+    }
+
     // DLSS, Stellar Blade
     // inline patch
     else if (CHECK_UE(sb))
