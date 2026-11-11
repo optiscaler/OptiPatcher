@@ -2036,6 +2036,21 @@ static void CheckForPatch()
         }
     }
 
+    // Enshrouded
+    // cmp 10DE right above "[graphics] Skipping DLSS on non-Nvidia GPU"
+    else if (exeName == "enshrouded.exe")
+    {
+        std::string_view pattern("? ? ? ? ? DE 10 00 00 74 ? 0F");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0xEB, 0x39 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
     // DOOM Eternal
     // just nops a line for main game exe
     else if (exeName == "doometernalx64vk.exe")

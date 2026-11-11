@@ -63,6 +63,7 @@ TEMPLATE FOR NEW ENTRIES
 | Echo Point Nova | ✔️ | N/A |  |
 | Echoes of the End: Enhanced Edition | ✔️ | ✅ |  |
 | Enotria: The Last Song | ✔️ | ✅ |  |
+| Enshrouded | ✔️ | N/A |  |
 | Eternal Strands | ✔️ | ✅ | _Steam exe_ |
 | EVERSPACE 2 | ✔️ | ✅ |  |
 | Evil West | ✔️ | N/A |  |
