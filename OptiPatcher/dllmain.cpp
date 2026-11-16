@@ -102,15 +102,29 @@ static void CheckForPatch()
         }
     }
 
-    // The Talos Principle 2, Super Meat Boy 3D
-    else if (CHECK_UE(talos2) || CHECK_UE(smb))
+    // Super Meat Boy 3D
+    else if (CHECK_UE(smb))
     {
         std::string_view pattern("42 8B 34 36 E8 ? ? ? ? 84 C0 75");
-        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 11);
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 9);
 
         if (patchAddress != nullptr)
         {
-            std::vector<BYTE> patch = { 0xEB };
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
+            patcher::PatchAddress(patchAddress, &patch);
+            _patchResult = true;
+        }
+    }
+
+    // The Talos Principle 2
+    else if (CHECK_UE(talos2))
+    {
+        std::string_view pattern("8B 34 30 E8 ? ? ? ? 84 C0 75");
+        auto patchAddress = (void*) scanner::GetAddress(exeModule, pattern, 8);
+
+        if (patchAddress != nullptr)
+        {
+            std::vector<BYTE> patch = { 0x0C, 0x01 };
             patcher::PatchAddress(patchAddress, &patch);
             _patchResult = true;
         }
