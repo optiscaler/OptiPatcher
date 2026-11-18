@@ -7,50 +7,49 @@
 ## Steps
 
 ### 1. Open games `Shipping` exe with **x64dbg**  
-<img width="340" height="109" alt="image" src="https://github.com/user-attachments/assets/8b33c109-160f-402f-b12d-927f1d204a8d" />
-
+![](/images/1.png)
 
 ### 2. Open module view
-<img width="341" height="507" alt="image" src="https://github.com/user-attachments/assets/23c5f77f-5734-4ea4-9646-c9aa1b0da83e" />
+![](/images/2.png)
 
 ### 3. Select games exe from list (double click it)
-<img width="631" height="128" alt="image" src="https://github.com/user-attachments/assets/0520cf67-37d8-4cc9-aa53-ce631a05b24c" />
+![](/images/3.png)
 
 ### 4. Finding IsNvidia() method
 Open search pattern window  
-<img width="673" height="442" alt="image" src="https://github.com/user-attachments/assets/1ef79d97-92d1-4c5a-b2d0-480f91f15c32" />
+![](/images/4.1.png)
 
 Paste `81 3D ?? ?? ?? ?? DE 10 00 00` and search
-<img width="774" height="631" alt="image" src="https://github.com/user-attachments/assets/24ed17f0-81bf-4711-9145-79d5cfc164ee" />
+![](/images/4.2.png)
 
 Check results for the find correct method  
-<img width="600" height="108" alt="image" src="https://github.com/user-attachments/assets/f5f9ccc6-06c5-4dde-9404-ca0c7c03d5ad" />
+![](/images/4.3.png)
 
 Correct method looks like this  
-<img width="677" height="69" alt="image" src="https://github.com/user-attachments/assets/5eaf1865-9cbe-4a41-8111-101d2197a465" />
+![](/images/4.4.png)
 
 ### 5. Finding the location of DLSS plugin call
 Find the callers of this method first  
-<img width="988" height="769" alt="image" src="https://github.com/user-attachments/assets/1b0ca019-503a-41ca-949f-1a03f4410cf9" />
+![](/images/5.1.png)
 
 Now boring part, we will check all these referances one by one  
-<img width="596" height="748" alt="image" src="https://github.com/user-attachments/assets/6b96c0e8-675b-443b-94f2-4f695d8ab143" />
+![](/images/5.2.png)
 
 Correct calling point is not so hard to understand. Usually have a message like this just below  
-<img width="1586" height="164" alt="image" src="https://github.com/user-attachments/assets/6c05b070-a660-4cc3-9374-e849d63e1c34" />
+![](/images/5.3.png)
 
 And usually one page above mention of ThirdParty plugins like this  
-<img width="1561" height="578" alt="image" src="https://github.com/user-attachments/assets/5678c937-86e9-451c-b95b-a083151bf293" />
+![](/images/5.4.png)
 
 ### 6. Generating the pattern
 Select from 6-7 lines above call to jump after call like below  
-<img width="848" height="159" alt="image" src="https://github.com/user-attachments/assets/4d866bac-d92e-4ded-b46b-5f169e99660d" />
+![](/images/6.1.png)
 
 Use **SwissArmyKnife** to generate pattern  
-<img width="359" height="266" alt="image" src="https://github.com/user-attachments/assets/2084748f-60d3-4387-a8b8-7cc118f94cf0" />
+![](/images/6.2.png)
 
 Select **IDA** style  
-<img width="683" height="217" alt="image" src="https://github.com/user-attachments/assets/70ae89b2-bb18-43e8-b383-6af1d9e27aa5" />
+![](/images/6.3.png)
 
 ### 7. Finding the offset
 I usually truncate last byte so final pattern will be like this.  
